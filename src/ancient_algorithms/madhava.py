@@ -97,7 +97,7 @@ def madhava_pi(n: int, order: int = 0, prec: int = DEFAULT_PREC) -> Decimal:
 
 
 def madhava_sqrt12_pi(n: int, prec: int = DEFAULT_PREC) -> Decimal:
-    """Pi = sqrt(12) * (1 - 1/(3*3) + 1/(5*3^2) - ...), also credited to Madhava."""
+    """Pi = sqrt(12) * (1 - 1/(3*3) + 1/(5*3^2) - ...), stated in the Yuktidipika (2.212)."""
     with localcontext() as ctx:
         ctx.prec = prec
         return Decimal(12).sqrt() * _alternating_odd_series(n, 3)

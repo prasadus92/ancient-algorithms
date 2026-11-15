@@ -84,9 +84,23 @@ def test_melakarta_numbers_from_sarma(name: str, number: int) -> None:
     assert melakarta_number(name) == number
 
 
-def test_melakarta_rule_misses_cluster_names() -> None:
-    # Cakravakam is melakarta 16; the raga names count the first consonant of "kra".
-    assert melakarta_number("cakravākam") == 26
+# The 9 standard names the verse's rule does not reproduce, with what it returns instead.
+MELAKARTA_EXCEPTIONS = [
+    ("cakravākam", 26),
+    ("siṃhendramadhyamam", 87),
+    ("divyamaṇi", 18),
+    ("viśvambharī", 44),
+    ("śyāmalāṅgī", 51),
+    ("citrāmbarī", 26),
+    ("jyotisvarūpiṇī", 61),
+    ("naṭabhairavī", 10),
+    ("ṛṣabhapriyā", 60),
+]
+
+
+@pytest.mark.parametrize(("name", "returned"), MELAKARTA_EXCEPTIONS)
+def test_melakarta_rule_misses_these_names(name: str, returned: int) -> None:
+    assert melakarta_number(name) == returned
 
 
 def test_rules_of_the_verse() -> None:

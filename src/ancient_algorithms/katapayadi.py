@@ -123,10 +123,10 @@ def melakarta_number(name: str) -> int:
 
     This reproduces the 4 names S. R. Sarma (2012) gives: Kanakangi 1, Rupavati
     12, Shanmukhapriya 56 and Rasikapriya 72. It does not give the standard
-    number for every name. Where the second syllable is a cluster, the raga
-    names count its first consonant: Cakravakam is 16 and Citrambari 66, where
-    this returns 26 for both. Simhendramadhyamam (57) counts the anusvara as m,
-    and Natabhairavi (20) and Rshabhapriya (62) depend on the spelling.
+    number for 9 of the 72 names (standard numbers from the usual list, not from
+    a scholarly edition): Cakravakam 16 (this returns 26), Simhendramadhyamam 57
+    (87), Divyamani 48 (18), Visvambhari 54 (44), Syamalangi 55 (51), Citrambari
+    66 (26), Jyotisvarupini 68 (61), Natabhairavi 20 (10) and Rshabhapriya 62 (60).
     """
     digits = digits_in_order(name)
     if len(digits) < 2:
