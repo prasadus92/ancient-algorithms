@@ -18,6 +18,7 @@ uv build
 uv run python benchmarks/kuttaka_vs_euclid.py
 uv run python benchmarks/madhava_convergence.py
 uv run python benchmarks/qiuyi_vs_euclid.py
+uv run python benchmarks/chakravala_vs_continued_fraction.py
 ```
 
 CI runs these steps on Python 3.11 to 3.15, and `main` accepts changes only through a pull request with all 5 jobs green. `uv run ruff format .` fixes formatting, and `uv run pytest tests/test_kuttaka.py -k example_2` runs a single test.
