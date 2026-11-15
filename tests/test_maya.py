@@ -210,3 +210,8 @@ def test_gregorian_matches_datetime(day: date) -> None:
 def test_julian_round_trip(jdn: int) -> None:
     assert jdn_from_julian(*julian_from_jdn(jdn)) == jdn
     assert jdn_from_gregorian(*gregorian_from_jdn(jdn)) == jdn
+
+
+def test_bars_and_dots_needs_digits() -> None:
+    with pytest.raises(ValueError):
+        add_bars_and_dots([], [])

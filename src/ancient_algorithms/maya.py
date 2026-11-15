@@ -1,7 +1,7 @@
 """Maya numerals, the Long Count, the 260-day and 365-day counts, and the Calendar Round.
 
 Maya scribes wrote numbers with a dot for 1, a bar for 5 and a sign for 0 (in the
-codices a lenticular sign, always painted red, in Morley's words), stacking places
+codices a lenticular sign that, in Morley's words, is "always red"), stacking places
 from the bottom up. Each place is worth 20 of the place below, except in counts of
 days: there the third place is worth 18 of the second, so the places are 1, 20,
 360, 7,200 and 144,000 days (S. G. Morley, An Introduction to the Study of the Maya
@@ -133,6 +133,8 @@ def add_bars_and_dots(upper: list[int], lower: list[int]) -> list[int]:
     bottom, every 5 dots make a bar and every 4 bars make 1 dot in the place above,
     which is carrying 20 in base 20.
     """
+    if not upper or not lower:
+        raise ValueError("each number needs at least 1 digit")
     width = max(len(upper), len(lower))
     pooled = []
     for a, b in zip(pad(upper, width), pad(lower, width), strict=True):

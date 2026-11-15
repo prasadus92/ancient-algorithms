@@ -141,3 +141,34 @@ references:
       - family-names: Morley
         given-names: Sylvanus Griswold
     year: 1915
+  - type: article
+    title: "Exploring the 584286 Correlation between the Maya and European Calendars"
+    authors:
+      - family-names: Martin
+        given-names: Simon
+      - family-names: Skidmore
+        given-names: Joel
+    journal: The PARI Journal
+    volume: 13
+    issue: 2
+    start: 3
+    end: 16
+    year: 2012
+  - type: article
+    title: "Correlating the Ancient Maya and Modern European Calendars with High-Precision AMS 14C Dating"
+    authors:
+      - family-names: Kennett
+        given-names: Douglas J.
+    journal: Scientific Reports
+    volume: 3
+    year: 2013
+  - type: article
+    title: "Early texts on Hindu-Arabic calculation"
+    authors:
+      - family-names: Folkerts
+        given-names: Menso
+    journal: Science in Context
+    volume: 14
+    start: 13
+    end: 38
+    year: 2001

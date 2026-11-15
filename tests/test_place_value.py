@@ -59,3 +59,8 @@ def test_carry_keeps_the_value(columns: list[int], base: int) -> None:
 def test_pad_and_trim_keep_the_value(digits: list[int], width: int) -> None:
     assert from_digits(pad(digits, width), 10) == from_digits(digits, 10)
     assert from_digits(trim(digits), 10) == from_digits(digits, 10)
+
+
+def test_trim_needs_a_digit() -> None:
+    with pytest.raises(ValueError):
+        trim([])

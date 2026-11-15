@@ -58,6 +58,8 @@ def pad(digits: Sequence[int], width: int) -> list[int]:
 
 def trim(digits: Sequence[int]) -> list[int]:
     """``digits`` without leading zeros, keeping at least 1 digit."""
+    if not digits:
+        raise ValueError("need at least 1 digit")
     start = 0
     while start < len(digits) - 1 and digits[start] == 0:
         start += 1
