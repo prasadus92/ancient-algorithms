@@ -32,7 +32,7 @@ __all__ = [
     "Sexagesimal",
     "to_sexagesimal",
     "from_sexagesimal",
-    "parse",
+    "parse_sexagesimal",
     "heron_steps",
     "YBC7289_ROOT2",
     "YBC7289_SIDE",
@@ -49,13 +49,13 @@ def to_sexagesimal(x: Fraction | int, places: int) -> Sexagesimal:
     if x < 0:
         raise ValueError("only non-negative values")
     whole = x.numerator // x.denominator
-    frac = x - whole
+    fraction = x - whole
     digits = []
     for _ in range(places):
-        frac *= 60
-        d = frac.numerator // frac.denominator
-        digits.append(d)
-        frac -= d
+        fraction *= 60
+        digit = fraction.numerator // fraction.denominator
+        digits.append(digit)
+        fraction -= digit
     return whole, tuple(digits)
 
 
@@ -63,21 +63,21 @@ def from_sexagesimal(value: Sexagesimal) -> Fraction:
     """Exact value of ``(whole, (d1, d2, ...))``."""
     whole, digits = value
     total = Fraction(whole)
-    scale = Fraction(1)
-    for d in digits:
-        if not 0 <= d < 60:
-            raise ValueError(f"sexagesimal digit out of range: {d}")
-        scale /= 60
-        total += d * scale
+    place = Fraction(1)
+    for digit in digits:
+        if not 0 <= digit < 60:
+            raise ValueError(f"sexagesimal digit out of range: {digit}")
+        place /= 60
+        total += digit * place
     return total
 
 
-def parse(text: str) -> Fraction:
+def parse_sexagesimal(text: str) -> Fraction:
     """Parse the modern notation ``"1;24,51,10"`` into an exact fraction."""
     if text.strip().startswith("-"):
         raise ValueError("only non-negative values")
-    whole, _, frac = text.partition(";")
-    digits = tuple(int(d) for d in frac.split(",")) if frac else ()
+    whole, _, fraction = text.partition(";")
+    digits = tuple(int(d) for d in fraction.split(",")) if fraction else ()
     return from_sexagesimal((int(whole), digits))
 
 
@@ -87,16 +87,16 @@ def format_sexagesimal(value: Sexagesimal) -> str:
     return f"{whole};" + ",".join(str(d) for d in digits) if digits else str(whole)
 
 
-def heron_steps(n: int | Fraction, start: Fraction, steps: int) -> list[Fraction]:
-    """Successive approximations of sqrt(n) by x -> (x + n/x) / 2, exact."""
-    n = Fraction(n)
-    xs = [Fraction(start)]
+def heron_steps(square: int | Fraction, start: Fraction, steps: int) -> list[Fraction]:
+    """Exact approximations of sqrt(square) by x -> (x + square/x) / 2, starting at ``start``."""
+    square = Fraction(square)
+    approximations = [Fraction(start)]
     for _ in range(steps):
-        x = xs[-1]
-        xs.append((x + n / x) / 2)
-    return xs
+        x = approximations[-1]
+        approximations.append((x + square / x) / 2)
+    return approximations
 
 
-YBC7289_ROOT2 = parse("1;24,51,10")
+YBC7289_ROOT2 = parse_sexagesimal("1;24,51,10")
 YBC7289_SIDE = Fraction(30)
-YBC7289_DIAGONAL = parse("42;25,35")
+YBC7289_DIAGONAL = parse_sexagesimal("42;25,35")

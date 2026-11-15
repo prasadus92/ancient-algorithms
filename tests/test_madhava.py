@@ -2,7 +2,7 @@ from decimal import Decimal
 
 import pytest
 
-from old_algorithms.madhava import (
+from ancient_algorithms.madhava import (
     PI_100,
     correct_digits,
     correction,
@@ -24,7 +24,6 @@ def test_partial_sum_small_cases():
 
 
 def test_bare_series_converges_slowly():
-    # 50 terms of the bare series give only 1 correct decimal place.
     assert correct_digits(madhava_pi(50)) == 1
 
 

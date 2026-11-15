@@ -36,46 +36,56 @@ __all__ = [
     "correct_digits",
 ]
 
-# 100 decimal places of pi, used as the reference for error and digit counts.
+DEFAULT_PREC = 60
+"""Significant digits used when the caller does not choose a precision."""
+
 PI_100 = Decimal(
     "3.14159265358979323846264338327950288419716939937510"
     "58209749445923078164062862089986280348253421170679"
 )
+"""Pi to 100 decimal places, the reference for errors and digit counts."""
 
 
-def partial_sum(n: int, prec: int = 60) -> Decimal:
-    """1 - 1/3 + ... with n terms, the last one being +/- 1/(2n - 1)."""
+def _alternating_odd_series(terms: int, ratio: int) -> Decimal:
+    """Sum of (-1)^k / ((2k + 1) * ratio^k) for k below ``terms``, in the current context."""
+    total = Decimal(0)
+    power = Decimal(1)
+    for k in range(terms):
+        term = 1 / ((2 * k + 1) * power)
+        total += term if k % 2 == 0 else -term
+        power *= ratio
+    return total
+
+
+def partial_sum(n: int, prec: int = DEFAULT_PREC) -> Decimal:
+    """1 - 1/3 + 1/5 - ... with n terms, the last one being +/- 1/(2n - 1)."""
     if n < 0:
-        raise ValueError("n must be non-negative")
+        raise ValueError(f"n must be non-negative, got {n}")
     with localcontext() as ctx:
         ctx.prec = prec
-        total = Decimal(0)
-        for k in range(n):
-            term = Decimal(1) / (2 * k + 1)
-            total += term if k % 2 == 0 else -term
-        return +total
+        return _alternating_odd_series(n, 1)
 
 
-def correction(n: int, order: int, prec: int = 60) -> Decimal:
+def correction(n: int, order: int, prec: int = DEFAULT_PREC) -> Decimal:
     """Madhava's end correction of the given order (0, 1, 2 or 3) after n terms."""
-    if n < 1 and order:
-        raise ValueError("corrections need n >= 1")
+    if order not in (0, 1, 2, 3):
+        raise ValueError(f"order must be 0, 1, 2 or 3, got {order}")
+    if order == 0:
+        return Decimal(0)
+    if n < 1:
+        raise ValueError(f"corrections need n >= 1, got {n}")
     with localcontext() as ctx:
         ctx.prec = prec
         d = Decimal(n)
-        if order == 0:
-            return Decimal(0)
         if order == 1:
             return 1 / (4 * d)
         if order == 2:
             return d / (4 * d * d + 1)
-        if order == 3:
-            return (d * d + 1) / (4 * d**3 + 5 * d)
-    raise ValueError("order must be 0, 1, 2 or 3")
+        return (d * d + 1) / (4 * d**3 + 5 * d)
 
 
-def madhava_pi(n: int, order: int = 0, prec: int = 60) -> Decimal:
-    """Approximate pi from n terms of the series plus the chosen end correction."""
+def madhava_pi(n: int, order: int = 0, prec: int = DEFAULT_PREC) -> Decimal:
+    """Pi from n terms of the series plus Madhava's end correction of the given order."""
     if n < 1:
         raise ValueError(f"n must be at least 1, got {n}")
     with localcontext() as ctx:
@@ -84,43 +94,27 @@ def madhava_pi(n: int, order: int = 0, prec: int = 60) -> Decimal:
         return 4 * (partial_sum(n, prec) + sign * correction(n, order, prec))
 
 
-def madhava_sqrt12_pi(n: int, prec: int = 60) -> Decimal:
-    """pi = sqrt(12) * (1 - 1/(3*3) + 1/(5*3^2) - ...), also credited to Madhava."""
+def madhava_sqrt12_pi(n: int, prec: int = DEFAULT_PREC) -> Decimal:
+    """Pi = sqrt(12) * (1 - 1/(3*3) + 1/(5*3^2) - ...), also credited to Madhava."""
     with localcontext() as ctx:
         ctx.prec = prec
-        total = Decimal(0)
-        power = Decimal(1)
-        for k in range(n):
-            term = 1 / ((2 * k + 1) * power)
-            total += term if k % 2 == 0 else -term
-            power *= 3
-        return Decimal(12).sqrt() * total
+        return Decimal(12).sqrt() * _alternating_odd_series(n, 3)
 
 
-def _arctan_inverse(x: int, terms: int) -> Decimal:
-    """arctan(1/x) by its Taylor series, ``terms`` terms."""
-    total = Decimal(0)
-    power = Decimal(x)
-    x2 = x * x
-    for k in range(terms):
-        term = 1 / ((2 * k + 1) * power)
-        total += term if k % 2 == 0 else -term
-        power *= x2
-    return total
-
-
-def machin_pi(n: int, prec: int = 60) -> Decimal:
+def machin_pi(n: int, prec: int = DEFAULT_PREC) -> Decimal:
     """Machin (1706): pi/4 = 4 arctan(1/5) - arctan(1/239), n terms of each series."""
     with localcontext() as ctx:
         ctx.prec = prec
-        return 4 * (4 * _arctan_inverse(5, n) - _arctan_inverse(239, n))
+        arctan_fifth = _alternating_odd_series(n, 5 * 5) / 5
+        arctan_239th = _alternating_odd_series(n, 239 * 239) / 239
+        return 4 * (4 * arctan_fifth - arctan_239th)
 
 
 def correct_digits(approx: Decimal) -> int:
-    """Number of correct decimal places, measured as floor(-log10 |error|)."""
+    """Correct decimal places of an approximation of pi: floor(-log10 |error|), at most 100."""
     with localcontext() as ctx:
         ctx.prec = 110
-        err = abs(approx - PI_100)
-        if err == 0:
+        error = abs(approx - PI_100)
+        if error == 0:
             return 100
-        return max(0, int((-err.log10()).to_integral_value(rounding="ROUND_FLOOR")))
+        return max(0, int((-error.log10()).to_integral_value(rounding="ROUND_FLOOR")))

@@ -1,9 +1,9 @@
-# Old algorithms, implemented
+# Ancient algorithms, implemented
 
-[![CI](https://github.com/prasadus92/old-algorithms/actions/workflows/ci.yml/badge.svg)](https://github.com/prasadus92/old-algorithms/actions/workflows/ci.yml)
+[![CI](https://github.com/prasadus92/ancient-algorithms/actions/workflows/ci.yml/badge.svg)](https://github.com/prasadus92/ancient-algorithms/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Python implementations of algorithms from dated historical sources. Where the source or its oldest commentary has worked examples, the tests run them. The write-ups, with the source text, translation and derivation, are at [prasad.tech/old-algorithms](https://prasad.tech/old-algorithms/).
+Python implementations of algorithms from dated historical sources. Where the source or its oldest commentary has worked examples, the tests run them. The write-ups, with the source text, translation and derivation, are at [prasad.tech/ancient-algorithms](https://prasad.tech/ancient-algorithms/).
 
 | Module | Algorithm | Source |
 |---|---|---|
@@ -25,7 +25,7 @@ uv run python benchmarks/madhava_convergence.py
 With pip: `pip install -e . pytest hypothesis`, then `pytest`.
 
 ```python
->>> from old_algorithms.kuttaka import two_remainders, mod_inverse_kuttaka
+>>> from ancient_algorithms.kuttaka import two_remainders, mod_inverse_kuttaka
 >>> two_remainders(5, 12, 7, 31)   # leaves 5 with 12 and 7 with 31
 317
 >>> mod_inverse_kuttaka(17, 3120)  # the RSA textbook private exponent

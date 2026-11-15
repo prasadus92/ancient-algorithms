@@ -3,7 +3,7 @@ requires = ["hatchling>=1.27"]
 build-backend = "hatchling.build"
 
 [project]
-name = "old-algorithms"
+name = "ancient-algorithms"
 version = "0.1.0"
 description = "Documented historical algorithms, implemented in Python and checked against their sources"
 readme = "README.md"
@@ -19,14 +19,14 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://prasad.tech/old-algorithms/"
-Source = "https://github.com/prasadus92/old-algorithms"
+Homepage = "https://prasad.tech/ancient-algorithms/"
+Source = "https://github.com/prasadus92/ancient-algorithms"
 
 [dependency-groups]
 dev = ["pytest>=8", "hypothesis>=6.100", "ruff>=0.6"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/old_algorithms"]
+packages = ["src/ancient_algorithms"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
