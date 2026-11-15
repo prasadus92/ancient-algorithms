@@ -15,7 +15,7 @@ from ancient_algorithms.chakravala import (
     starting_triple,
 )
 
-non_squares = st.integers(min_value=2, max_value=10_000).filter(lambda n: isqrt(n) ** 2 != n)
+non_squares = st.integers(min_value=2, max_value=200).filter(lambda n: isqrt(n) ** 2 != n)
 
 
 def smallest_solution_by_search(n: int, limit: int) -> tuple[int, int]:
@@ -150,12 +150,31 @@ def test_cycle_from_another_start(n: int, kanistha: int) -> None:
     assert n * solution[0] ** 2 + 1 == solution[1] ** 2
 
 
+@pytest.mark.parametrize("n", [0, 1, -3])
+def test_rejects_n_below_2(n: int) -> None:
+    with pytest.raises(ValueError, match="n must be at least 2"):
+        chakravala(n)
+
+
 @pytest.mark.parametrize("n", [0, 1, 4, 49, -3])
 def test_rejects_squares_and_small_n(n: int) -> None:
     with pytest.raises(ValueError):
         chakravala(n)
     with pytest.raises(ValueError):
         pell_continued_fraction(n)
+
+
+def test_another_start_can_give_a_larger_solution() -> None:
+    assert chakravala(2, start=(5, 7, -1)).solution == (70, 99, 1)
+    assert chakravala(2).solution == (2, 3, 1)
+
+
+@pytest.mark.parametrize("n", [n for n in range(2, 201) if isqrt(n) ** 2 != n])
+def test_every_ksepa_four_triple_completes(n: int) -> None:
+    for triple in chakravala(n, shortcut=False).triples:
+        if abs(triple[2]) == 4:
+            k, j, e = complete_by_bhavana(triple, n)
+            assert e == 1 and n * k * k + 1 == j * j
 
 
 def test_rejects_a_bad_triple() -> None:

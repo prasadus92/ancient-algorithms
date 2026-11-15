@@ -6,10 +6,9 @@ Later Kerala texts attribute to Madhava of Sangamagrama (c. 1340 to 1425) the se
 
 together with corrections that estimate the tail left after stopping at term n.
 No surviving work by Madhava contains these series. They reach us through 16th-century
-Kerala works. Shankara Variyar's Yuktidipika (Tantrasangraha 2.271 to 274 in K. V. Sarma's
-1977 edition) quotes the verses without naming an author, Jyesthadeva's Yuktibhasa derives
-them, and the Kriyakramakari introduces the rule as one Madhava gave (as translated in
-Plofker, Mathematics in India, 2009).
+Kerala works: Jyesthadeva's Yuktibhasa derives them, Shankara Variyar's Yuktidipika
+(2.271 to 274, ed. K. V. Sarma, 1977) quotes the verses without naming an author, and
+his Kriyakramakari credits the rule to Madhava (Plofker 2009, as quoted on Wikipedia).
 
 With S_n the sum of the first n terms (last denominator 2n - 1), the 3
 corrections, written in n, are
@@ -27,6 +26,9 @@ All arithmetic uses ``decimal.Decimal`` at a caller-chosen precision.
 from __future__ import annotations
 
 from decimal import Decimal, localcontext
+
+from ancient_algorithms._checks import check_at_least
+from ancient_algorithms.precision import correct_decimals
 
 __all__ = [
     "PI_100",
@@ -61,8 +63,7 @@ def _alternating_odd_series(terms: int, base: int, first: int = 1) -> Decimal:
 
 def partial_sum(n: int, prec: int = DEFAULT_PREC) -> Decimal:
     """1 - 1/3 + 1/5 - ... with n terms, the last one being +/- 1/(2n - 1)."""
-    if n < 0:
-        raise ValueError(f"n must be non-negative, got {n}")
+    check_at_least("n", n, 0)
     with localcontext() as ctx:
         ctx.prec = prec
         return _alternating_odd_series(n, 1)
@@ -70,8 +71,8 @@ def partial_sum(n: int, prec: int = DEFAULT_PREC) -> Decimal:
 
 def correction(n: int, order: int, prec: int = DEFAULT_PREC) -> Decimal:
     """Madhava's end correction of the given order (0, 1, 2 or 3) after n terms."""
-    if n < 1 and order:
-        raise ValueError(f"corrections need n >= 1, got {n}")
+    if order:
+        check_at_least("n", n, 1)
     if order not in (0, 1, 2, 3):
         raise ValueError(f"order must be 0, 1, 2 or 3, got {order}")
     if order == 0:
@@ -88,8 +89,7 @@ def correction(n: int, order: int, prec: int = DEFAULT_PREC) -> Decimal:
 
 def madhava_pi(n: int, order: int = 0, prec: int = DEFAULT_PREC) -> Decimal:
     """Pi from n terms of the series plus Madhava's end correction of the given order."""
-    if n < 1:
-        raise ValueError(f"n must be at least 1, got {n}")
+    check_at_least("n", n, 1)
     with localcontext() as ctx:
         ctx.prec = prec
         sign = 1 if n % 2 == 0 else -1
@@ -97,7 +97,7 @@ def madhava_pi(n: int, order: int = 0, prec: int = DEFAULT_PREC) -> Decimal:
 
 
 def madhava_sqrt12_pi(n: int, prec: int = DEFAULT_PREC) -> Decimal:
-    """Pi = sqrt(12) * (1 - 1/(3*3) + 1/(5*3^2) - ...), stated in the Yuktidipika (2.212)."""
+    """Pi = sqrt(12) * (1 - 1/(3*3) + 1/(5*3^2) - ...), also credited to Madhava."""
     with localcontext() as ctx:
         ctx.prec = prec
         return Decimal(12).sqrt() * _alternating_odd_series(n, 3)
@@ -113,10 +113,5 @@ def machin_pi(n: int, prec: int = DEFAULT_PREC) -> Decimal:
 
 
 def correct_digits(approx: Decimal) -> int:
-    """Correct decimal places of an approximation of pi: floor(-log10 |error|)."""
-    with localcontext() as ctx:
-        ctx.prec = 110
-        error = abs(approx - PI_100)
-        if error == 0:
-            return 100
-        return max(0, int((-error.log10()).to_integral_value(rounding="ROUND_FLOOR")))
+    """Correct decimal places of an approximation of pi: floor(-log10 |error|), up to 100."""
+    return correct_decimals(approx, PI_100, 100)

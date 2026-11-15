@@ -38,6 +38,9 @@ from __future__ import annotations
 
 import unicodedata
 
+from ancient_algorithms._checks import check_at_least
+from ancient_algorithms.place_value import from_digits, pad, to_digits
+
 __all__ = [
     "DIGITS",
     "decode",
@@ -63,8 +66,8 @@ DIGITS: dict[str, int] = {
 ENCODING_LETTERS = ("na", "ka", "kha", "ga", "gha", "ṅa", "ca", "cha", "ja", "jha")
 """The syllable ``encode`` writes for each digit 0 to 9."""
 
-VOWELS = ("ai", "au", "a", "ā", "i", "ī", "u", "ū", "ṛ", "ṝ", "ḷ", "ḹ", "e", "o")
-"""IAST vowels, the 2-letter diphthongs first so they match before ``a``."""
+VOWELS = ("ai", "au", "a", "ā", "i", "ī", "u", "ū", "ṛ", "ṝ", "e", "o")
+"""IAST vowels, the 2-letter diphthongs first so they match before ``a``. Vocalic ḷ is rejected."""
 
 IGNORED = frozenset(" -'’|.,;:।॥ṃṁḥँंःऽ")
 """Spaces, punctuation, dandas, avagraha, anusvara and visarga: no value."""
@@ -81,11 +84,11 @@ DEVANAGARI_CONSONANTS = dict(
 VIRAMA = "्"
 """The Devanagari mark that removes a consonant's vowel."""
 
-DEVANAGARI_VOWEL_SIGNS = frozenset(chr(c) for c in range(0x093E, 0x094D)) | {"ॢ", "ॣ"}
+DEVANAGARI_VOWEL_SIGNS = frozenset(chr(c) for c in range(0x093E, 0x094D))
 """Devanagari vowel signs written after a consonant."""
 
-DEVANAGARI_VOWELS = frozenset(chr(c) for c in range(0x0904, 0x0915)) | {"ॠ", "ॡ"}
-"""Devanagari vowel letters that stand alone."""
+DEVANAGARI_VOWELS = frozenset(chr(c) for c in range(0x0904, 0x0915) if c != 0x090C) | {"ॠ"}
+"""Devanagari vowel letters that stand alone, without vocalic ḷ, to match the IAST reader."""
 
 
 def digits_in_order(text: str) -> list[int]:
@@ -101,7 +104,7 @@ def decode(text: str) -> int:
     digits = digits_in_order(text)
     if not digits:
         raise ValueError(f"no syllables in {text!r}")
-    return int("".join(str(d) for d in reversed(digits)))
+    return from_digits(digits[::-1], 10)
 
 
 def encode(number: int, places: int | None = None) -> str:
@@ -110,14 +113,21 @@ def encode(number: int, places: int | None = None) -> str:
     ``places`` pads with leading zeros (written last), for values such as 0;03
     in a table where every entry has the same width.
     """
-    if number < 0:
-        raise ValueError(f"number must be at least 0, got {number}")
-    written = str(number).zfill(places or 0)
-    return "".join(ENCODING_LETTERS[int(d)] for d in reversed(written))
+    check_at_least("number", number, 0)
+    digits = pad(to_digits(number, 10), places or 0)
+    return "".join(ENCODING_LETTERS[d] for d in reversed(digits))
 
 
 def melakarta_number(name: str) -> int:
-    """The number of a melakarta raga from the first 2 syllables of its name."""
+    """The number the first 2 syllables of a melakarta raga's name spell, by the rule above.
+
+    This reproduces the 4 names S. R. Sarma (2012) gives: Kanakangi 1, Rupavati
+    12, Shanmukhapriya 56 and Rasikapriya 72. It does not give the standard
+    number for every name. Where the second syllable is a cluster, the raga
+    names count its first consonant: Cakravakam is 16 and Citrambari 66, where
+    this returns 26 for both. Simhendramadhyamam (57) counts the anusvara as m,
+    and Natabhairavi (20) and Rshabhapriya (62) depend on the spelling.
+    """
     digits = digits_in_order(name)
     if len(digits) < 2:
         raise ValueError(f"a melakarta name needs at least 2 syllables, got {name!r}")

@@ -47,6 +47,7 @@ from fractions import Fraction
 from math import gcd, isqrt
 from typing import TypeVar
 
+from ancient_algorithms._checks import check_at_least
 from ancient_algorithms.kuttaka import pulverize
 
 __all__ = [
@@ -68,6 +69,9 @@ Root = TypeVar("Root", int, Fraction)
 
 SHORTCUT_KSEPAS = (-1, 2, -2, 4, -4)
 """Ksepas from which Bhaskara II finishes by composition instead of cycling on."""
+
+MAX_HALF_POWER = 6
+"""Highest power of a halved ksepa-4 triple tried; Brahmagupta's rule for -4 (18.68) is the 6th."""
 
 
 @dataclass
@@ -158,7 +162,9 @@ def chakravala(n: int, *, shortcut: bool = True, start: Triple | None = None) ->
     ``shortcut=False`` the cycle runs until the ksepa is 1.
 
     A ``start`` triple needs positive roots with no common factor, as in Bhaskara
-    II's starts, so that every round divides out exactly.
+    II's starts, so that every round divides out exactly. From another start the
+    answer can be a larger solution: for ``n = 2`` the start ``(5, 7, -1)`` gives
+    ``(70, 99, 1)``, where the smallest is ``(2, 3, 1)``.
 
     Raises ``ValueError`` when ``n`` is not a positive non-square, the cases with
     no solution in positive whole numbers, or when ``start`` breaks the rule above.
@@ -184,9 +190,11 @@ def complete_by_bhavana(triple: Triple, n: int) -> Triple:
 
     Ksepa -1: compose the triple with itself. Ksepa 2 or -2: compose with itself
     to get ksepa 4, then divide both roots by 2 (section 79). Ksepa 4 or -4:
-    divide both roots by 2 and, when that leaves fractions, keep composing with
-    the halved triple until the roots are whole and the ksepa is 1, the route
-    Bhaskara II takes for N = 61.
+    divide both roots by 2 (section 79), then take the 2nd, 3rd and later powers
+    of that halved triple, each by 1 more composition with it, until the roots
+    are whole and the ksepa is 1. For N = 61 the code reaches the 6th power in
+    5 compositions. Bhaskara II reaches the same triple in 3: he composes twice
+    to get the cube, (3805, 29718, -1), then composes that with itself.
     """
     _check_triple(triple, n)
     ksepa = triple[2]
@@ -203,20 +211,22 @@ def complete_by_bhavana(triple: Triple, n: int) -> Triple:
 
 
 def _complete_from_four(triple: Triple, n: int) -> Triple:
-    """Halve a ksepa-4 triple and compose with the half until the roots are whole with ksepa 1."""
+    """The first power of the halved triple, up to the 6th, with whole roots and ksepa 1."""
     kanistha, jyestha, ksepa = triple
     half = (Fraction(kanistha, 2), Fraction(jyestha, 2), ksepa // 4)
     power = half
-    # A power of the halved triple always has whole roots; for N = 61 it is the sixth.
-    while not (power[2] == 1 and power[0].denominator == 1 and power[1].denominator == 1):
+    for _ in range(MAX_HALF_POWER):
+        if power[2] == 1 and power[0].denominator == 1 and power[1].denominator == 1:
+            return int(power[0]), int(power[1]), 1
         power = bhavana(power, half, n)
-    return int(power[0]), int(power[1]), 1
+    raise ValueError(f"no power of {half} up to the {MAX_HALF_POWER}th is whole with ksepa 1")
 
 
 def _check_n(n: int) -> None:
     """Raise ``ValueError`` unless ``n`` is a positive whole number that is not a square."""
-    if n < 2 or isqrt(n) ** 2 == n:
-        raise ValueError(f"n must be a positive non-square, got {n}")
+    check_at_least("n", n, 2)
+    if isqrt(n) ** 2 == n:
+        raise ValueError(f"n must not be a square, got {n}")
 
 
 def _check_triple(triple: Triple, n: int) -> None:

@@ -18,6 +18,8 @@ uv build
 uv run python benchmarks/kuttaka_vs_euclid.py
 uv run python benchmarks/madhava_convergence.py
 uv run python benchmarks/qiuyi_vs_euclid.py
+uv run python benchmarks/euclid_steps.py
+uv run python benchmarks/sieve_compare.py
 uv run python benchmarks/chakravala_vs_continued_fraction.py
 ```
 

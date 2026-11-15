@@ -11,6 +11,7 @@ from ancient_algorithms.katapayadi import (
     encode,
     melakarta_number,
 )
+from ancient_algorithms.madhava import PI_100
 
 LETTERS_FOR = {d: sorted(c for c, v in DIGITS.items() if v == d) for d in range(10)}
 PLAIN_VOWELS = ["a", "ā", "i", "ī", "u", "ū", "e", "ai", "o", "au"]
@@ -39,9 +40,8 @@ def test_sadratnamala_pi_in_devanagari() -> None:
     assert digits_in_order(SADRATNAMALA_PI_DEVANAGARI) == digits_in_order(SADRATNAMALA_PI_IAST)
 
 
-def test_sadratnamala_pi_is_pi_to_17_places() -> None:
-    pi_18 = "314159265358979323"
-    assert str(decode(SADRATNAMALA_PI_IAST))[:17] == pi_18[:17]
+def test_sadratnamala_pi_is_pi_rounded_to_17_places() -> None:
+    assert decode(SADRATNAMALA_PI_IAST) == int((PI_100 * 10**17).to_integral_value())
 
 
 # Karanapaddhati verse quoted by Whish (1834), p. 511: the numbers 10^10 and 31415926536.
@@ -84,6 +84,11 @@ def test_melakarta_numbers_from_sarma(name: str, number: int) -> None:
     assert melakarta_number(name) == number
 
 
+def test_melakarta_rule_misses_cluster_names() -> None:
+    # Cakravakam is melakarta 16; the raga names count the first consonant of "kra".
+    assert melakarta_number("cakravākam") == 26
+
+
 def test_rules_of_the_verse() -> None:
     assert digits_in_order("a") == [0]
     assert digits_in_order("kta") == [6]
@@ -123,14 +128,14 @@ def test_rejects_text_without_syllables(text: str) -> None:
         decode(text)
 
 
-@pytest.mark.parametrize("text", ["kaqa", "क़", "ka1"])
+@pytest.mark.parametrize("text", ["kaqa", "क़", "ka1", "māḷava", "kḷpta", "ऌ", "कॢ"])
 def test_rejects_unknown_letters(text: str) -> None:
     with pytest.raises(ValueError):
         decode(text)
 
 
 def test_rejects_bad_numbers_and_names() -> None:
-    with pytest.raises(ValueError, match="at least 0"):
+    with pytest.raises(ValueError, match="number must be at least 0"):
         encode(-1)
     with pytest.raises(ValueError):
         melakarta_number("ka")
