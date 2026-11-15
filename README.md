@@ -37,6 +37,15 @@ With pip: `pip install -e . pytest hypothesis`, then `pytest`.
 2753
 ```
 
+## Charts
+
+`charts/render.py` draws the convergence and step-count charts used in the write-ups from the package's own results, as SVG and PNG in light and dark. The rendered files are in `charts/out/`.
+
+```bash
+uv sync --group dev --group charts
+uv run python charts/render.py
+```
+
 ## What the tests check
 
 - **The sources' own examples.** From Bhaskara I's commentary on Ganitapada 32 and 33: his 4 examples of the remainder problem (16, 317, 85 and 301), his 2 examples without remainders (9 and 17), and 1 of his astronomical examples (number 22, 199,066 days). Also the example Clark (1930) works from Parameshvara's commentary (1001). The columns for 3 of these are checked step by step against the commentary.
