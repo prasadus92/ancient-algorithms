@@ -3,16 +3,18 @@ message: "If you use this software or its write-ups, please cite it as below. Co
 type: software
 title: "Old algorithms, implemented"
 abstract: >-
-  Python implementations of algorithms from dated historical sources, each
-  checked against the worked examples in the source or its oldest commentary:
-  Aryabhata's kuttaka, Madhava's series for pi with its end corrections, and
-  the square root of 2 on the Babylonian tablet YBC 7289.
+  Python implementations of algorithms from dated historical sources:
+  Aryabhata's kuttaka, tested against the worked examples in Bhaskara I's
+  commentary; Madhava's series for pi with its end corrections; and the square
+  root of 2 on the Babylonian tablet YBC 7289.
 authors:
   - family-names: Subrahmanya
     given-names: Prasad
     website: "https://prasad.tech"
 version: 0.1.0
-license: MIT
+license:
+  - MIT
+  - CC-BY-4.0
 repository-code: "https://github.com/prasadus92/old-algorithms"
 url: "https://prasad.tech/old-algorithms/"
 keywords:
@@ -28,6 +30,8 @@ references:
   - type: book
     title: "Aryabhatiya of Aryabhata, with the commentary of Bhaskara I and Somesvara"
     authors:
+      - name: Aryabhata
+    editors:
       - family-names: Shukla
         given-names: Kripa Shankar
     publisher:
@@ -36,6 +40,8 @@ references:
   - type: book
     title: "The Aryabhatiya of Aryabhata"
     authors:
+      - name: Aryabhata
+    translators:
       - family-names: Clark
         given-names: Walter Eugene
     publisher:
@@ -58,4 +64,8 @@ references:
         given-names: Eleanor
     journal: Historia Mathematica
     volume: 25
+    issue: 4
+    start: 366
+    end: 378
+    doi: 10.1006/hmat.1998.2209
     year: 1998

@@ -1,5 +1,7 @@
 from fractions import Fraction
 
+import pytest
+
 from old_algorithms.babylonian_sqrt import (
     YBC7289_DIAGONAL,
     YBC7289_ROOT2,
@@ -26,6 +28,19 @@ def test_tablet_is_sqrt2_truncated_to_three_places():
     x = YBC7289_ROOT2
     step = Fraction(1, 60**3)
     assert x * x < 2 < (x + step) * (x + step)
+
+
+def test_other_reading_gives_inverse_root2():
+    # Read the side as 0;30 and the third number is 0;42,25,35, 1/sqrt(2) to 3 places.
+    assert to_sexagesimal(1 / YBC7289_ROOT2, 3) == (0, (42, 25, 35))
+    x = parse("0;42,25,35")
+    step = Fraction(1, 60**3)
+    assert x * x < Fraction(1, 2) < (x + step) * (x + step)
+
+
+def test_negative_input_is_rejected():
+    with pytest.raises(ValueError):
+        parse("-1;30")
 
 
 def test_tablet_accuracy():

@@ -1,16 +1,15 @@
 """Madhava's series for pi with the end corrections, and a convergence benchmark.
 
-Kerala texts of the 15th and 16th centuries attribute to Madhava of Sangamagrama
-(c. 1340 to 1425) the series
+Later Kerala texts attribute to Madhava of Sangamagrama (c. 1340 to 1425) the series
 
     pi/4 = 1 - 1/3 + 1/5 - 1/7 + ...
 
 together with corrections that estimate the tail left after stopping at term n.
-Madhava's own writings on these series have not survived; the rules reach us through
-Nilakantha's Tantrasangraha (c. 1500), Jyesthadeva's Yuktibhasa (c. 1530) and
-Shankara Variyar's commentaries, which also give derivations.
+No surviving work by Madhava contains these series. They reach us through 16th-century
+Kerala works: Jyesthadeva's Yuktibhasa derives them, and Shankara Variyar's
+commentaries Yuktidipika and Kriyakramakari quote verses that they credit to Madhava.
 
-With S_n the sum of the first n terms (last denominator 2n - 1), the three
+With S_n the sum of the first n terms (last denominator 2n - 1), the 3
 corrections, written in n, are
 
     f1(n) = 1 / (4n)
@@ -18,7 +17,7 @@ corrections, written in n, are
     f3(n) = (n^2 + 1) / (4n^3 + 5n)
 
 and pi/4 is approximated by S_n + (-1)^n f(n). The error falls roughly as n^-3,
-n^-5 and n^-7 for the three corrections, against n^-1 for the bare series.
+n^-5 and n^-7 for the 3 corrections, against n^-1 for the bare series.
 
 All arithmetic uses ``decimal.Decimal`` at a caller-chosen precision.
 """
@@ -77,6 +76,8 @@ def correction(n: int, order: int, prec: int = 60) -> Decimal:
 
 def madhava_pi(n: int, order: int = 0, prec: int = 60) -> Decimal:
     """Approximate pi from n terms of the series plus the chosen end correction."""
+    if n < 1:
+        raise ValueError(f"n must be at least 1, got {n}")
     with localcontext() as ctx:
         ctx.prec = prec
         sign = 1 if n % 2 == 0 else -1
