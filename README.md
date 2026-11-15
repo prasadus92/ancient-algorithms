@@ -43,6 +43,10 @@ With pip: `pip install -e . pytest hypothesis`, then `pytest`.
 
 Old texts are terse, and translators disagree. Each module's docstring says which reading or attribution it follows. Where a source does not say how a value was computed, as on YBC 7289, the code says so and does not claim a method.
 
+## Contributing
+
+Corrections to translations and readings are welcome, with the edition and page that support them. [AGENTS.md](AGENTS.md) has the setup, checks and rules for adding an algorithm.
+
 ## Citing
 
 The repo has a `CITATION.cff`, which GitHub shows as "Cite this repository". A Zenodo DOI will be added with the first tagged release.
