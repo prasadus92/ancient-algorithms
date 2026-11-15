@@ -25,123 +25,167 @@ L 576 331.2
 L 576 0 
 L 0 0 
 z
-" style="fill: #06080d"/>
+" style="fill: #0c0c0c"/>
   </g>
   <g id="axes_1">
    <g id="patch_2">
     <path d="M 51.84 264.96 
-L 460.8 264.96 
-L 460.8 66.24 
+L 437.76 264.96 
+L 437.76 66.24 
 L 51.84 66.24 
 z
-" style="fill: #06080d"/>
+" style="fill: #0c0c0c"/>
    </g>
    <g id="matplotlib.axis_1">
     <g id="xtick_1">
      <g id="line2d_1"/>
      <g id="text_1">
-      <text style="font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #9ba5b6" x="121.126612" y="280.48" transform="rotate(-0 121.126612 280.48)">5</text>
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="117.22314" y="280.48" transform="rotate(-0 117.22314 280.48)">5</text>
      </g>
     </g>
     <g id="xtick_2">
      <g id="line2d_2"/>
      <g id="text_2">
-      <text style="font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #9ba5b6" x="205.622479" y="280.48" transform="rotate(-0 205.622479 280.48)">10</text>
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="196.958678" y="280.48" transform="rotate(-0 196.958678 280.48)">10</text>
      </g>
     </g>
     <g id="xtick_3">
      <g id="line2d_3"/>
      <g id="text_3">
-      <text style="font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #9ba5b6" x="290.118347" y="280.48" transform="rotate(-0 290.118347 280.48)">15</text>
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="276.694215" y="280.48" transform="rotate(-0 276.694215 280.48)">15</text>
      </g>
     </g>
     <g id="xtick_4">
      <g id="line2d_4"/>
      <g id="text_4">
-      <text style="font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #9ba5b6" x="374.614215" y="280.48" transform="rotate(-0 374.614215 280.48)">20</text>
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="356.429752" y="280.48" transform="rotate(-0 356.429752 280.48)">20</text>
      </g>
     </g>
     <g id="xtick_5">
      <g id="line2d_5"/>
      <g id="text_5">
-      <text style="font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #9ba5b6" x="459.110083" y="280.48" transform="rotate(-0 459.110083 280.48)">25</text>
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="436.165289" y="280.48" transform="rotate(-0 436.165289 280.48)">25</text>
      </g>
     </g>
     <g id="text_6">
-     <text style="font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #9ba5b6" x="256.32" y="300.13" transform="rotate(-0 256.32 300.13)">Digits in each number</text>
+     <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="244.8" y="300.13" transform="rotate(-0 244.8 300.13)">Digits in each number</text>
     </g>
    </g>
    <g id="matplotlib.axis_2">
     <g id="ytick_1">
      <g id="line2d_6">
-      <path d="M 51.84 218.152038 
-L 460.8 218.152038 
-" clip-path="url(#p23ca592cbb)" style="fill: none; stroke: #1a1f2a; stroke-linecap: square"/>
+      <path d="M 51.84 246.7279 
+L 437.76 246.7279 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
      </g>
      <g id="line2d_7"/>
      <g id="text_7">
-      <text style="font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #9ba5b6" x="45.84" y="222.912038" transform="rotate(-0 45.84 222.912038)">10</text>
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="251.4879" transform="rotate(-0 45.84 251.4879)">5</text>
      </g>
     </g>
     <g id="ytick_2">
      <g id="line2d_8">
-      <path d="M 51.84 123.225079 
-L 460.8 123.225079 
-" clip-path="url(#p23ca592cbb)" style="fill: none; stroke: #1a1f2a; stroke-linecap: square"/>
+      <path d="M 51.84 218.152038 
+L 437.76 218.152038 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
      </g>
      <g id="line2d_9"/>
      <g id="text_8">
-      <text style="font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #9ba5b6" x="45.84" y="127.985079" transform="rotate(-0 45.84 127.985079)">100</text>
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="222.912038" transform="rotate(-0 45.84 222.912038)">10</text>
      </g>
     </g>
-    <g id="text_9">
-     <text style="font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #9ba5b6" x="19.031875" y="165.6" transform="rotate(-90 19.031875 165.6)">Steps (log scale)</text>
+    <g id="ytick_3">
+     <g id="line2d_10">
+      <path d="M 51.84 189.576176 
+L 437.76 189.576176 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_11"/>
+     <g id="text_9">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="194.336176" transform="rotate(-0 45.84 194.336176)">20</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_12">
+      <path d="M 51.84 151.800941 
+L 437.76 151.800941 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_13"/>
+     <g id="text_10">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="156.560941" transform="rotate(-0 45.84 156.560941)">50</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_14">
+      <path d="M 51.84 123.225079 
+L 437.76 123.225079 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_15"/>
+     <g id="text_11">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="127.985079" transform="rotate(-0 45.84 127.985079)">100</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_16">
+      <path d="M 51.84 94.649217 
+L 437.76 94.649217 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_17"/>
+     <g id="text_12">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="99.409217" transform="rotate(-0 45.84 99.409217)">200</text>
+     </g>
+    </g>
+    <g id="text_13">
+     <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="19.031875" y="165.6" transform="rotate(-90 19.031875 165.6)">Steps (log scale)</text>
     </g>
    </g>
    <g id="patch_3">
     <path d="M 51.84 264.96 
-L 460.8 264.96 
-" style="fill: none; stroke: #1a1f2a; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+L 437.76 264.96 
+" style="fill: none; stroke: #2e2e2e; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
-   <g id="line2d_10">
-    <path d="M 70.429091 218.152038 
-L 104.227438 173.553262 
-L 138.025785 149.398732 
-L 171.824132 134.000169 
-L 205.622479 120.628864 
-L 239.420826 111.005864 
-L 273.219174 100.154216 
-L 307.017521 98.311395 
-L 340.815868 87.304917 
-L 374.614215 85.039629 
-L 408.412562 82.583545 
-L 442.210909 75.272727 
-" clip-path="url(#p23ca592cbb)" style="fill: none; stroke: #4a5263; stroke-width: 2; stroke-linecap: round"/>
+   <g id="line2d_18">
+    <path d="M 69.381818 218.152038 
+L 101.276033 173.553262 
+L 133.170248 149.398732 
+L 165.064463 134.000169 
+L 196.958678 120.628864 
+L 228.852893 111.005864 
+L 260.747107 100.154216 
+L 292.641322 98.311395 
+L 324.535537 87.304917 
+L 356.429752 85.039629 
+L 388.323967 82.583545 
+L 420.218182 75.272727 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #60605c; stroke-width: 2; stroke-linecap: round"/>
    </g>
-   <g id="text_10">
-    <text style="font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #9ba5b6" x="450.210909" y="78.967727" transform="rotate(-0 450.210909 78.967727)">Subtraction (Euclid VII.1)</text>
+   <g id="text_14">
+    <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #a3a3a0" x="428.218182" y="78.967727" transform="rotate(-0 428.218182 78.967727)">Subtraction (Euclid VII.1)</text>
    </g>
-   <g id="line2d_11">
-    <path d="M 70.429091 255.927273 
-L 104.227438 227.351411 
-L 138.025785 210.635603 
-L 171.824132 201.43623 
-L 205.622479 191.690806 
-L 239.420826 183.814314 
-L 273.219174 178.75988 
-L 307.017521 171.508566 
-L 340.815868 167.70036 
-L 374.614215 162.044072 
-L 408.412562 158.988878 
-L 442.210909 155.238452 
-" clip-path="url(#p23ca592cbb)" style="fill: none; stroke: #f63e8c; stroke-width: 2; stroke-linecap: round"/>
+   <g id="line2d_19">
+    <path d="M 69.381818 255.927273 
+L 101.276033 227.351411 
+L 133.170248 210.635603 
+L 165.064463 201.43623 
+L 196.958678 191.690806 
+L 228.852893 183.814314 
+L 260.747107 178.75988 
+L 292.641322 171.508566 
+L 324.535537 167.70036 
+L 356.429752 162.044072 
+L 388.323967 158.988878 
+L 420.218182 155.238452 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #fc4c42; stroke-width: 2; stroke-linecap: round"/>
    </g>
-   <g id="text_11">
-    <text style="font-weight: 700; font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #eef2f8" x="450.210909" y="159.028452" transform="rotate(-0 450.210909 159.028452)">Division (modern form)</text>
+   <g id="text_15">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #f2f2f0" x="428.218182" y="159.028452" transform="rotate(-0 428.218182 159.028452)">Division (modern form)</text>
    </g>
    <g id="PathCollection_1">
     <defs>
-     <path id="m30fbbb2d77" d="M 0 3.162278 
+     <path id="mf739f0c87d" d="M 0 3.162278 
 C 0.838646 3.162278 1.643056 2.82908 2.236068 2.236068 
 C 2.82908 1.643056 3.162278 0.838646 3.162278 0 
 C 3.162278 -0.838646 2.82908 -1.643056 2.236068 -2.236068 
@@ -151,15 +195,15 @@ C -2.82908 -1.643056 -3.162278 -0.838646 -3.162278 0
 C -3.162278 0.838646 -2.82908 1.643056 -2.236068 2.236068 
 C -1.643056 2.82908 -0.838646 3.162278 0 3.162278 
 z
-" style="stroke: #06080d; stroke-width: 2"/>
+" style="stroke: #0c0c0c; stroke-width: 2"/>
     </defs>
-    <g clip-path="url(#p23ca592cbb)">
-     <use xlink:href="#m30fbbb2d77" x="442.210909" y="75.272727" style="fill: #4a5263; stroke: #06080d; stroke-width: 2"/>
+    <g clip-path="url(#p6bc87ba94e)">
+     <use xlink:href="#mf739f0c87d" x="420.218182" y="75.272727" style="fill: #60605c; stroke: #0c0c0c; stroke-width: 2"/>
     </g>
    </g>
    <g id="PathCollection_2">
     <defs>
-     <path id="m2f5a9fa59a" d="M 0 3.162278 
+     <path id="m528f59fc96" d="M 0 3.162278 
 C 0.838646 3.162278 1.643056 2.82908 2.236068 2.236068 
 C 2.82908 1.643056 3.162278 0.838646 3.162278 0 
 C 3.162278 -0.838646 2.82908 -1.643056 2.236068 -2.236068 
@@ -169,26 +213,26 @@ C -2.82908 -1.643056 -3.162278 -0.838646 -3.162278 0
 C -3.162278 0.838646 -2.82908 1.643056 -2.236068 2.236068 
 C -1.643056 2.82908 -0.838646 3.162278 0 3.162278 
 z
-" style="stroke: #06080d; stroke-width: 2"/>
+" style="stroke: #0c0c0c; stroke-width: 2"/>
     </defs>
-    <g clip-path="url(#p23ca592cbb)">
-     <use xlink:href="#m2f5a9fa59a" x="442.210909" y="155.238452" style="fill: #f63e8c; stroke: #06080d; stroke-width: 2"/>
+    <g clip-path="url(#p6bc87ba94e)">
+     <use xlink:href="#m528f59fc96" x="420.218182" y="155.238452" style="fill: #fc4c42; stroke: #0c0c0c; stroke-width: 2"/>
     </g>
    </g>
   </g>
-  <g id="text_12">
-   <text style="font-weight: 700; font-size: 14px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #eef2f8" x="34.56" y="30.21" transform="rotate(-0 34.56 30.21)">On 24-digit numbers, division needs 46 steps and subtraction 320</text>
+  <g id="text_16">
+   <text style="font-weight: 700; font-size: 14px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #f2f2f0" x="34.56" y="30.21" transform="rotate(-0 34.56 30.21)">On 24-digit numbers, division needs 46 steps and subtraction 320</text>
   </g>
-  <g id="text_13">
-   <text style="font-size: 10.5px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #9ba5b6" x="34.56" y="48.084" transform="rotate(-0 34.56 48.084)">Median steps to the greatest common divisor, over 200 random pairs per size</text>
+  <g id="text_17">
+   <text style="font-size: 10.5px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #a3a3a0" x="34.56" y="48.084" transform="rotate(-0 34.56 48.084)">Median steps to the greatest common divisor, 200 random pairs per size</text>
   </g>
-  <g id="text_14">
-   <text style="font-size: 8.5px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #9ba5b6" x="34.56" y="321.1095" transform="rotate(-0 34.56 321.1095)">Source: ancient_algorithms.euclid, random seed 1844. github.com/prasadus92/ancient-algorithms</text>
+  <g id="text_18">
+   <text style="font-size: 8.5px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #a3a3a0" x="34.56" y="321.1095" transform="rotate(-0 34.56 321.1095)">Source: ancient_algorithms.euclid, random seed 1844. github.com/prasadus92/ancient-algorithms</text>
   </g>
  </g>
  <defs>
-  <clipPath id="p23ca592cbb">
-   <rect x="51.84" y="66.24" width="408.96" height="198.72"/>
+  <clipPath id="p6bc87ba94e">
+   <rect x="51.84" y="66.24" width="385.92" height="198.72"/>
   </clipPath>
  </defs>
 </svg>

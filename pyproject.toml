@@ -24,7 +24,7 @@ Source = "https://github.com/prasadus92/ancient-algorithms"
 
 [dependency-groups]
 charts = ["matplotlib>=3.11"]
-dev = ["pytest>=9.2", "hypothesis>=6.170", "ruff>=0.17", "mypy>=2.4"]
+dev = ["pytest>=9.2", "hypothesis>=6.170", "ruff>=0.17", "mypy>=2.4", { include-group = "charts" }]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/ancient_algorithms"]

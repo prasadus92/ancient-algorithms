@@ -53,10 +53,9 @@ With pip: `pip install -e . pytest hypothesis`, then `pytest`.
 
 ## Charts
 
-`charts/render.py` draws the convergence and step-count charts used in the write-ups from the package's own results, as SVG and PNG in light and dark. The rendered files are in `charts/out/`.
+`charts/render.py` draws the convergence and step-count charts used in the write-ups from the package's own results, as SVG and PNG in light and dark. The rendered files are in `charts/out/`. The `dev` group installs matplotlib for it.
 
 ```bash
-uv sync --group dev --group charts
 uv run python charts/render.py
 ```
 
