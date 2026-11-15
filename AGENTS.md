@@ -14,28 +14,32 @@ uv run ruff check .
 uv run ruff format --check .
 uv run pytest
 uv build
+uv run python benchmarks/kuttaka_vs_euclid.py
+uv run python benchmarks/madhava_convergence.py
 ```
 
-CI runs these steps on Python 3.10 to 3.14, and `main` accepts changes only through a pull request with all 5 jobs green.
+CI runs these steps on Python 3.10 to 3.14, and `main` accepts changes only through a pull request with all 5 jobs green. `uv run ruff format .` fixes formatting, and `uv run pytest tests/test_kuttaka.py -k example_2` runs a single test.
 
 ## Layout
 
 - `src/ancient_algorithms/<algorithm>.py`: one module per algorithm. Comparisons with the modern method go in the same module.
 - `tests/test_<algorithm>.py`: one test file per module.
-- `benchmarks/`: scripts that print step counts or convergence tables. CI runs them, so they must stay fast.
+- `benchmarks/`: scripts that print step counts or convergence tables. CI runs each one by name, so they must stay fast.
 - `CITATION.cff`, `LICENSE` (MIT, for code) and `LICENSE-PROSE.md` (CC BY 4.0, for prose).
 
 ## Adding an algorithm
 
-1. **Read the primary source in a named edition.** Use the edition itself, not a summary of it, and note the text, chapter or verse, the edition and the date.
+1. **Read the primary source in a named edition.** Note the text, chapter or verse, the edition and the date. Do not rely on a summary.
 2. **Write the module docstring.** It names the source and the reading you follow. Where scholars read the text differently, say which reading the code follows and why.
 3. **Write the functions.** Each docstring says what the function computes. Use type hints, clear names and small functions.
 4. **Write the tests.**
    - Run every worked example the source gives, with its numbers.
-   - Add property tests with Hypothesis against brute force or a modern method.
-   - Test each input check.
-5. **Add a benchmark** only when the comparison with the modern method is the point, for example step counts or rates of convergence.
-6. **Update `README.md`** (the module table and "What the tests check") and the keywords in `CITATION.cff`.
+   - Add property tests with Hypothesis against brute force or a modern method, as in `tests/test_kuttaka.py`.
+   - Test that each `ValueError` is raised.
+5. **Add a benchmark** only when the comparison with the modern method is the point, for example step counts or rates of convergence. Add a step that runs it to `.github/workflows/ci.yml` and to the README's "Run it" block.
+6. **Update the metadata:** `README.md` (the module table and "What the tests check"), `CITATION.cff` (keywords, abstract and references) and the `keywords` in `pyproject.toml`.
+
+The write-ups on prasad.tech live in a separate site repo. A change here does not need one.
 
 ## Accuracy
 
@@ -46,10 +50,10 @@ CI runs these steps on Python 3.10 to 3.14, and `main` accepts changes only thro
 
 ## Code style
 
-- Code reads like a clean textbook implementation.
+- Write each function the way a textbook would present the algorithm: plain loops, standard-library types, and names taken from the source where it has them (for example `mati`).
 - Comments: keep one only when it gives a source reference, explains a step that is not obvious from the code, or says why a choice was made. Delete any comment that restates the code. Each comment fits on 1 line.
 - Use `ValueError` with a message that names the bad input.
-- `ruff` settings live in `pyproject.toml`. Lines are at most 100 characters.
+- `ruff` settings live in `pyproject.toml`: rules E, F, W, I, UP and B, and lines of at most 100 characters.
 
 ## Docs and commit messages
 
