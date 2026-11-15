@@ -4,9 +4,10 @@ import pytest
 from hypothesis import given
 from hypothesis import strategies as st
 
+from ancient_algorithms._checks import shared_factor
 from ancient_algorithms.dayan import dayan, definite_numbers, qiuyi, qiuyi_board
 from ancient_algorithms.kuttaka import crt, extended_gcd, mod_inverse_kuttaka
-from ancient_algorithms.sunzi import _shared_factor, sunzi_multipliers
+from ancient_algorithms.sunzi import sunzi_multipliers
 
 
 # Qin Jiushao, Shushu jiuzhang, chapter 1, as in the Siku Quanshu copy (數學九章 卷一).
@@ -55,7 +56,7 @@ def test_dike_problem() -> None:
 
 
 def test_couriers_problem() -> None:
-    # 程行計地: 300, 240 and 180 li a day; the 2nd and 3rd couriers are 180 and 60 li short.
+    # 程行計地: 300, 240 and 180 li a day; the last part-day covers 180 li, 60 short of a full day.
     r = dayan([(0, 300), (180, 240), (60, 180)])
     assert r.definite == [25, 16, 9]
     assert r.extension_mother == 3600
@@ -138,7 +139,7 @@ divisor_lists = st.lists(st.integers(1, 400), min_size=1, max_size=6)
 def test_definite_numbers_are_coprime_divisors_with_lcm_product(original: list[int]) -> None:
     definite = definite_numbers(original)
     assert all(m % d == 0 for d, m in zip(definite, original, strict=True))
-    assert _shared_factor(definite) is None
+    assert shared_factor(definite) is None
     assert prod(definite) == lcm(*original)
 
 

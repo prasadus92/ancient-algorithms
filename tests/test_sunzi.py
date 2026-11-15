@@ -5,12 +5,12 @@ import pytest
 from hypothesis import given
 from hypothesis import strategies as st
 
+from ancient_algorithms._checks import shared_factor
 from ancient_algorithms.kuttaka import crt, remainder_problem
 from ancient_algorithms.sunzi import (
     SUNZI_DIVISORS,
     SUNZI_MULTIPLIERS,
     SUNZI_PERIOD,
-    _shared_factor,
     sunzi_general,
     sunzi_multipliers,
     sunzi_recipe,
@@ -80,7 +80,7 @@ def test_recipe_on_all_105_remainder_triples() -> None:
 
 
 coprime_divisors = st.lists(st.integers(2, 10_000), min_size=1, max_size=6).filter(
-    lambda divisors: _shared_factor(divisors) is None
+    lambda divisors: shared_factor(divisors) is None
 )
 
 

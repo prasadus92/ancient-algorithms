@@ -26,9 +26,9 @@ The method, with Qin's names:
 
 Qin's text has further steps this module leaves out: a common divisor taken from all the
 numbers first (總等), rules for numbers with fractions or decimal places, and an adjustment
-of the use numbers (泛用 to 正用) that adds or removes multiples of the extension mother. The
-adjustment never changes the answer. In the divination problem it turns the use numbers
-12, 12, 4, 9 into 12, 24, 4, 9, and this module returns the first set.
+of the use numbers (泛用 to 正用) that changes them without changing the answer. In
+the divination problem it turns the use numbers 12, 12, 4, 9 into 12, 24, 4, 9, and
+this module returns the first set.
 
 The modern counterpart is ``crt`` in ``ancient_algorithms.kuttaka``, built on ``extended_gcd``.
 The tests compare the dayan answers and multipliers with both.
@@ -39,7 +39,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from math import gcd, prod
 
-from ancient_algorithms.kuttaka import _check_remainders
+from ancient_algorithms._checks import check_remainders
 
 __all__ = [
     "QiuyiBoard",
@@ -123,7 +123,7 @@ def dayan(pairs: list[tuple[int, int]]) -> DayanRecord:
     ``answer`` is the smallest ``N >= 0`` leaving each remainder with its divisor. Raises
     ``ValueError`` when the remainders contradict each other on a shared factor.
     """
-    _check_remainders(pairs)
+    check_remainders(pairs)
     remainders = [r for r, _ in pairs]
     original = [d for _, d in pairs]
     definite = definite_numbers(original)

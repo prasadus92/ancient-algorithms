@@ -38,7 +38,7 @@ With pip: `pip install -e . pytest hypothesis`, then `pytest`.
 ## What the tests check
 
 - **The sources' own examples.** From Bhaskara I's commentary on Ganitapada 32 and 33: his 4 examples of the remainder problem (16, 317, 85 and 301), his 2 examples without remainders (9 and 17), and 1 of his astronomical examples (number 22, 199,066 days). Also the example Clark (1930) works from Parameshvara's commentary (1001). The columns for 3 of these are checked step by step against the commentary.
-- **Properties on random inputs**, with Hypothesis. The kuttaka's answer satisfies its equation and is the smallest one, stopping the divisions early gives the same answer, and the results match the textbook Chinese remainder construction and Python's `pow(a, -1, m)`.
+- **Properties on random inputs**, with Hypothesis. The kuttaka's answer satisfies its equation and is the smallest one, stopping the divisions early gives the same answer, and the results match the incremental Chinese remainder construction and Python's `pow(a, -1, m)`.
 - **Sunzi and Qin Jiushao.** Sunzi's answer 23 for all 105 remainder triples, and every number in Qin's rice, dike and couriers problems. The divination problem matches up to the adjustment step the code leaves out.
 - **Convergence rates.** Each of Madhava's corrections cuts the error by the expected power of n (n^-3, n^-5, n^-7).
 - **The tablet.** 30 times 1;24,51,10 is 42;25,35, 1;24,51,10 is the square root of 2 truncated to 3 base-60 places, and 0;42,25,35 is 1/sqrt(2) truncated the same way.

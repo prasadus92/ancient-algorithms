@@ -26,7 +26,8 @@ from __future__ import annotations
 
 from math import gcd, prod
 
-from ancient_algorithms.kuttaka import _check_remainders, mod_inverse_euclid
+from ancient_algorithms._checks import check_remainders, shared_factor
+from ancient_algorithms.kuttaka import mod_inverse_euclid
 
 __all__ = [
     "SUNZI_DIVISORS",
@@ -50,7 +51,7 @@ SUNZI_PERIOD = 105
 def sunzi_recipe(by_threes: int, by_fives: int, by_sevens: int) -> int:
     """The number leaving the given remainders by 3s, 5s and 7s, by Sunzi's recipe as stated."""
     remainders = (by_threes, by_fives, by_sevens)
-    _check_remainders(list(zip(remainders, SUNZI_DIVISORS, strict=True)))
+    check_remainders(list(zip(remainders, SUNZI_DIVISORS, strict=True)))
     total = sum(r * m for r, m in zip(remainders, SUNZI_MULTIPLIERS, strict=True))
     # "一百六以上，以一百五減之": 106 or more, take away 105.
     while total >= SUNZI_PERIOD + 1:
@@ -81,27 +82,18 @@ def sunzi_general(pairs: list[tuple[int, int]]) -> int:
     as it goes. Raises ``ValueError`` unless every divisor is at least 2, no 2 divisors share a
     factor, and each remainder is smaller than its divisor.
     """
-    _check_remainders(pairs)
+    check_remainders(pairs)
     divisors = [divisor for _, divisor in pairs]
     multipliers = sunzi_multipliers(divisors)
     total = sum(r * m for (r, _), m in zip(pairs, multipliers, strict=True))
     return total % prod(divisors)
 
 
-def _shared_factor(divisors: list[int] | tuple[int, ...]) -> tuple[int, int] | None:
-    """The first 2 divisors that share a factor, or ``None`` when they are pairwise coprime."""
-    for i, a in enumerate(divisors):
-        for b in divisors[i + 1 :]:
-            if gcd(a, b) != 1:
-                return a, b
-    return None
-
-
 def _check_pairwise_coprime(divisors: list[int] | tuple[int, ...]) -> None:
     """Raise ``ValueError`` unless every divisor is at least 2 and no 2 share a factor."""
     if any(d < 2 for d in divisors):
         raise ValueError(f"each divisor must be at least 2, got {list(divisors)}")
-    pair = _shared_factor(divisors)
+    pair = shared_factor(divisors)
     if pair is not None:
         a, b = pair
         raise ValueError(f"the divisors {a} and {b} share the factor {gcd(a, b)}")
