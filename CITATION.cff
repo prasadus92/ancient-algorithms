@@ -1,0 +1,61 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "Old algorithms, implemented"
+abstract: >-
+  Python implementations of algorithms from dated historical sources, each
+  checked against the worked examples in the source or its oldest commentary:
+  Aryabhata's kuttaka, Madhava's series for pi with its end corrections, and
+  the square root of 2 on the Babylonian tablet YBC 7289.
+authors:
+  - family-names: Subrahmanya
+    given-names: Prasad
+    website: "https://prasad.tech"
+version: 0.1.0
+license: MIT
+repository-code: "https://github.com/prasadus92/old-algorithms"
+url: "https://prasad.tech/old-algorithms/"
+keywords:
+  - history of mathematics
+  - Indian mathematics
+  - kuttaka
+  - Aryabhata
+  - extended Euclidean algorithm
+  - Madhava series
+  - Babylonian mathematics
+  - YBC 7289
+references:
+  - type: book
+    title: "Aryabhatiya of Aryabhata, with the commentary of Bhaskara I and Somesvara"
+    authors:
+      - family-names: Shukla
+        given-names: Kripa Shankar
+    publisher:
+      name: Indian National Science Academy
+    year: 1976
+  - type: book
+    title: "The Aryabhatiya of Aryabhata"
+    authors:
+      - family-names: Clark
+        given-names: Walter Eugene
+    publisher:
+      name: University of Chicago Press
+    year: 1930
+  - type: book
+    title: "Mathematics in India"
+    authors:
+      - family-names: Plofker
+        given-names: Kim
+    publisher:
+      name: Princeton University Press
+    year: 2009
+  - type: article
+    title: "Square root approximations in Old Babylonian mathematics: YBC 7289 in context"
+    authors:
+      - family-names: Fowler
+        given-names: David
+      - family-names: Robson
+        given-names: Eleanor
+    journal: Historia Mathematica
+    volume: 25
+    year: 1998

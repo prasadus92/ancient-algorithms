@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "old-algorithms"
+version = "0.1.0"
+description = "Documented ancient algorithms, implemented in Python and checked against their sources"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [{ name = "Prasad Subrahmanya" }]
+keywords = ["history of mathematics", "kuttaka", "aryabhata", "madhava", "babylonian", "algorithms"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Mathematics",
+  "Topic :: Education",
+]
+
+[project.urls]
+Homepage = "https://prasad.tech/old-algorithms/"
+Source = "https://github.com/prasadus92/old-algorithms"
+
+[dependency-groups]
+dev = ["pytest>=8", "hypothesis>=6.100", "ruff>=0.6"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/old_algorithms"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
