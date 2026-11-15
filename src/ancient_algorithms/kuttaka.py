@@ -24,7 +24,7 @@ in K. S. Shukla's 1976 critical edition:
 The same column, read without remainders (Bhaskara I's niragra reading of the same
 verses), solves ``a*x + c = 0 (mod b)``. That is the form used for modular inverses.
 
-The extended Euclidean algorithm and the textbook Chinese remainder construction
+The extended Euclidean algorithm and the incremental Chinese remainder construction
 are at the end of the module, for comparison.
 """
 
@@ -187,11 +187,7 @@ def remainder_problem(pairs: list[tuple[int, int]]) -> int:
     solved pair becomes 1 remainder whose divisor is the least common multiple of
     the 2 divisors.
     """
-    if not pairs:
-        raise ValueError("need at least one (remainder, divisor) pair")
-    for remainder, divisor in pairs:
-        if divisor < 1 or not 0 <= remainder < divisor:
-            raise ValueError(f"need 0 <= remainder < divisor, got ({remainder}, {divisor})")
+    _check_remainders(pairs)
     n, modulus = pairs[0]
     for remainder, divisor in pairs[1:]:
         n = two_remainders(n, modulus, remainder, divisor)
@@ -227,7 +223,7 @@ def mod_inverse_euclid(a: int, m: int) -> int:
 
 
 def crt(pairs: list[tuple[int, int]]) -> int:
-    """Chinese remainder theorem by the textbook construction."""
+    """Chinese remainder theorem in the incremental form: fold in 1 congruence at a time."""
     n, modulus = 0, 1
     for remainder, divisor in pairs:
         g, s, _ = extended_gcd(modulus, divisor)
@@ -237,6 +233,15 @@ def crt(pairs: list[tuple[int, int]]) -> int:
         n = (n + (remainder - n) // g * s % (divisor // g) * modulus) % lcm
         modulus = lcm
     return n
+
+
+def _check_remainders(pairs: list[tuple[int, int]]) -> None:
+    """Raise ``ValueError`` unless there is a pair and each has ``0 <= remainder < divisor``."""
+    if not pairs:
+        raise ValueError("need at least one (remainder, divisor) pair")
+    for remainder, divisor in pairs:
+        if divisor < 1 or not 0 <= remainder < divisor:
+            raise ValueError(f"need 0 <= remainder < divisor, got ({remainder}, {divisor})")
 
 
 def _check_invertible(a: int, m: int) -> None:

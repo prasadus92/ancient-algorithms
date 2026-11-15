@@ -6,7 +6,7 @@ from hypothesis import strategies as st
 
 from ancient_algorithms.dayan import dayan, definite_numbers, qiuyi, qiuyi_board
 from ancient_algorithms.kuttaka import crt, extended_gcd, mod_inverse_kuttaka
-from ancient_algorithms.sunzi import sunzi_multipliers
+from ancient_algorithms.sunzi import _shared_factor, sunzi_multipliers
 
 
 # Qin Jiushao, Shushu jiuzhang, chapter 1, as in the Siku Quanshu copy (數學九章 卷一).
@@ -24,6 +24,7 @@ def test_divination_problem() -> None:
     assert r.extension_numbers == [12, 12, 4, 3]
     assert r.qi == [1, 1, 1, 3]
     assert r.multipliers == [1, 1, 1, 3]
+    # Qin's 泛用. He then adds the extension mother to the 2nd (定用 12, 24, 4, 9), a step left out.
     assert r.use_numbers == [12, 12, 4, 9]
 
 
@@ -40,7 +41,7 @@ def test_rice_problem() -> None:
     assert r.answer == 3193
 
 
-def test_dyke_problem() -> None:
+def test_dike_problem() -> None:
     # 推計土功: daily lengths 54, 57, 75, 72 zhang; counties C and D have 51 and 18 zhang left.
     r = dayan([(0, 54), (0, 57), (51, 75), (18, 72)])
     assert r.definite == [27, 19, 25, 8]
@@ -86,7 +87,7 @@ def test_sunzi_problem_by_dayan() -> None:
 def test_bad_inputs_raise() -> None:
     with pytest.raises(ValueError):
         dayan([])
-    with pytest.raises(ValueError, match=r"remainder < modulus, got \(3, 3\)"):
+    with pytest.raises(ValueError, match=r"remainder < divisor, got \(3, 3\)"):
         dayan([(3, 3)])
     with pytest.raises(ValueError):
         dayan([(1, 0)])
@@ -130,33 +131,33 @@ def test_qiuyi_board_keeps_its_invariants(pair: tuple[int, int]) -> None:
         assert (lower_left * qi + lower_right) % m == 0
 
 
-moduli = st.lists(st.integers(1, 400), min_size=1, max_size=6)
+divisor_lists = st.lists(st.integers(1, 400), min_size=1, max_size=6)
 
 
-@given(moduli)
+@given(divisor_lists)
 def test_definite_numbers_are_coprime_divisors_with_lcm_product(original: list[int]) -> None:
     definite = definite_numbers(original)
     assert all(m % d == 0 for d, m in zip(definite, original, strict=True))
-    assert all(gcd(a, b) == 1 for i, a in enumerate(definite) for b in definite[i + 1 :])
+    assert _shared_factor(definite) is None
     assert prod(definite) == lcm(*original)
 
 
-@given(moduli, st.integers(0, 10**9))
+@given(divisor_lists, st.integers(0, 10**9))
 def test_dayan_matches_crt_and_brute_force(original: list[int], n: int) -> None:
-    pairs = [(n % m, m) for m in original]
+    pairs = [(n % d, d) for d in original]
     r = dayan(pairs)
     assert r.answer == n % lcm(*original)
     assert r.answer == crt(pairs)
 
 
-@given(moduli)
+@given(divisor_lists)
 def test_use_numbers_add_to_1_more_than_a_multiple_of_the_mother(original: list[int]) -> None:
     # Qin's check (併泛課衍母多一者為正用): the use numbers add to 1 more than a multiple.
-    r = dayan([(0, m) for m in original])
+    r = dayan([(0, d) for d in original])
     assert sum(r.use_numbers) % r.extension_mother == 1 % r.extension_mother
 
 
-@given(moduli)
+@given(divisor_lists)
 def test_use_numbers_are_sunzis_multipliers_for_the_definite_numbers(original: list[int]) -> None:
     definite = [d for d in definite_numbers(original) if d > 1]
     if not definite:

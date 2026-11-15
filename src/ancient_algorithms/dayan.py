@@ -3,13 +3,13 @@
 The general rule and the procedure for the multiplier, the dayan qiuyi shu (大衍求一術, "great
 extension method of finding one"), open chapter 1. The reading follows the Siku Quanshu copy
 (titled 數學九章, rebuilt from the Yongle dadian, 1784) as transcribed on Chinese Wikisource,
-checked against Alexander Wylie's 1852 English account. Qin's own worked problems in that
-chapter are the tests: the divination problem (蓍卦發微), the dyke problem (推計土功), the
-rice problem (餘米推數) and the couriers problem (程行計地).
+checked against Alexander Wylie's 1852 English account. The tests run Qin's worked problems
+from that chapter: the rice (餘米推數), dike (推計土功) and couriers (程行計地) problems in
+full, and the divination problem (蓍卦發微) up to the adjustment described below.
 
 The method, with Qin's names:
 
-1. Original numbers (元數): the moduli as given.
+1. Original numbers (元數): the divisors as given.
 2. Definite numbers (定數 or 定母): take the original numbers 2 at a time (連環求等). Divide
    their common measure out of one of them, the one whose quotient is odd (約奇弗約偶, as
    Wylie reads it). If the reduced number still shares a factor with the other, move that
@@ -25,9 +25,10 @@ The method, with Qin's names:
    mother as often as it goes (滿衍母去之). What is left is the answer.
 
 Qin's text has further steps this module leaves out: a common divisor taken from all the
-numbers first (總等), an adjustment of the use numbers (泛用 to 正用), and rules for numbers
-with fractions or decimal places. They change neither the definite numbers' product nor the
-answer in the problems tested here.
+numbers first (總等), rules for numbers with fractions or decimal places, and an adjustment
+of the use numbers (泛用 to 正用) that adds or removes multiples of the extension mother. The
+adjustment never changes the answer. In the divination problem it turns the use numbers
+12, 12, 4, 9 into 12, 24, 4, 9, and this module returns the first set.
 
 The modern counterpart is ``crt`` in ``ancient_algorithms.kuttaka``, built on ``extended_gcd``.
 The tests compare the dayan answers and multipliers with both.
@@ -35,8 +36,10 @@ The tests compare the dayan answers and multipliers with both.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from math import gcd, prod
+
+from ancient_algorithms.kuttaka import _check_remainders
 
 __all__ = [
     "QiuyiBoard",
@@ -48,29 +51,29 @@ __all__ = [
 ]
 
 QiuyiBoard = tuple[int, int, int, int]
-"""1 state of the counting board for qiuyi: (upper left, upper right, lower left, lower right)."""
+"""One state of the counting board for qiuyi: (upper left, upper right, lower left, lower right)."""
 
 
 @dataclass
 class DayanRecord:
-    """1 dayan run, with every intermediate number Qin writes down in his worked solutions."""
+    """One dayan run, with the intermediate numbers Qin writes down in his worked solutions."""
 
     remainders: list[int]
     original: list[int]
-    definite: list[int] = field(default_factory=list)
-    extension_mother: int = 1
-    extension_numbers: list[int] = field(default_factory=list)
-    qi: list[int] = field(default_factory=list)
-    multipliers: list[int] = field(default_factory=list)
-    use_numbers: list[int] = field(default_factory=list)
-    total: int = 0
-    answer: int = 0
+    definite: list[int]
+    extension_mother: int
+    extension_numbers: list[int]
+    qi: list[int]
+    multipliers: list[int]
+    use_numbers: list[int]
+    total: int
+    answer: int
 
 
 def definite_numbers(original: list[int]) -> list[int]:
     """Qin's definite numbers (定數): coprime divisors of ``original`` whose product is the lcm."""
-    if any(m < 1 for m in original):
-        raise ValueError(f"each modulus must be at least 1, got {original}")
+    if any(d < 1 for d in original):
+        raise ValueError(f"each divisor must be at least 1, got {original}")
     numbers = list(original)
     for i in range(len(numbers)):
         for j in range(i + 1, len(numbers)):
@@ -114,37 +117,39 @@ def qiuyi(qi: int, definite: int) -> int:
 
 
 def dayan(pairs: list[tuple[int, int]]) -> DayanRecord:
-    """Smallest ``N >= 0`` leaving each ``remainder`` with its ``modulus``, by the dayan method.
+    """Run the dayan method and return a ``DayanRecord`` of every step.
 
-    ``pairs`` holds ``(remainder, modulus)``. The moduli may share factors. Raises
+    ``pairs`` holds ``(remainder, divisor)``, and the divisors may share factors. The record's
+    ``answer`` is the smallest ``N >= 0`` leaving each remainder with its divisor. Raises
     ``ValueError`` when the remainders contradict each other on a shared factor.
     """
-    if not pairs:
-        raise ValueError("need at least one (remainder, modulus) pair")
-    for remainder, modulus in pairs:
-        if modulus < 1 or not 0 <= remainder < modulus:
-            raise ValueError(f"need 0 <= remainder < modulus, got ({remainder}, {modulus})")
-    record = DayanRecord(
-        remainders=[r for r, _ in pairs],
-        original=[m for _, m in pairs],
-    )
-    record.definite = definite_numbers(record.original)
-    record.extension_mother = prod(record.definite)
-    record.extension_numbers = [record.extension_mother // d for d in record.definite]
+    _check_remainders(pairs)
+    remainders = [r for r, _ in pairs]
+    original = [d for _, d in pairs]
+    definite = definite_numbers(original)
+    mother = prod(definite)
+    extension = [mother // d for d in definite]
     # A definite number 1 leaves remainder 1 in Qin's divination problem (其一母去衍一十二竒一).
-    record.qi = [e % d or d for e, d in zip(record.extension_numbers, record.definite, strict=True)]
-    record.multipliers = [qiuyi(q, d) for q, d in zip(record.qi, record.definite, strict=True)]
-    record.use_numbers = [
-        e * k for e, k in zip(record.extension_numbers, record.multipliers, strict=True)
-    ]
-    record.total = sum(r * u for r, u in zip(record.remainders, record.use_numbers, strict=True))
-    record.answer = record.total % record.extension_mother
-    for remainder, modulus in pairs:
-        if record.answer % modulus != remainder:
-            raise ValueError(
-                f"no solution: the remainders disagree on a factor shared with {modulus}"
-            )
-    return record
+    qi = [e % d or d for e, d in zip(extension, definite, strict=True)]
+    multipliers = [qiuyi(q, d) for q, d in zip(qi, definite, strict=True)]
+    use = [e * k for e, k in zip(extension, multipliers, strict=True)]
+    total = sum(r * u for r, u in zip(remainders, use, strict=True))
+    answer = total % mother
+    for remainder, divisor in pairs:
+        if answer % divisor != remainder:
+            raise ValueError(f"no solution: the remainders disagree on a factor of {divisor}")
+    return DayanRecord(
+        remainders=remainders,
+        original=original,
+        definite=definite,
+        extension_mother=mother,
+        extension_numbers=extension,
+        qi=qi,
+        multipliers=multipliers,
+        use_numbers=use,
+        total=total,
+        answer=answer,
+    )
 
 
 def _make_coprime(a: int, b: int) -> tuple[int, int]:

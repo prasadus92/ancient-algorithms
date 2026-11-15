@@ -1,4 +1,5 @@
-from math import gcd, prod
+from itertools import product
+from math import prod
 
 import pytest
 from hypothesis import given
@@ -9,6 +10,7 @@ from ancient_algorithms.sunzi import (
     SUNZI_DIVISORS,
     SUNZI_MULTIPLIERS,
     SUNZI_PERIOD,
+    _shared_factor,
     sunzi_general,
     sunzi_multipliers,
     sunzi_recipe,
@@ -60,27 +62,25 @@ def test_bad_inputs_raise() -> None:
         sunzi_general([])
     with pytest.raises(ValueError):
         sunzi_general([(5, 3), (1, 5)])
+    with pytest.raises(ValueError, match="divisors 4 and 6 share the factor 2"):
+        sunzi_general([(0, 4), (1, 6)])
     with pytest.raises(ValueError):
         sunzi_multipliers([4, 6])
     with pytest.raises(ValueError):
         sunzi_multipliers([1, 5])
 
 
-@given(st.integers(0, 2), st.integers(0, 4), st.integers(0, 6))
-def test_recipe_matches_brute_force_crt_and_kuttaka(r3: int, r5: int, r7: int) -> None:
-    n = sunzi_recipe(r3, r5, r7)
-    brute = next(x for x in range(105) if (x % 3, x % 5, x % 7) == (r3, r5, r7))
-    assert n == brute
-    assert n == crt([(r3, 3), (r5, 5), (r7, 7)])
-    assert n == remainder_problem([(r3, 3), (r5, 5), (r7, 7)])
-
-
-def _pairwise_coprime(divisors: list[int]) -> bool:
-    return all(gcd(a, b) == 1 for i, a in enumerate(divisors) for b in divisors[i + 1 :])
+def test_recipe_on_all_105_remainder_triples() -> None:
+    for r3, r5, r7 in product(range(3), range(5), range(7)):
+        n = sunzi_recipe(r3, r5, r7)
+        assert (n % 3, n % 5, n % 7) == (r3, r5, r7)
+        assert 0 <= n < 105
+        assert n == crt([(r3, 3), (r5, 5), (r7, 7)])
+        assert n == remainder_problem([(r3, 3), (r5, 5), (r7, 7)])
 
 
 coprime_divisors = st.lists(st.integers(2, 10_000), min_size=1, max_size=6).filter(
-    _pairwise_coprime
+    lambda divisors: _shared_factor(divisors) is None
 )
 
 

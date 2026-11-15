@@ -1,9 +1,9 @@
 """The remainder problem of the Sunzi Suanjing (孫子算經, Master Sun's Mathematical Manual).
 
 The text is usually dated to the 3rd to 5th century CE, and the date is uncertain. The problem
-is in the third juan (卷下), usually cited as problem 26. The reading follows the Siku Quanshu
-copy, rebuilt from the Yongle dadian, as transcribed on Chinese Wikisource, because it is the
-edition I could read in full:
+is in the third juan (卷下), usually cited as problem 26; it is the 25th in the edition read
+here. The reading follows the Siku Quanshu copy, rebuilt from the Yongle dadian, as
+transcribed on Chinese Wikisource, the edition available in full:
 
     今有物，不知其數。三三數之，賸二；五五數之，賸三；七七數之，賸二。問：物幾何？答曰：二十三。
 
@@ -16,16 +16,17 @@ The recipe (術), in the order the text gives it:
 
 The text does not say where 70, 21 and 15 come from. Each is a multiple of the other 2
 divisors that leaves 1 with its own divisor. ``sunzi_multipliers`` builds such numbers for any
-pairwise coprime divisors, and ``sunzi_general`` uses them, which is the textbook Chinese
-remainder construction. ``crt`` in ``ancient_algorithms.kuttaka`` is the incremental modern
-version, and the tests compare all 3.
+pairwise coprime divisors, and ``sunzi_general`` adds remainder times multiplier: the
+sum-of-products form of the Chinese remainder theorem, as Gauss stated it in 1801. The
+incremental form, which folds in 1 congruence at a time, is ``crt`` in
+``ancient_algorithms.kuttaka``, and the tests compare the 2.
 """
 
 from __future__ import annotations
 
-from math import prod
+from math import gcd, prod
 
-from ancient_algorithms.kuttaka import mod_inverse_euclid
+from ancient_algorithms.kuttaka import _check_remainders, mod_inverse_euclid
 
 __all__ = [
     "SUNZI_DIVISORS",
@@ -49,11 +50,7 @@ SUNZI_PERIOD = 105
 def sunzi_recipe(by_threes: int, by_fives: int, by_sevens: int) -> int:
     """The number leaving the given remainders by 3s, 5s and 7s, by Sunzi's recipe as stated."""
     remainders = (by_threes, by_fives, by_sevens)
-    for remainder, divisor in zip(remainders, SUNZI_DIVISORS, strict=True):
-        if not 0 <= remainder < divisor:
-            raise ValueError(
-                f"a remainder by {divisor}s must be 0 to {divisor - 1}, got {remainder}"
-            )
+    _check_remainders(list(zip(remainders, SUNZI_DIVISORS, strict=True)))
     total = sum(r * m for r, m in zip(remainders, SUNZI_MULTIPLIERS, strict=True))
     # "一百六以上，以一百五減之": 106 or more, take away 105.
     while total >= SUNZI_PERIOD + 1:
@@ -65,10 +62,9 @@ def sunzi_multipliers(divisors: list[int] | tuple[int, ...]) -> list[int]:
     """For each divisor, the multiple of all the others that leaves 1 with it.
 
     For 3, 5 and 7 these are Sunzi's 70, 21 and 15. Raises ``ValueError`` unless every divisor
-    is at least 2 and no 2 share a factor; ``mod_inverse_euclid`` makes the second check.
+    is at least 2 and no 2 share a factor.
     """
-    if any(d < 2 for d in divisors):
-        raise ValueError(f"each divisor must be at least 2, got {list(divisors)}")
+    _check_pairwise_coprime(divisors)
     period = prod(divisors)
     multipliers = []
     for divisor in divisors:
@@ -80,16 +76,32 @@ def sunzi_multipliers(divisors: list[int] | tuple[int, ...]) -> list[int]:
 def sunzi_general(pairs: list[tuple[int, int]]) -> int:
     """Smallest ``N >= 0`` leaving each ``remainder`` with its ``divisor``, by Sunzi's recipe.
 
-    ``pairs`` holds ``(remainder, divisor)`` with pairwise coprime divisors. Each remainder is
-    multiplied by its divisor's multiplier, the products are added, and the product of the
-    divisors is taken away as often as it goes.
+    ``pairs`` holds ``(remainder, divisor)``. Each remainder is multiplied by its divisor's
+    multiplier, the products are added, and the product of the divisors is taken away as often
+    as it goes. Raises ``ValueError`` unless every divisor is at least 2, no 2 divisors share a
+    factor, and each remainder is smaller than its divisor.
     """
-    if not pairs:
-        raise ValueError("need at least one (remainder, divisor) pair")
+    _check_remainders(pairs)
     divisors = [divisor for _, divisor in pairs]
     multipliers = sunzi_multipliers(divisors)
-    for remainder, divisor in pairs:
-        if not 0 <= remainder < divisor:
-            raise ValueError(f"need 0 <= remainder < divisor, got ({remainder}, {divisor})")
-    total = sum(remainder * m for (remainder, _), m in zip(pairs, multipliers, strict=True))
+    total = sum(r * m for (r, _), m in zip(pairs, multipliers, strict=True))
     return total % prod(divisors)
+
+
+def _shared_factor(divisors: list[int] | tuple[int, ...]) -> tuple[int, int] | None:
+    """The first 2 divisors that share a factor, or ``None`` when they are pairwise coprime."""
+    for i, a in enumerate(divisors):
+        for b in divisors[i + 1 :]:
+            if gcd(a, b) != 1:
+                return a, b
+    return None
+
+
+def _check_pairwise_coprime(divisors: list[int] | tuple[int, ...]) -> None:
+    """Raise ``ValueError`` unless every divisor is at least 2 and no 2 share a factor."""
+    if any(d < 2 for d in divisors):
+        raise ValueError(f"each divisor must be at least 2, got {list(divisors)}")
+    pair = _shared_factor(divisors)
+    if pair is not None:
+        a, b = pair
+        raise ValueError(f"the divisors {a} and {b} share the factor {gcd(a, b)}")
