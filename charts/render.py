@@ -1,12 +1,13 @@
 """Render the series charts as SVG and PNG, in light and dark, from the package's own results.
 
-Run: uv run --group charts python charts/render.py [--out DIR]
+Run: uv run python charts/render.py [--out DIR]
 
 Each chart highlights the series its post is about in the site's red and draws the rest in
 1 gray, with a direct label on every line or bar. The palette was checked with the dataviz
 validator: the red and the gray pass the lightness, color-vision deficiency, normal-vision and
 contrast checks in both modes. The gray fails only the chroma floor, as a context color should.
-Every number is deterministic, so a re-render with no code change rewrites identical files.
+Every number is deterministic, so on the same machine a re-render rewrites identical files.
+The Euclid and chakravala charts use the same samples and ranges as their benchmarks.
 """
 
 from __future__ import annotations
@@ -47,11 +48,17 @@ BAR_HEIGHT = 0.32
 MAX_MARKED_POINTS = 10
 """Series up to this length get a marker on every point; longer ones only at the end."""
 
-SAMPLES = 200
-"""Random pairs per size in the Euclid chart."""
+EUCLID_DIGITS = (3, 6, 12, 24)
+"""Digit counts in the Euclid chart, as in benchmarks/euclid_steps.py."""
+
+EUCLID_SAMPLES = 10_000
+"""Random pairs per size in the Euclid chart, as in benchmarks/euclid_steps.py."""
+
+EUCLID_SEED = 300
+"""Random seed of benchmarks/euclid_steps.py."""
 
 PELL_LIMIT = 1000
-"""Largest N in the chakravala chart."""
+"""The chakravala chart covers N below this, as in the chakravala post."""
 
 
 @dataclass(frozen=True)
@@ -144,11 +151,11 @@ def madhava_convergence() -> LineChart:
 
 def euclid_steps() -> LineChart:
     """Median subtraction and division counts on random pairs of growing size."""
-    rng = random.Random(1844)
-    sizes = list(range(2, 26, 2))
+    rng = random.Random(EUCLID_SEED)
+    sizes = list(EUCLID_DIGITS)
     subtractions, divisions = [], []
     for digits in sizes:
-        pairs = [_random_pair(rng, digits) for _ in range(SAMPLES)]
+        pairs = [_random_pair(rng, digits) for _ in range(EUCLID_SAMPLES)]
         subtractions.append(median(subtraction_count(a, b) for a, b in pairs))
         divisions.append(median(division_count(a, b) for a, b in pairs))
     return LineChart(
@@ -157,14 +164,16 @@ def euclid_steps() -> LineChart:
             f"On {sizes[-1]}-digit numbers, division needs {divisions[-1]:.0f} steps "
             f"and subtraction {subtractions[-1]:.0f}"
         ),
-        subtitle=f"Median steps to the greatest common divisor, {SAMPLES} random pairs per size",
+        subtitle=(
+            f"Median steps to the greatest common divisor, {EUCLID_SAMPLES:,} random pairs per size"
+        ),
         x_label="Digits in each number",
         y_label="Steps (log scale)",
         series=[
             Series("Subtraction (Euclid VII.1)", sizes, subtractions),
             Series("Division (modern form)", sizes, divisions, highlight=True),
         ],
-        source=f"Source: ancient_algorithms.euclid, random seed 1844. {REPO_URL}",
+        source=f"Source: ancient_algorithms.euclid, random seed {EUCLID_SEED}. {REPO_URL}",
         log_y=True,
     )
 
@@ -187,19 +196,16 @@ def heron_convergence() -> LineChart:
 
 def chakravala_steps() -> BarChart:
     """Total rounds over every non-square N up to PELL_LIMIT, for each method."""
-    ns = [n for n in range(2, PELL_LIMIT + 1) if isqrt(n) ** 2 != n]
+    ns = [n for n in range(2, PELL_LIMIT) if isqrt(n) ** 2 != n]
     shortcut = sum(chakravala(n).rounds for n in ns)
     cycle = sum(chakravala(n, shortcut=False).rounds for n in ns)
     fraction = sum(pell_continued_fraction(n)[2] for n in ns)
     return BarChart(
         slug="chakravala-steps",
-        title=(
-            f"With the shortcut, the chakravala takes {shortcut / fraction:.0%} "
-            "of the continued-fraction steps"
-        ),
+        title=(f"With the shortcut, the chakravala needs {shortcut / fraction:.0%} of the steps"),
         subtitle=(
-            f"Rounds for all {len(ns):,} non-square N up to {PELL_LIMIT:,} in x^2 - Ny^2 = 1, "
-            "not counting the closing compositions"
+            f"Against continued fractions, for the {len(ns):,} non-square N below {PELL_LIMIT:,}; "
+            "closing compositions not counted"
         ),
         x_label="Total rounds or steps",
         labels=["Continued fractions", "Chakravala", "With the shortcut"],
@@ -290,6 +296,8 @@ def _draw_lines(chart: LineChart, theme: Theme) -> Figure:
             zorder=4,
         )
         _label(ax, s.label, (s.xs[-1], s.ys[-1]), s.highlight, theme)
+    if len(chart.series[0].xs) <= MAX_MARKED_POINTS:
+        ax.set_xticks(list(chart.series[0].xs))
     if chart.log_x:
         ax.set_xscale("log")
         _plain_log_ticks(ax.xaxis)

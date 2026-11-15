@@ -50,68 +50,68 @@ L 138.24 66.24
     </g>
     <g id="xtick_2">
      <g id="line2d_3">
-      <path d="M 201.395669 264.96 
-L 201.395669 66.24 
+      <path d="M 201.492516 264.96 
+L 201.492516 66.24 
 " clip-path="url(#p96d384b8d4)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
      </g>
      <g id="line2d_4"/>
      <g id="text_2">
-      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="201.395669" y="280.48" transform="rotate(-0 201.395669 280.48)">2,000</text>
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="201.492516" y="280.48" transform="rotate(-0 201.492516 280.48)">2,000</text>
      </g>
     </g>
     <g id="xtick_3">
      <g id="line2d_5">
-      <path d="M 264.551338 264.96 
-L 264.551338 66.24 
+      <path d="M 264.745032 264.96 
+L 264.745032 66.24 
 " clip-path="url(#p96d384b8d4)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
      </g>
      <g id="line2d_6"/>
      <g id="text_3">
-      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="264.551338" y="280.48" transform="rotate(-0 264.551338 280.48)">4,000</text>
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="264.745032" y="280.48" transform="rotate(-0 264.745032 280.48)">4,000</text>
      </g>
     </g>
     <g id="xtick_4">
      <g id="line2d_7">
-      <path d="M 327.707007 264.96 
-L 327.707007 66.24 
+      <path d="M 327.997548 264.96 
+L 327.997548 66.24 
 " clip-path="url(#p96d384b8d4)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
      </g>
      <g id="line2d_8"/>
      <g id="text_4">
-      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="327.707007" y="280.48" transform="rotate(-0 327.707007 280.48)">6,000</text>
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="327.997548" y="280.48" transform="rotate(-0 327.997548 280.48)">6,000</text>
      </g>
     </g>
     <g id="xtick_5">
      <g id="line2d_9">
-      <path d="M 390.862675 264.96 
-L 390.862675 66.24 
+      <path d="M 391.250064 264.96 
+L 391.250064 66.24 
 " clip-path="url(#p96d384b8d4)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
      </g>
      <g id="line2d_10"/>
      <g id="text_5">
-      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="390.862675" y="280.48" transform="rotate(-0 390.862675 280.48)">8,000</text>
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="391.250064" y="280.48" transform="rotate(-0 391.250064 280.48)">8,000</text>
      </g>
     </g>
     <g id="xtick_6">
      <g id="line2d_11">
-      <path d="M 454.018344 264.96 
-L 454.018344 66.24 
+      <path d="M 454.50258 264.96 
+L 454.50258 66.24 
 " clip-path="url(#p96d384b8d4)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
      </g>
      <g id="line2d_12"/>
      <g id="text_6">
-      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="454.018344" y="280.48" transform="rotate(-0 454.018344 280.48)">10,000</text>
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="454.50258" y="280.48" transform="rotate(-0 454.50258 280.48)">10,000</text>
      </g>
     </g>
     <g id="xtick_7">
      <g id="line2d_13">
-      <path d="M 517.174013 264.96 
-L 517.174013 66.24 
+      <path d="M 517.755095 264.96 
+L 517.755095 66.24 
 " clip-path="url(#p96d384b8d4)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
      </g>
      <g id="line2d_14"/>
      <g id="text_7">
-      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="517.174013" y="280.48" transform="rotate(-0 517.174013 280.48)">12,000</text>
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="517.755095" y="280.48" transform="rotate(-0 517.755095 280.48)">12,000</text>
      </g>
     </g>
     <g id="text_8">
@@ -153,35 +153,35 @@ z
    </g>
    <g id="patch_5">
     <path d="M 138.24 153.141066 
-L 373.115932 153.141066 
-L 373.115932 178.058934 
+L 373.128218 153.141066 
+L 373.128218 178.058934 
 L 138.24 178.058934 
 z
 " clip-path="url(#p96d384b8d4)" style="fill: #60605c"/>
    </g>
    <g id="patch_6">
     <path d="M 138.24 231.009404 
-L 266.256541 231.009404 
-L 266.256541 255.927273 
+L 266.294718 231.009404 
+L 266.294718 255.927273 
 L 138.24 255.927273 
 z
 " clip-path="url(#p96d384b8d4)" style="fill: #fc4c42"/>
    </g>
    <g id="text_12">
-    <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #a3a3a0" x="496.848696" y="91.426661" transform="rotate(-0 496.848696 91.426661)">11,103</text>
+    <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #a3a3a0" x="496.848696" y="91.426661" transform="rotate(-0 496.848696 91.426661)">11,086</text>
    </g>
    <g id="text_13">
-    <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #a3a3a0" x="381.115932" y="169.295" transform="rotate(-0 381.115932 169.295)">7,438</text>
+    <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #a3a3a0" x="381.128218" y="169.295" transform="rotate(-0 381.128218 169.295)">7,427</text>
    </g>
    <g id="text_14">
-    <text style="font-weight: 700; font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #f2f2f0" x="274.256541" y="247.258339" transform="rotate(-0 274.256541 247.258339)">4,054</text>
+    <text style="font-weight: 700; font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #f2f2f0" x="274.294718" y="247.258339" transform="rotate(-0 274.294718 247.258339)">4,049</text>
    </g>
   </g>
   <g id="text_15">
-   <text style="font-weight: 700; font-size: 14px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #f2f2f0" x="34.56" y="30.21" transform="rotate(-0 34.56 30.21)">With the shortcut, the chakravala takes 37% of the continued-fraction steps</text>
+   <text style="font-weight: 700; font-size: 14px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #f2f2f0" x="34.56" y="30.21" transform="rotate(-0 34.56 30.21)">With the shortcut, the chakravala needs 37% of the steps</text>
   </g>
   <g id="text_16">
-   <text style="font-size: 10.5px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #a3a3a0" x="34.56" y="48.084" transform="rotate(-0 34.56 48.084)">Rounds for all 969 non-square N up to 1,000 in x^2 - Ny^2 = 1, not counting the closing compositions</text>
+   <text style="font-size: 10.5px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #a3a3a0" x="34.56" y="48.084" transform="rotate(-0 34.56 48.084)">Against continued fractions, for the 968 non-square N below 1,000; closing compositions not counted</text>
   </g>
   <g id="text_17">
    <text style="font-size: 8.5px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #a3a3a0" x="34.56" y="321.1095" transform="rotate(-0 34.56 321.1095)">Source: ancient_algorithms.chakravala. github.com/prasadus92/ancient-algorithms</text>
