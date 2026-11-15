@@ -7,7 +7,8 @@ from hypothesis import strategies as st
 from ancient_algorithms.maya import (
     CALENDAR_ROUND,
     GMT,
-    GMT_PLUS_2,
+    GMT_584285,
+    MARTIN_SKIDMORE_584286,
     add_bars_and_dots,
     bars_and_dots,
     calendar_round,
@@ -46,7 +47,13 @@ def test_13_baktun_ends_on_21_december_2012() -> None:
     assert ERA_END == 1_872_000
     assert calendar_round(ERA_END) == (4, "Ajaw", 3, "K'ank'in")
     assert gregorian_from_jdn(jdn_from_long_count((13, 0, 0, 0, 0))) == (2012, 12, 21)
-    assert gregorian_from_jdn(jdn_from_long_count((13, 0, 0, 0, 0), GMT_PLUS_2)) == (2012, 12, 23)
+
+
+def test_13_baktun_under_the_other_correlations() -> None:
+    # Martin and Skidmore 2012, p. 12: 23 December under 584285, 24 December under 584286.
+    end = (13, 0, 0, 0, 0)
+    assert gregorian_from_jdn(jdn_from_long_count(end, GMT_584285)) == (2012, 12, 23)
+    assert gregorian_from_jdn(jdn_from_long_count(end, MARTIN_SKIDMORE_584286)) == (2012, 12, 24)
 
 
 def test_tikal_lintel_3_date_from_kennett_2013() -> None:
@@ -77,10 +84,14 @@ def test_dresden_page_24_multiples_of_2920_from_1_ajaw() -> None:
     assert tzolkin(start + 13 * 2920) == (1, "Ajaw")
 
 
-def test_venus_table_period_counts() -> None:
-    # Morley 1915, p. 278: 113,880 days in whole tzolk'ins, years, Venus years and rounds.
-    assert 2920 == 5 * 584 == 8 * 365
-    assert 113_880 == 438 * 260 == 312 * 365 == 195 * 584 == 39 * 2920 == 6 * CALENDAR_ROUND
+@given(day=any_day)
+def test_venus_table_periods_return_to_the_same_names(day: int) -> None:
+    # Morley 1915, p. 278: 2,920 is 8 years of 365 days; 37,960 is 146 tzolk'ins;
+    # 113,880 is 6 Calendar Rounds.
+    assert haab(day + 2920) == haab(day)
+    assert tzolkin(day + 37_960) == tzolkin(day)
+    assert calendar_round(day + 113_880) == calendar_round(day)
+    assert tzolkin(day + 2920) != tzolkin(day)
 
 
 def test_401_in_base_20_and_as_days() -> None:
@@ -107,6 +118,12 @@ def test_calendar_round_lookup() -> None:
         days_in_round(1, "Imix", 1, "Pop")
     with pytest.raises(ValueError, match="Wayeb' has days 0 to 4, got 7"):
         days_in_round(4, "Ajaw", 7, "Wayeb'")
+    with pytest.raises(ValueError, match="Tzolk'in number is from 1 to 13, got 14"):
+        days_in_round(14, "Ajaw", 8, "Kumk'u")
+    with pytest.raises(ValueError, match="unknown day name or month: 'Ahau'"):
+        days_in_round(4, "Ahau", 8, "Kumk'u")
+    with pytest.raises(ValueError, match="unknown day name or month: 'Ajaw', 'Cumhu'"):
+        days_in_round(4, "Ajaw", 8, "Cumhu")
 
 
 def test_haab_wayeb_has_5_days() -> None:
@@ -120,8 +137,13 @@ def test_haab_wayeb_has_5_days() -> None:
 def test_long_count_place_limits() -> None:
     with pytest.raises(ValueError, match="from 0 to 17"):
         days_from_long_count((9, 9, 9, 18, 0))
-    with pytest.raises(ValueError, match="days must be"):
+    with pytest.raises(ValueError, match="days must be from 0 to 2879999, got -1"):
         long_count_from_days(-1)
+    with pytest.raises(ValueError, match="got 2880000"):
+        long_count_from_days(20 * 144_000)
+    with pytest.raises(ValueError, match="a Long Count has 5 places, got"):
+        days_from_long_count((9, 9, 9, 16))
+    assert long_count_from_days(20 * 144_000 - 1) == (19, 19, 19, 17, 19)
 
 
 def test_jdn_anchors() -> None:
@@ -130,6 +152,24 @@ def test_jdn_anchors() -> None:
     assert julian_from_jdn(2_299_161) == (1582, 10, 5)
     assert julian_from_jdn(0) == (-4712, 1, 1)
     assert gregorian_from_jdn(0) == (-4713, 11, 24)
+
+
+def test_days_outside_the_month_are_rejected() -> None:
+    with pytest.raises(ValueError, match="2020-02 has days 1 to 29, got 30"):
+        jdn_from_gregorian(2020, 2, 30)
+    with pytest.raises(ValueError, match="1900-02 has days 1 to 28, got 29"):
+        jdn_from_gregorian(1900, 2, 29)
+    assert jdn_from_julian(1900, 2, 29) == jdn_from_julian(1900, 3, 1) - 1
+    with pytest.raises(ValueError, match="2021-02 has days 1 to 28, got 29"):
+        jdn_from_julian(2021, 2, 29)
+    with pytest.raises(ValueError, match="2020-04 has days 1 to 30, got 31"):
+        jdn_from_gregorian(2020, 4, 31)
+    with pytest.raises(ValueError, match="got 0"):
+        jdn_from_julian(2020, 1, 0)
+    with pytest.raises(ValueError, match="month must be from 1 to 12, got 13"):
+        jdn_from_gregorian(2020, 13, 1)
+    with pytest.raises(ValueError, match="month must be from 1 to 12, got 0"):
+        jdn_from_julian(2020, 0, 1)
 
 
 @given(n=st.integers(0, 10**30))

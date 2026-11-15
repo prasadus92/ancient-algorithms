@@ -30,14 +30,17 @@ counted from the right, and an empty place holds a small circle (circulus), 0:
    write it above the divisor's units, multiply and subtract digit by digit, move
    the divisor 1 place right, and repeat. The quotient is "what is owed to 1".
 
-Places are stored least significant first, so ``places[0]`` is the first place.
+Numbers go in and come out as digit lists in written order, most significant
+first, as ``place_value`` writes them. Inside each procedure the digits are turned
+round into places counted from the right, as the text counts them, so
+``places[0]`` is the first place.
 """
 
 from __future__ import annotations
 
+from ancient_algorithms.place_value import carry, check_digits, from_digits, pad, to_digits, trim
+
 __all__ = [
-    "to_places",
-    "from_places",
     "add",
     "subtract",
     "halve",
@@ -56,55 +59,35 @@ HALF_UNIT_SIXTIETHS = 30
 """DA writes the half of an odd unit as 30 parts of 60."""
 
 
-def to_places(n: int, base: int = BASE) -> list[int]:
-    """Digits of ``n`` in ``base``, least significant first; 0 is ``[0]``."""
-    if n < 0:
-        raise ValueError(f"n must be at least 0, got {n}")
-    if base < 2:
-        raise ValueError(f"base must be at least 2, got {base}")
-    places = []
-    while True:
-        n, digit = divmod(n, base)
-        places.append(digit)
-        if n == 0:
-            return places
-
-
-def from_places(places: list[int], base: int = BASE) -> int:
-    """The number whose digits in ``base`` are ``places``, least significant first."""
-    _check_places(places, base)
-    return sum(digit * base**place for place, digit in enumerate(places))
-
-
 def add(upper: list[int], lower: list[int]) -> list[int]:
     """Add ``lower`` into ``upper`` from the highest place down (DA chapter 2)."""
-    _check_places(upper)
-    _check_places(lower)
-    result = _padded(upper, len(lower))
-    for place in reversed(range(len(lower))):
-        result[place] += lower[place]
-        _carry_up(result, place)
-    return _trimmed(result)
+    places, other = _places(upper, lower)
+    for place in reversed(range(len(other))):
+        places[place] += other[place]
+        _carry_up(places, place)
+    return _written(places)
 
 
 def subtract(upper: list[int], lower: list[int]) -> list[int]:
     """Take ``lower`` from ``upper`` from the highest place down, borrowing from above."""
-    if from_places(upper) < from_places(lower):
-        raise ValueError(f"cannot subtract {from_places(lower)} from {from_places(upper)}")
-    result = _padded(upper, len(lower))
-    for place in reversed(range(len(lower))):
-        if result[place] < lower[place]:
-            _borrow(result, place)
-        result[place] -= lower[place]
-    return _trimmed(result)
+    if from_digits(upper, BASE) < from_digits(lower, BASE):
+        raise ValueError(
+            f"cannot subtract {from_digits(lower, BASE)} from {from_digits(upper, BASE)}"
+        )
+    places, other = _places(upper, lower)
+    for place in reversed(range(len(other))):
+        if places[place] < other[place]:
+            _borrow(places, place)
+        places[place] -= other[place]
+    return _written(places)
 
 
-def halve(places: list[int]) -> tuple[list[int], int]:
-    """Half of a number as ``(whole places, sixtieths)``, working up from the units.
+def halve(digits: list[int]) -> tuple[list[int], int]:
+    """Half of a number as ``(whole digits, sixtieths)``, working up from the units.
 
     The sixtieths are 30 when the number is odd and 0 otherwise.
     """
-    _check_places(places)
+    (places,) = _places(digits)
     halves = [0] * len(places)
     sixtieths = 0
     for place, digit in enumerate(places):
@@ -115,17 +98,16 @@ def halve(places: list[int]) -> tuple[list[int], int]:
             sixtieths = HALF_UNIT_SIXTIETHS
         else:
             halves[place - 1] += 5  # the odd 1 here is 10 of the place below
-    return _trimmed(halves), sixtieths
+    return _written(halves), sixtieths
 
 
-def double(places: list[int]) -> list[int]:
+def double(digits: list[int]) -> list[int]:
     """Twice a number, from the highest place down (DA chapter 3)."""
-    _check_places(places)
-    result = list(places)
-    for place in reversed(range(len(result))):
-        result[place] *= 2
-        _carry_up(result, place)
-    return _trimmed(result)
+    (places,) = _places(digits)
+    for place in reversed(range(len(places))):
+        places[place] *= 2
+        _carry_up(places, place)
+    return _written(places)
 
 
 def multiply(upper: list[int], lower: list[int]) -> list[int]:
@@ -135,19 +117,18 @@ def multiply(upper: list[int], lower: list[int]) -> list[int]:
     of ``upper``, from the highest, multiplies the digits of ``lower`` from the
     highest, and its last product replaces it.
     """
-    _check_places(upper)
-    _check_places(lower)
-    result = _padded(upper, len(upper) + len(lower))
+    work, other = _places(upper, lower)
+    work += [0] * len(other)
     for place in reversed(range(len(upper))):
-        digit = result[place]
-        for shift in reversed(range(len(lower))):
-            product = digit * lower[shift]
+        digit = work[place]
+        for shift in reversed(range(len(other))):
+            product = digit * other[shift]
             if shift == 0:
-                result[place] = product  # erase the digit and write the product in its place
+                work[place] = product  # erase the digit and write the product in its place
             else:
-                result[place + shift] += product
-            _carry_up(result, place + shift)
-    return _trimmed(result)
+                work[place + shift] += product
+            _carry_up(work, place + shift)
+    return _written(work)
 
 
 def nines_check(upper: list[int], lower: list[int], product: list[int]) -> bool:
@@ -155,76 +136,65 @@ def nines_check(upper: list[int], lower: list[int], product: list[int]) -> bool:
 
     The test catches most slips. A wrong product that differs by a multiple of 9 passes.
     """
-    excess = from_places(upper) % 9 * (from_places(lower) % 9) % 9
-    return excess == from_places(product) % 9
+    excess = from_digits(upper, BASE) % 9 * (from_digits(lower, BASE) % 9) % 9
+    return excess == from_digits(product, BASE) % 9
 
 
 def division_steps(dividend: list[int], divisor: list[int]) -> list[tuple[int, list[int]]]:
     """Each quotient digit of DA's division, from the highest, with the dividend left after it."""
-    _check_places(dividend)
-    _check_places(divisor)
-    divisor = _trimmed(divisor)
-    if divisor == [0]:
+    check_digits(dividend, BASE)
+    check_digits(divisor, BASE)
+    remainder, divisor_places = trim(dividend)[::-1], trim(divisor)[::-1]
+    if divisor_places == [0]:
         raise ValueError("divisor must not be 0")
-    remainder = _trimmed(dividend)
-    top = len(divisor) - 1
-    start = len(remainder) - len(divisor)
-    if remainder[-1] < divisor[-1]:
+    top = len(divisor_places) - 1
+    start = len(remainder) - len(divisor_places)
+    if remainder[-1] < divisor_places[-1]:
         start -= 1  # move the divisor 1 place right
     steps = []
     for shift in range(start, -1, -1):
-        above = from_places(remainder[shift + top :])
-        digit = min(above // divisor[-1], BASE - 1)
-        while digit and not _fits(remainder, divisor, digit, shift):
+        above = from_digits(remainder[shift + top :][::-1], BASE)
+        digit = min(above // divisor_places[-1], BASE - 1)
+        while digit and not _fits(remainder, divisor_places, digit, shift):
             digit -= 1  # "or close to it, below it"
-        for place in reversed(range(len(divisor))):
-            amount = [0] * (shift + place) + to_places(digit * divisor[place])
-            remainder = _padded(subtract(remainder, amount), len(remainder))
-        steps.append((digit, _trimmed(remainder)))
+        for place in reversed(range(len(divisor_places))):
+            amount = to_digits(digit * divisor_places[place], BASE) + [0] * (shift + place)
+            remainder = pad(subtract(_written(remainder), amount), len(remainder))[::-1]
+        steps.append((digit, _written(remainder)))
     return steps
 
 
 def divide(dividend: list[int], divisor: list[int]) -> tuple[list[int], list[int]]:
-    """Quotient and remainder, as places, by DA's division (chapters 6 and 7).
+    """Quotient and remainder digits by DA's division (chapters 6 and 7).
 
     The quotient is what DA calls "what is owed to 1"; the remainder is "parts of 1".
     """
     steps = division_steps(dividend, divisor)
     if not steps:
-        return [0], _trimmed(dividend)
-    quotient = [digit for digit, _ in reversed(steps)]
-    return _trimmed(quotient), steps[-1][1]
+        return [0], trim(dividend)
+    return trim([digit for digit, _ in steps]), steps[-1][1]
 
 
-def _check_places(places: list[int], base: int = BASE) -> None:
-    """Raise ``ValueError`` unless ``places`` is a non-empty list of digits in ``base``."""
-    if not places:
-        raise ValueError("a number needs at least 1 place")
-    for digit in places:
-        if not 0 <= digit < base:
-            raise ValueError(f"digits must be from 0 to {base - 1}, got {digit}")
+def _places(*numbers: list[int]) -> list[list[int]]:
+    """Check each number, pad all to one width, and turn each into places from the right."""
+    for digits in numbers:
+        check_digits(digits, BASE)
+    width = max(len(digits) for digits in numbers)
+    return [pad(digits, width)[::-1] for digits in numbers]
 
 
-def _padded(places: list[int], length: int) -> list[int]:
-    """Copy of ``places`` with zeros added on the left up to ``length`` places."""
-    return list(places) + [0] * (length - len(places))
-
-
-def _trimmed(places: list[int]) -> list[int]:
-    """``places`` without empty high places, keeping at least 1 place."""
-    end = len(places)
-    while end > 1 and places[end - 1] == 0:
-        end -= 1
-    return places[:end]
+def _written(places: list[int]) -> list[int]:
+    """Places from the right back into written digits, without leading zeros."""
+    return trim(places[::-1])
 
 
 def _carry_up(places: list[int], place: int) -> None:
     """Turn each 10 at ``place`` into 1 in the place above, and keep going while needed."""
     while places[place] >= BASE:
-        carry, places[place] = divmod(places[place], BASE)
+        carried, places[place] = divmod(places[place], BASE)
         if place + 1 == len(places):
             places.append(0)
-        places[place + 1] += carry
+        places[place + 1] += carried
         place += 1
 
 
@@ -241,19 +211,13 @@ def _borrow(places: list[int], place: int) -> None:
 
 def _fits(remainder: list[int], divisor: list[int], digit: int, shift: int) -> bool:
     """Whether ``digit`` times the divisor, moved ``shift`` places, can be taken away."""
-    return digit * from_places([0] * shift + divisor) <= from_places(remainder)
+    moved = from_digits(divisor[::-1] + [0] * shift, BASE)
+    return digit * moved <= from_digits(remainder[::-1], BASE)
 
 
 def schoolbook_add(upper: list[int], lower: list[int]) -> list[int]:
     """Modern column addition: right to left, 1 carry passed along, no place revisited."""
-    _check_places(upper)
-    _check_places(lower)
+    check_digits(upper, BASE)
+    check_digits(lower, BASE)
     width = max(len(upper), len(lower))
-    a, b = _padded(upper, width), _padded(lower, width)
-    total, carry = [], 0
-    for place in range(width):
-        carry, digit = divmod(a[place] + b[place] + carry, BASE)
-        total.append(digit)
-    if carry:
-        total.append(carry)
-    return total
+    return carry([a + b for a, b in zip(pad(upper, width), pad(lower, width), strict=True)], BASE)

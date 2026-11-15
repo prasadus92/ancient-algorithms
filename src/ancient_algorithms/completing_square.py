@@ -6,6 +6,11 @@ reduction"), written in Baghdad for the caliph al-Ma'mun (reigned 813 to 833).
 Page numbers refer to F. Rosen, The Algebra of Mohammed ben Musa (London, 1831),
 the English translation with the Arabic text.
 
+The date c. 820 is an inference. The preface addresses al-Ma'mun as caliph, which
+places the book in his reign, 813 to 833 (Folkerts, Science in Context 14, 2001).
+Al-Khwarizmi's arithmetic, c. 825 by Folkerts's dating, cites the Algebra, so the
+Algebra came first. No source gives a year.
+
 Al-Khwarizmi works with 3 kinds of number: roots (the unknown, x), squares (x^2)
 and simple numbers. Every coefficient is positive, so an equation is one of 6
 types (Rosen pp. 5 to 13):
@@ -19,7 +24,7 @@ types (Rosen pp. 5 to 13):
 
 His rule for the 3 compound types, after reducing to 1 square:
 
-1. Divide everything by the number of squares, "reduce them to 1 single square".
+1. Divide everything by the number of squares: "reduce them to one single square".
 2. Halve the number of roots and multiply the half by itself.
 3. Type 4: add the number, take the root, subtract the half. Type 6: add the
    number, take the root, add the half. Type 5: subtract the number; if nothing
@@ -31,6 +36,10 @@ The geometric proof for type 4 (Rosen pp. 13 to 16) puts a strip of breadth b/4 
 each of the 4 sides of the square and fills the 4 corners with squares of side
 b/4. He gives a second figure with 2 strips of breadth b/2 and 1 corner square.
 Al-Khwarizmi gives positive answers only and never x = 0.
+
+Every function takes keyword arguments named after his 3 kinds of number
+(``squares``, ``roots``, ``number``), so that a coefficient cannot land in the
+wrong place and solve a different equation.
 """
 
 from __future__ import annotations
@@ -71,36 +80,38 @@ class GreatSquare:
     root: Number
 
 
-def one_square(squares: Number, roots: Number, number: Number) -> tuple[Fraction, Fraction]:
+def one_square(*, squares: Number, roots: Number, number: Number) -> tuple[Fraction, Fraction]:
     """Roots and number after dividing through by the number of squares."""
     squares = _positive(squares, "squares")
     return Fraction(roots) / squares, Fraction(number) / squares
 
 
-def squares_equal_roots(squares: Number, roots: Number) -> Fraction:
+def squares_equal_roots(*, squares: Number, roots: Number) -> Fraction:
     """Root of ``squares * x^2 = roots * x``, for example 5 for "a square equals 5 roots"."""
     return _positive(roots, "roots") / _positive(squares, "squares")
 
 
-def squares_equal_numbers(squares: Number, number: Number) -> Number:
+def squares_equal_numbers(*, squares: Number, number: Number) -> Number:
     """Root of ``squares * x^2 = number``."""
     return _root(_positive(number, "number") / _positive(squares, "squares"))
 
 
-def roots_equal_numbers(roots: Number, number: Number) -> Fraction:
+def roots_equal_numbers(*, roots: Number, number: Number) -> Fraction:
     """Root of ``roots * x = number``."""
     return _positive(number, "number") / _positive(roots, "roots")
 
 
-def squares_and_roots_equal_numbers(squares: Number, roots: Number, number: Number) -> Number:
+def squares_and_roots_equal_numbers(*, squares: Number, roots: Number, number: Number) -> Number:
     """Root of ``squares * x^2 + roots * x = number``: halve, square, add, take root, subtract."""
-    b, a = one_square(squares, _positive(roots, "roots"), _positive(number, "number"))
+    b, a = one_square(
+        squares=squares, roots=_positive(roots, "roots"), number=_positive(number, "number")
+    )
     half = b / 2
     return _root(half * half + a) - half
 
 
 def squares_and_numbers_equal_roots(
-    squares: Number, number: Number, roots: Number
+    *, squares: Number, roots: Number, number: Number
 ) -> tuple[Number, ...]:
     """Roots of ``squares * x^2 + number = roots * x``: 0, 1 or 2 positive answers.
 
@@ -109,7 +120,9 @@ def squares_and_numbers_equal_roots(
     half is the 1 answer. Otherwise the half minus and plus the root of the
     difference are both answers.
     """
-    b, a = one_square(squares, _positive(roots, "roots"), _positive(number, "number"))
+    b, a = one_square(
+        squares=squares, roots=_positive(roots, "roots"), number=_positive(number, "number")
+    )
     half = b / 2
     excess = half * half - a
     if excess < 0:
@@ -120,14 +133,16 @@ def squares_and_numbers_equal_roots(
     return (half - gap, half + gap)
 
 
-def roots_and_numbers_equal_squares(squares: Number, roots: Number, number: Number) -> Number:
+def roots_and_numbers_equal_squares(*, squares: Number, roots: Number, number: Number) -> Number:
     """Root of ``squares * x^2 = roots * x + number``: halve, square, add, take root, add."""
-    b, a = one_square(squares, _positive(roots, "roots"), _positive(number, "number"))
+    b, a = one_square(
+        squares=squares, roots=_positive(roots, "roots"), number=_positive(number, "number")
+    )
     half = b / 2
     return _root(half * half + a) + half
 
 
-def complete_the_square(roots: Number, number: Number, strips: int = 4) -> GreatSquare:
+def complete_the_square(*, roots: Number, number: Number, strips: int = 4) -> GreatSquare:
     """Al-Khwarizmi's figure for ``x^2 + roots * x = number``, with 4 strips or 2.
 
     Each strip is ``roots / strips`` wide and as long as the unknown side. The
