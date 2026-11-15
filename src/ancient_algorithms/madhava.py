@@ -6,8 +6,9 @@ Later Kerala texts attribute to Madhava of Sangamagrama (c. 1340 to 1425) the se
 
 together with corrections that estimate the tail left after stopping at term n.
 No surviving work by Madhava contains these series. They reach us through 16th-century
-Kerala works: Jyesthadeva's Yuktibhasa derives them, and Shankara Variyar's
-commentaries Yuktidipika and Kriyakramakari quote verses that they credit to Madhava.
+Kerala works: Jyesthadeva's Yuktibhasa derives them, Shankara Variyar's Yuktidipika
+(2.271 to 274, ed. K. V. Sarma, 1977) quotes the verses without naming an author, and
+his Kriyakramakari credits the rule to Madhava (Plofker 2009, as quoted on Wikipedia).
 
 With S_n the sum of the first n terms (last denominator 2n - 1), the 3
 corrections, written in n, are
@@ -96,7 +97,7 @@ def madhava_pi(n: int, order: int = 0, prec: int = DEFAULT_PREC) -> Decimal:
 
 
 def madhava_sqrt12_pi(n: int, prec: int = DEFAULT_PREC) -> Decimal:
-    """Pi = sqrt(12) * (1 - 1/(3*3) + 1/(5*3^2) - ...), also credited to Madhava."""
+    """Pi = sqrt(12) * (1 - 1/(3*3) + 1/(5*3^2) - ...), stated in the Yuktidipika (2.212)."""
     with localcontext() as ctx:
         ctx.prec = prec
         return Decimal(12).sqrt() * _alternating_odd_series(n, 3)

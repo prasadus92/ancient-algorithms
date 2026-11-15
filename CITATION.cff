@@ -45,6 +45,10 @@ keywords:
   - greatest common divisor
   - sieve of Eratosthenes
   - Heron's method
+  - chakravala
+  - Pell's equation
+  - Bhaskara II
+  - katapayadi
 references:
   - type: book
     title: "Aryabhatiya of Aryabhata, with the commentary of Bhaskara I and Somesvara"
@@ -250,3 +254,17 @@ references:
       - family-names: Heath
         given-names: Thomas L.
     year: 1921
+  - type: book
+    title: "Algebra, with Arithmetic and Mensuration, from the Sanscrit of Brahmegupta and Bhascara"
+    authors:
+      - family-names: Colebrooke
+        given-names: Henry Thomas
+    year: 1817
+  - type: book
+    title: "Tantrasangraha of Nilakantha Somayaji, with Yuktidipika and Laghuvivrti of Sankara"
+    authors:
+      - name: Nilakantha Somayaji
+    editors:
+      - family-names: Sarma
+        given-names: K. V.
+    year: 1977
