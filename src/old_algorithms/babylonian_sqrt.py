@@ -1,11 +1,15 @@
 """The square root of 2 on YBC 7289, in base 60.
 
 YBC 7289 is an Old Babylonian school tablet (c. 1800 to 1600 BCE) in the Yale
-Babylonian Collection. It shows a square with side 30 and two numbers along the
-diagonal:
+Babylonian Collection. It shows a square with the number 30 on one side and 2
+numbers along the diagonal:
 
     1;24,51,10   = 1 + 24/60 + 51/60^2 + 10/60^3, close to sqrt(2)
-    42;25,35     = 30 times that number, the length of the diagonal
+    42;25,35     = 30 times that number
+
+Base-60 numbers on the tablet carry no mark for where the whole part ends. Read
+the side as 30, and 42;25,35 is the length of the diagonal. Read it as 0;30, and
+the third number is 0;42,25,35, close to 1/sqrt(2). Both readings fit the digits.
 
 The tablet records the values and does not say how they were computed. Fowler and
 Robson (Historia Mathematica 25, 1998) discuss which methods could produce them.
@@ -15,8 +19,8 @@ The averaging iteration
 
 is written out in Heron of Alexandria's Metrica (1st century CE) and is commonly
 called the Babylonian method. The tablet's 1;24,51,10 is sqrt(2) truncated to 3
-sexagesimal places. Two steps of the iteration from 3/2 give 577/408, which also
-truncates to 1;24,51,10, so the iteration is one way to reach the tablet's value.
+sexagesimal places. 2 steps of the iteration from 3/2 give 577/408, which also
+truncates to 1;24,51,10, so the iteration is a way to reach the tablet's value.
 Agreement of the digits does not show which method the scribe used.
 """
 
@@ -70,6 +74,8 @@ def from_sexagesimal(value: Sexagesimal) -> Fraction:
 
 def parse(text: str) -> Fraction:
     """Parse the modern notation ``"1;24,51,10"`` into an exact fraction."""
+    if text.strip().startswith("-"):
+        raise ValueError("only non-negative values")
     whole, _, frac = text.partition(";")
     digits = tuple(int(d) for d in frac.split(",")) if frac else ()
     return from_sexagesimal((int(whole), digits))

@@ -28,7 +28,7 @@ def test_bhaskara_example_2():
 
 def test_bhaskara_example_2_column_matches_commentary():
     # Bhaskara I stops after 2 quotients (1, 1), picks mati 4, gets 10, then 310 and 317.
-    v = pulverize(31, 12, 2, stop_after=2)
+    v = pulverize(31, 12, 2, stop_after=2, trace=True)
     assert v.quotients == [1, 1]
     assert v.residues[-2:] == [5, 2]
     assert v.added is True
@@ -39,9 +39,35 @@ def test_bhaskara_example_2_column_matches_commentary():
     assert 31 * (v.x % 12) == 310
 
 
+def test_bhaskara_example_1_column_matches_commentary():
+    # The numbers are small, so Bhaskara I picks the mati before any division: mati 2, quotient 1.
+    v = pulverize(7, 5, 1, stop_after=0)
+    assert v.column == [2, 1]
+    assert v.x == 2
+    assert 7 * v.x + 2 == 16
+
+
 def test_bhaskara_example_3_three_divisors():
-    # Leaves 5 with 8, 4 with 9 and 1 with 7.
+    # Leaves 5 with 8, 4 with 9 and 1 with 7; the first 2 give 13 with divisor 72.
+    assert two_remainders(5, 8, 4, 9) == 13
+    assert two_remainders(13, 72, 1, 7) == 85
     assert remainder_problem([(5, 8), (4, 9), (1, 7)]) == 85
+
+
+def test_bhaskara_example_5_without_remainders():
+    # 8x + 6 divisible by 13: column 1 1 1 1 2 4 folds to 22 14, giving 9 and quotient 6.
+    v = pulverize(8, 13, 6, trace=True)
+    assert v.column == [1, 1, 1, 1, 2, 4]
+    assert v.reduced[-1] == [22, 14]
+    assert v.x == 9
+    assert (8 * v.x + 6) // 13 == 6
+
+
+def test_bhaskara_example_6_without_remainders():
+    # 11x - 3 divisible by 23 gives 17, with quotient 8.
+    v = pulverize(11, 23, -3)
+    assert v.x == 17
+    assert (11 * v.x - 3) // 23 == 8
 
 
 def test_bhaskara_example_4_non_coprime_divisors():
@@ -59,6 +85,29 @@ def test_rsa_textbook_private_exponent():
     assert mod_inverse_kuttaka(17, 3120) == 2753
     assert mod_inverse_euclid(17, 3120) == 2753
     assert pow(17, -1, 3120) == 2753
+
+
+def test_bad_inputs_raise():
+    with pytest.raises(ValueError):
+        pulverize(3, 0, 1)
+    with pytest.raises(ValueError):
+        pulverize(3, 7, 1, stop_after=-1)
+    with pytest.raises(ValueError):
+        remainder_problem([(7, 5), (2, 7)])
+    with pytest.raises(ValueError):
+        remainder_problem([(1, 0)])
+    with pytest.raises(ValueError):
+        remainder_problem([(7, 5)])
+    with pytest.raises(ValueError):
+        mod_inverse_kuttaka(1, 0)
+    with pytest.raises(ValueError):
+        mod_inverse_euclid(3, 0)
+
+
+def test_early_stop_with_a_large_divisor_is_fast():
+    # Past TRIAL_LIMIT the mati is solved directly, so this returns at once.
+    m = 2**61 - 1
+    assert pulverize(3, m, 1, stop_after=0).x == (-pow(3, -1, m)) % m
 
 
 def test_no_solution_raises():
@@ -80,9 +129,17 @@ def test_pulverize_solves_whenever_a_solution_exists(a, b, c, stop):
         with pytest.raises(ValueError):
             pulverize(a, b, c, stop_after=stop)
         return
-    x = pulverize(a, b, c, stop_after=stop).x
+    v = pulverize(a, b, c, stop_after=stop, trace=True)
+    x = v.x
     assert (a * x + c) % b == 0
     assert 0 <= x < b // gcd(a, b)
+    if v.b > 1:
+        # The mati equation holds and the folded column gives x.
+        n = v.divisions
+        sign = 1 if v.added else -1
+        upper, lower = v.residues[n + 1], v.residues[n]
+        assert upper * v.mati + sign * v.c == lower * v.mati_quotient
+        assert v.reduced[-1][0] % v.b == x
 
 
 def test_common_factor_is_removed_first():
@@ -125,13 +182,13 @@ def test_inverse_agrees_with_euclid_and_pow(a, m):
 def test_extended_gcd_bezout(a, b):
     g, s, t = extended_gcd(a, b)
     assert a * s + b * t == g
-    assert abs(g) == gcd(a, b)
+    assert g == gcd(a, b)
 
 
 def test_bhaskara_day_count_from_the_suns_remainder():
-    # Bhaskara I on Kalakriyapada: the sun makes 4,320,000 revolutions in
-    # 1,577,917,500 days; a leftover of 82,500 gives 199,066 days and 545 revolutions.
-    # The commentary first divides both numbers by 7,500, as pulverize does.
+    # Bhaskara I's example 22 on Ganitapada 32-33: the sun makes 4,320,000 revolutions
+    # in 1,577,917,500 days; a leftover of 82,500 gives 199,066 days and 545 revolutions.
+    # He first divides divisor, dividend and remainder by 7,500, as pulverize does.
     v = pulverize(4_320_000, 1_577_917_500, -82_500)
     assert (v.a, v.b) == (576, 210_389)
     assert v.x == 199_066

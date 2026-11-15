@@ -3,12 +3,12 @@
 [![CI](https://github.com/prasadus92/old-algorithms/actions/workflows/ci.yml/badge.svg)](https://github.com/prasadus92/old-algorithms/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Python implementations of algorithms from dated historical sources, each checked against the worked examples in the source or its oldest commentary. The write-ups, with the source text, translation and derivation, are at [prasad.tech/old-algorithms](https://prasad.tech/old-algorithms/).
+Python implementations of algorithms from dated historical sources. Where the source or its oldest commentary has worked examples, the tests run them. The write-ups, with the source text, translation and derivation, are at [prasad.tech/old-algorithms](https://prasad.tech/old-algorithms/).
 
 | Module | Algorithm | Source |
 |---|---|---|
-| `kuttaka.py` | The kuttaka ("pulverizer") for `a*x + c = b*y` and the remainder problem, with the extended Euclidean algorithm and modular inverse for comparison | Aryabhata, *Aryabhatiya*, Ganitapada 32 and 33 (499 CE), read with Bhaskara I's commentary (629 CE) |
-| `madhava.py` | The series for pi with Madhava's 3 end corrections, the sqrt(12) series, and Machin's formula for comparison | Kerala texts of c. 1500 to 1530 that credit Madhava of Sangamagrama (c. 1340 to 1425) |
+| `kuttaka.py` | The kuttaka ("pulverizer") for `a*x + c = b*y` and the remainder problem, with the extended Euclidean algorithm and modular inverse for comparison | Aryabhata, *Aryabhatiya*, Ganitapada 32 and 33 (c. 499 CE), read with Bhaskara I's commentary (629 CE) |
+| `madhava.py` | The series for pi with Madhava's 3 end corrections, the sqrt(12) series, and Machin's formula for comparison | 16th-century Kerala texts that credit Madhava of Sangamagrama (c. 1340 to 1425) |
 | `babylonian_sqrt.py` | Base-60 arithmetic, the square root of 2 on YBC 7289, and the averaging iteration | YBC 7289, Old Babylonian (c. 1800 to 1600 BCE); Heron of Alexandria, *Metrica* (1st century CE) |
 
 ## Run it
@@ -16,7 +16,7 @@ Python implementations of algorithms from dated historical sources, each checked
 Python 3.10 or newer. With [uv](https://docs.astral.sh/uv/):
 
 ```bash
-uv sync --group dev
+uv sync --locked --group dev
 uv run pytest
 uv run python benchmarks/kuttaka_vs_euclid.py
 uv run python benchmarks/madhava_convergence.py
@@ -34,14 +34,14 @@ With pip: `pip install -e . pytest hypothesis`, then `pytest`.
 
 ## What the tests check
 
-- **The sources' own examples.** All 4 of Bhaskara I's kuttaka examples (16, 317, 85 and 301), his day-count example from astronomy (199,066 days), and the example Clark (1930) works from Parameshvara's commentary (1001). The column for the 317 example is checked step by step against the commentary.
+- **The sources' own examples.** From Bhaskara I's commentary on Ganitapada 32 and 33: his 4 examples of the remainder problem (16, 317, 85 and 301), his 2 examples without remainders (9 and 17), and 1 of his astronomical examples (number 22, 199,066 days). Also the example Clark (1930) works from Parameshvara's commentary (1001). The columns for 3 of these are checked step by step against the commentary.
 - **Properties on random inputs**, with Hypothesis. The kuttaka's answer satisfies its equation and is the smallest one, stopping the divisions early gives the same answer, and the results match the textbook Chinese remainder construction and Python's `pow(a, -1, m)`.
 - **Convergence rates.** Each of Madhava's corrections cuts the error by the expected power of n (n^-3, n^-5, n^-7).
-- **The tablet.** 30 times 1;24,51,10 is 42;25,35, and 1;24,51,10 is the square root of 2 truncated to 3 base-60 places.
+- **The tablet.** 30 times 1;24,51,10 is 42;25,35, 1;24,51,10 is the square root of 2 truncated to 3 base-60 places, and 0;42,25,35 is 1/sqrt(2) truncated the same way.
 
 ## How readings are chosen
 
-Old texts are terse, and translators disagree. Each module's docstring says which reading it follows and why, and names the edition of the text. Where the source does not say how a value was computed (YBC 7289 is the clearest case), the code says so and does not claim a method.
+Old texts are terse, and translators disagree. Each module's docstring says which reading or attribution it follows. Where a source does not say how a value was computed, as on YBC 7289, the code says so and does not claim a method.
 
 ## Citing
 

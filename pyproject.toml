@@ -1,14 +1,14 @@
 [build-system]
-requires = ["hatchling>=1.25"]
+requires = ["hatchling>=1.27"]
 build-backend = "hatchling.build"
 
 [project]
 name = "old-algorithms"
 version = "0.1.0"
-description = "Documented ancient algorithms, implemented in Python and checked against their sources"
+description = "Documented historical algorithms, implemented in Python and checked against their sources"
 readme = "README.md"
-license = "MIT"
-license-files = ["LICENSE"]
+license = "MIT AND CC-BY-4.0"
+license-files = ["LICENSE", "LICENSE-PROSE.md"]
 requires-python = ">=3.10"
 authors = [{ name = "Prasad Subrahmanya" }]
 keywords = ["history of mathematics", "kuttaka", "aryabhata", "madhava", "babylonian", "algorithms"]

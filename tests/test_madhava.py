@@ -52,6 +52,8 @@ def test_sqrt12_series_and_machin():
     assert correct_digits(machin_pi(10)) >= 14
 
 
-def test_invalid_order():
+def test_invalid_inputs():
     with pytest.raises(ValueError):
         correction(5, 4)
+    with pytest.raises(ValueError):
+        madhava_pi(0)
