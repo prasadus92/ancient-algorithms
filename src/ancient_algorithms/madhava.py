@@ -61,8 +61,7 @@ def _alternating_odd_series(terms: int, base: int, first: int = 1) -> Decimal:
 
 def partial_sum(n: int, prec: int = DEFAULT_PREC) -> Decimal:
     """1 - 1/3 + 1/5 - ... with n terms, the last one being +/- 1/(2n - 1)."""
-    if n < 0:
-        raise ValueError(f"n must be non-negative, got {n}")
+    check_at_least("n", n, 0)
     with localcontext() as ctx:
         ctx.prec = prec
         return _alternating_odd_series(n, 1)
@@ -70,8 +69,8 @@ def partial_sum(n: int, prec: int = DEFAULT_PREC) -> Decimal:
 
 def correction(n: int, order: int, prec: int = DEFAULT_PREC) -> Decimal:
     """Madhava's end correction of the given order (0, 1, 2 or 3) after n terms."""
-    if n < 1 and order:
-        raise ValueError(f"corrections need n >= 1, got {n}")
+    if order:
+        check_at_least("n", n, 1)
     if order not in (0, 1, 2, 3):
         raise ValueError(f"order must be 0, 1, 2 or 3, got {order}")
     if order == 0:

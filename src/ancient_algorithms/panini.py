@@ -42,6 +42,12 @@ import unicodedata
 from collections.abc import Callable, Collection
 from dataclasses import dataclass
 
+
+def _nfc(text: str) -> str:
+    """Unicode NFC form, so precomposed and combining diacritics compare equal."""
+    return unicodedata.normalize("NFC", text)
+
+
 __all__ = [
     "SHIVA_SUTRAS",
     "PLACES",
@@ -176,7 +182,7 @@ def pratyahara(name: str, *, marker_sutra: int | None = None) -> tuple[str, ...]
     ends both sutra 1 and sutra 6. By default ``an`` stops at sutra 1 and every other
     name at sutra 6, the reading the Kasikavrtti gives (``an`` in 1.1.69 is the exception).
     """
-    name = unicodedata.normalize("NFC", name)
+    name = _nfc(name)
     first, marker = name[:-1], name[-1:]
     if first.endswith("a") and first[:-1] and first[:-1] not in _VOWELS:
         first = first[:-1]  # the a in hal, yan, jhal is said for pronunciation only
@@ -276,7 +282,7 @@ def join_words(words: list[str], *, sakalya: bool = False) -> str:
     """
     if not words:
         raise ValueError("need at least 1 word")
-    sentence = unicodedata.normalize("NFC", words[0])
+    sentence = _nfc(words[0])
     for word in words[1:]:
         sentence = join(sentence, word, sakalya=sakalya)
     return sentence
@@ -303,8 +309,8 @@ _A_CLASS = savarnas(("a",))
 _RAPARA = savarnas(pratyahara("aṇ", marker_sutra=1))
 """a, i, u and their long forms: they take r after them when they replace r-vowel (1.1.51)."""
 
-_R_CLASS = savarnas(("ṛ",))
-"""The r-vowel and the vowels homogeneous with it, which 6.1.91 needs at the start of the root."""
+_SHORT_R = frozenset({"ṛ"})
+"""Short r-vowel only: 6.1.91 writes ṛti, and by 1.1.70 a t-marked vowel names its own length."""
 
 _RULES: tuple[Rule, ...] = (
     Rule(
@@ -342,7 +348,7 @@ _RULES: tuple[Rule, ...] = (
     Rule(
         (6, 1, 91),
         "upasargād ṛti dhātau",
-        lambda s, _, root: _after_prefix(s, root) and _meet(s, _A_CLASS, _R_CLASS),
+        lambda s, _, root: _after_prefix(s, root) and _meet(s, _A_CLASS, _SHORT_R),
         lambda s: _vrddhi(s),
         exception_to=((6, 1, 87),),  # Kasikavrtti: adgunapavadah
     ),
@@ -386,7 +392,7 @@ _TRIPADI: tuple[Rule, ...] = (
 
 def _vowel_junction(left: str, right: str) -> _Junction:
     """The junction in NFC; ``ValueError`` unless ``left`` ends and ``right`` starts in a vowel."""
-    state = (unicodedata.normalize("NFC", left), unicodedata.normalize("NFC", right))
+    state = (_nfc(left), _nfc(right))
     if not all(_vowels_meet(state)):
         raise ValueError(f"the model covers vowel junctions only, got {left!r} + {right!r}")
     return state

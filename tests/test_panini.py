@@ -179,6 +179,8 @@ VERB_EXAMPLES = [
     ("pra", "ṛcchati", "ṛcch", "prārcchati", "6.1.91"),
     ("upa", "ṛcchati", "ṛcch", "upārcchati", "6.1.91"),
     ("khaṭvā", "ṛcchati", "ṛcch", "khaṭvarcchati", "6.1.87"),
+    ("upa", "ṝkārīyati", "ṝkārīy", "uparkārīyati", "6.1.87"),
+    # Constructed, not from a source: no prefix, so 6.1.94 does not apply.
     ("iha", "ejate", "ej", "ihaijate", "6.1.88"),
 ]
 
