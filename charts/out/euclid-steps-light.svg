@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="576pt" height="331.2pt" viewBox="0 0 576 331.2" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 331.2 
+L 576 331.2 
+L 576 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 51.84 264.96 
+L 437.76 264.96 
+L 437.76 66.24 
+L 51.84 66.24 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1"/>
+     <g id="text_1">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #5f5f5f" x="69.381818" y="280.48" transform="rotate(-0 69.381818 280.48)">3</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2"/>
+     <g id="text_2">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #5f5f5f" x="119.501299" y="280.48" transform="rotate(-0 119.501299 280.48)">6</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3"/>
+     <g id="text_3">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #5f5f5f" x="219.74026" y="280.48" transform="rotate(-0 219.74026 280.48)">12</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4"/>
+     <g id="text_4">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #5f5f5f" x="420.218182" y="280.48" transform="rotate(-0 420.218182 280.48)">24</text>
+     </g>
+    </g>
+    <g id="text_5">
+     <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #5f5f5f" x="244.8" y="300.13" transform="rotate(-0 244.8 300.13)">Digits in each number</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_5">
+      <path d="M 51.84 264.216636 
+L 437.76 264.216636 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #ececec; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6"/>
+     <g id="text_6">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #5f5f5f" x="45.84" y="268.976636" transform="rotate(-0 45.84 268.976636)">5</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_7">
+      <path d="M 51.84 232.702267 
+L 437.76 232.702267 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #ececec; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8"/>
+     <g id="text_7">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #5f5f5f" x="45.84" y="237.462267" transform="rotate(-0 45.84 237.462267)">10</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_9">
+      <path d="M 51.84 201.187899 
+L 437.76 201.187899 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #ececec; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10"/>
+     <g id="text_8">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #5f5f5f" x="45.84" y="205.947899" transform="rotate(-0 45.84 205.947899)">20</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_11">
+      <path d="M 51.84 159.52817 
+L 437.76 159.52817 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #ececec; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_12"/>
+     <g id="text_9">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #5f5f5f" x="45.84" y="164.28817" transform="rotate(-0 45.84 164.28817)">50</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_13">
+      <path d="M 51.84 128.013801 
+L 437.76 128.013801 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #ececec; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_14"/>
+     <g id="text_10">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #5f5f5f" x="45.84" y="132.773801" transform="rotate(-0 45.84 132.773801)">100</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_15">
+      <path d="M 51.84 96.499433 
+L 437.76 96.499433 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #ececec; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_16"/>
+     <g id="text_11">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #5f5f5f" x="45.84" y="101.259433" transform="rotate(-0 45.84 101.259433)">200</text>
+     </g>
+    </g>
+    <g id="text_12">
+     <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #5f5f5f" x="19.031875" y="165.6" transform="rotate(-90 19.031875 165.6)">Steps (log scale)</text>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 51.84 264.96 
+L 437.76 264.96 
+" style="fill: none; stroke: #dbdbdb; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_17">
+    <path d="M 69.381818 203.51998 
+L 119.501299 157.744976 
+L 219.74026 115.391101 
+L 420.218182 75.272727 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #8f8f8b; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #5f5f5f" x="428.218182" y="78.967727" transform="rotate(-0 428.218182 78.967727)">Subtraction (Euclid VII.1)</text>
+   </g>
+   <g id="line2d_18">
+    <path d="M 69.381818 255.927273 
+L 119.501299 224.412904 
+L 219.74026 194.833535 
+L 420.218182 163.319167 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #e5241c; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_14">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #0c0c0c" x="428.218182" y="167.109167" transform="rotate(-0 428.218182 167.109167)">Division (modern form)</text>
+   </g>
+   <g id="PathCollection_1">
+    <defs>
+     <path id="mf4814e3aa9" d="M 0 3.162278 
+C 0.838646 3.162278 1.643056 2.82908 2.236068 2.236068 
+C 2.82908 1.643056 3.162278 0.838646 3.162278 0 
+C 3.162278 -0.838646 2.82908 -1.643056 2.236068 -2.236068 
+C 1.643056 -2.82908 0.838646 -3.162278 0 -3.162278 
+C -0.838646 -3.162278 -1.643056 -2.82908 -2.236068 -2.236068 
+C -2.82908 -1.643056 -3.162278 -0.838646 -3.162278 0 
+C -3.162278 0.838646 -2.82908 1.643056 -2.236068 2.236068 
+C -1.643056 2.82908 -0.838646 3.162278 0 3.162278 
+z
+" style="stroke: #ffffff; stroke-width: 2"/>
+    </defs>
+    <g clip-path="url(#p6bc87ba94e)">
+     <use xlink:href="#mf4814e3aa9" x="69.381818" y="203.51998" style="fill: #8f8f8b; stroke: #ffffff; stroke-width: 2"/>
+     <use xlink:href="#mf4814e3aa9" x="119.501299" y="157.744976" style="fill: #8f8f8b; stroke: #ffffff; stroke-width: 2"/>
+     <use xlink:href="#mf4814e3aa9" x="219.74026" y="115.391101" style="fill: #8f8f8b; stroke: #ffffff; stroke-width: 2"/>
+     <use xlink:href="#mf4814e3aa9" x="420.218182" y="75.272727" style="fill: #8f8f8b; stroke: #ffffff; stroke-width: 2"/>
+    </g>
+   </g>
+   <g id="PathCollection_2">
+    <defs>
+     <path id="m459ea27c75" d="M 0 3.162278 
+C 0.838646 3.162278 1.643056 2.82908 2.236068 2.236068 
+C 2.82908 1.643056 3.162278 0.838646 3.162278 0 
+C 3.162278 -0.838646 2.82908 -1.643056 2.236068 -2.236068 
+C 1.643056 -2.82908 0.838646 -3.162278 0 -3.162278 
+C -0.838646 -3.162278 -1.643056 -2.82908 -2.236068 -2.236068 
+C -2.82908 -1.643056 -3.162278 -0.838646 -3.162278 0 
+C -3.162278 0.838646 -2.82908 1.643056 -2.236068 2.236068 
+C -1.643056 2.82908 -0.838646 3.162278 0 3.162278 
+z
+" style="stroke: #ffffff; stroke-width: 2"/>
+    </defs>
+    <g clip-path="url(#p6bc87ba94e)">
+     <use xlink:href="#m459ea27c75" x="69.381818" y="255.927273" style="fill: #e5241c; stroke: #ffffff; stroke-width: 2"/>
+     <use xlink:href="#m459ea27c75" x="119.501299" y="224.412904" style="fill: #e5241c; stroke: #ffffff; stroke-width: 2"/>
+     <use xlink:href="#m459ea27c75" x="219.74026" y="194.833535" style="fill: #e5241c; stroke: #ffffff; stroke-width: 2"/>
+     <use xlink:href="#m459ea27c75" x="420.218182" y="163.319167" style="fill: #e5241c; stroke: #ffffff; stroke-width: 2"/>
+    </g>
+   </g>
+  </g>
+  <g id="text_15">
+   <text style="font-weight: 700; font-size: 14px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #0c0c0c" x="34.56" y="30.21" transform="rotate(-0 34.56 30.21)">On 24-digit numbers, division needs 46 steps and subtraction 319</text>
+  </g>
+  <g id="text_16">
+   <text style="font-size: 10.5px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #5f5f5f" x="34.56" y="48.084" transform="rotate(-0 34.56 48.084)">Median steps to the greatest common divisor, 10,000 random pairs per size</text>
+  </g>
+  <g id="text_17">
+   <text style="font-size: 8.5px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #5f5f5f" x="34.56" y="321.1095" transform="rotate(-0 34.56 321.1095)">Source: ancient_algorithms.euclid, random seed 300. github.com/prasadus92/ancient-algorithms</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p6bc87ba94e">
+   <rect x="51.84" y="66.24" width="385.92" height="198.72"/>
+  </clipPath>
+ </defs>
+</svg>

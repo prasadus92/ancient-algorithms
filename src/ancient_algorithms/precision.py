@@ -1,7 +1,8 @@
-"""Correct decimal places of an approximation, shared by the Madhava and Heron modules.
+"""Decimal accuracy of an approximation, shared by the Madhava and Heron modules.
 
 1. Take the absolute error between the approximation and the exact value.
-2. The correct decimal places are floor(-log10 of the error), at least 0.
+2. The accuracy is floor(-log10 of the error), at least 0: the largest k with the error
+   at most 10^-k.
 3. Stop at a cap, the number of places the exact value is known to.
 """
 
@@ -18,7 +19,11 @@ GUARD_DIGITS = 10
 
 
 def correct_decimals(approx: Decimal, exact: Decimal, cap: int) -> int:
-    """``floor(-log10 |approx - exact|)``, from 0 up to ``cap``; ``cap`` when the 2 are equal."""
+    """``floor(-log10 |approx - exact|)``: the largest k with the error at most 10^-k, 0 to ``cap``.
+
+    This can be 1 more than the number of decimals that agree: 26 5/6 against
+    26.8328... has error 5.2e-4, so k is 3 while 2 decimals agree. ``cap`` when the 2 are equal.
+    """
     check_at_least("cap", cap, 0)
     with localcontext() as ctx:
         ctx.prec = cap + GUARD_DIGITS

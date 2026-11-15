@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="576pt" height="331.2pt" viewBox="0 0 576 331.2" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 331.2 
+L 576 331.2 
+L 576 0 
+L 0 0 
+z
+" style="fill: #0c0c0c"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 51.84 264.96 
+L 437.76 264.96 
+L 437.76 66.24 
+L 51.84 66.24 
+z
+" style="fill: #0c0c0c"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1"/>
+     <g id="text_1">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="69.381818" y="280.48" transform="rotate(-0 69.381818 280.48)">1</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2"/>
+     <g id="text_2">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="244.8" y="280.48" transform="rotate(-0 244.8 280.48)">10</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3"/>
+     <g id="text_3">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="420.218182" y="280.48" transform="rotate(-0 420.218182 280.48)">100</text>
+     </g>
+    </g>
+    <g id="text_4">
+     <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="244.8" y="300.13" transform="rotate(-0 244.8 300.13)">Terms of the series (log scale)</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_4">
+      <path d="M 51.84 255.927273 
+L 437.76 255.927273 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_5"/>
+     <g id="text_5">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="260.687273" transform="rotate(-0 45.84 260.687273)">0</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_6">
+      <path d="M 51.84 230.119481 
+L 437.76 230.119481 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_7"/>
+     <g id="text_6">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="234.879481" transform="rotate(-0 45.84 234.879481)">2</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_8">
+      <path d="M 51.84 204.311688 
+L 437.76 204.311688 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_9"/>
+     <g id="text_7">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="209.071688" transform="rotate(-0 45.84 209.071688)">4</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_10">
+      <path d="M 51.84 178.503896 
+L 437.76 178.503896 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_11"/>
+     <g id="text_8">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="183.263896" transform="rotate(-0 45.84 183.263896)">6</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_12">
+      <path d="M 51.84 152.696104 
+L 437.76 152.696104 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_13"/>
+     <g id="text_9">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="157.456104" transform="rotate(-0 45.84 157.456104)">8</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_14">
+      <path d="M 51.84 126.888312 
+L 437.76 126.888312 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_15"/>
+     <g id="text_10">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="131.648312" transform="rotate(-0 45.84 131.648312)">10</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_16">
+      <path d="M 51.84 101.080519 
+L 437.76 101.080519 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_17"/>
+     <g id="text_11">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="105.840519" transform="rotate(-0 45.84 105.840519)">12</text>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_18">
+      <path d="M 51.84 75.272727 
+L 437.76 75.272727 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_19"/>
+     <g id="text_12">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="80.032727" transform="rotate(-0 45.84 80.032727)">14</text>
+     </g>
+    </g>
+    <g id="text_13">
+     <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="24.59125" y="165.6" transform="rotate(-90 24.59125 165.6)">k, with the error below 10^-k</text>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 51.84 264.96 
+L 437.76 264.96 
+" style="fill: none; stroke: #2e2e2e; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_20">
+    <path d="M 69.381818 255.927273 
+L 244.8 255.927273 
+L 244.8 243.023377 
+L 420.218182 243.023377 
+L 420.218182 230.119481 
+L 420.218182 230.119481 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #60605c; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #a3a3a0" x="428.218182" y="233.814481" transform="rotate(-0 428.218182 233.814481)">Bare series</text>
+   </g>
+   <g id="line2d_21">
+    <path d="M 69.381818 255.927273 
+L 122.187953 255.927273 
+L 122.187953 243.023377 
+L 153.077561 243.023377 
+L 153.077561 230.119481 
+L 217.62738 230.119481 
+L 217.62738 217.215584 
+L 270.433514 217.215584 
+L 270.433514 204.311688 
+L 328.495743 204.311688 
+L 328.495743 191.407792 
+L 385.018866 191.407792 
+L 385.018866 178.503896 
+L 420.218182 178.503896 
+L 420.218182 178.503896 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #60605c; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #a3a3a0" x="428.218182" y="182.198896" transform="rotate(-0 428.218182 182.198896)">Correction 1</text>
+   </g>
+   <g id="line2d_22">
+    <path d="M 69.381818 243.023377 
+L 122.187953 243.023377 
+L 122.187953 230.119481 
+L 153.077561 230.119481 
+L 153.077561 217.215584 
+L 191.993865 217.215584 
+L 191.993865 204.311688 
+L 227.800222 204.311688 
+L 227.800222 191.407792 
+L 258.68983 191.407792 
+L 258.68983 178.503896 
+L 293.69845 178.503896 
+L 293.69845 165.6 
+L 330.993775 165.6 
+L 330.993775 152.696104 
+L 364.302099 152.696104 
+L 364.302099 139.792208 
+L 399.310719 139.792208 
+L 399.310719 126.888312 
+L 420.218182 126.888312 
+L 420.218182 126.888312 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #60605c; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #a3a3a0" x="428.218182" y="130.583312" transform="rotate(-0 428.218182 130.583312)">Correction 2</text>
+   </g>
+   <g id="line2d_23">
+    <path d="M 69.381818 243.023377 
+L 122.187953 243.023377 
+L 122.187953 230.119481 
+L 153.077561 230.119481 
+L 153.077561 217.215584 
+L 174.994087 217.215584 
+L 174.994087 204.311688 
+L 191.993865 204.311688 
+L 191.993865 191.407792 
+L 217.62738 191.407792 
+L 217.62738 178.503896 
+L 244.8 178.503896 
+L 244.8 165.6 
+L 264.787736 165.6 
+L 264.787736 152.696104 
+L 289.579439 152.696104 
+L 289.579439 139.792208 
+L 314.605913 139.792208 
+L 314.605913 126.888312 
+L 340.239427 126.888312 
+L 340.239427 113.984416 
+L 364.302099 113.984416 
+L 364.302099 101.080519 
+L 389.70854 101.080519 
+L 389.70854 88.176623 
+L 414.689518 88.176623 
+L 414.689518 75.272727 
+L 420.218182 75.272727 
+L 420.218182 75.272727 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #fc4c42; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_17">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #f2f2f0" x="428.218182" y="79.062727" transform="rotate(-0 428.218182 79.062727)">Correction 3</text>
+   </g>
+   <g id="PathCollection_1">
+    <defs>
+     <path id="mf739f0c87d" d="M 0 3.162278 
+C 0.838646 3.162278 1.643056 2.82908 2.236068 2.236068 
+C 2.82908 1.643056 3.162278 0.838646 3.162278 0 
+C 3.162278 -0.838646 2.82908 -1.643056 2.236068 -2.236068 
+C 1.643056 -2.82908 0.838646 -3.162278 0 -3.162278 
+C -0.838646 -3.162278 -1.643056 -2.82908 -2.236068 -2.236068 
+C -2.82908 -1.643056 -3.162278 -0.838646 -3.162278 0 
+C -3.162278 0.838646 -2.82908 1.643056 -2.236068 2.236068 
+C -1.643056 2.82908 -0.838646 3.162278 0 3.162278 
+z
+" style="stroke: #0c0c0c; stroke-width: 2"/>
+    </defs>
+    <g clip-path="url(#p6bc87ba94e)">
+     <use xlink:href="#mf739f0c87d" x="420.218182" y="230.119481" style="fill: #60605c; stroke: #0c0c0c; stroke-width: 2"/>
+    </g>
+   </g>
+   <g id="PathCollection_2">
+    <g clip-path="url(#p6bc87ba94e)">
+     <use xlink:href="#mf739f0c87d" x="420.218182" y="178.503896" style="fill: #60605c; stroke: #0c0c0c; stroke-width: 2"/>
+    </g>
+   </g>
+   <g id="PathCollection_3">
+    <g clip-path="url(#p6bc87ba94e)">
+     <use xlink:href="#mf739f0c87d" x="420.218182" y="126.888312" style="fill: #60605c; stroke: #0c0c0c; stroke-width: 2"/>
+    </g>
+   </g>
+   <g id="PathCollection_4">
+    <defs>
+     <path id="m528f59fc96" d="M 0 3.162278 
+C 0.838646 3.162278 1.643056 2.82908 2.236068 2.236068 
+C 2.82908 1.643056 3.162278 0.838646 3.162278 0 
+C 3.162278 -0.838646 2.82908 -1.643056 2.236068 -2.236068 
+C 1.643056 -2.82908 0.838646 -3.162278 0 -3.162278 
+C -0.838646 -3.162278 -1.643056 -2.82908 -2.236068 -2.236068 
+C -2.82908 -1.643056 -3.162278 -0.838646 -3.162278 0 
+C -3.162278 0.838646 -2.82908 1.643056 -2.236068 2.236068 
+C -1.643056 2.82908 -0.838646 3.162278 0 3.162278 
+z
+" style="stroke: #0c0c0c; stroke-width: 2"/>
+    </defs>
+    <g clip-path="url(#p6bc87ba94e)">
+     <use xlink:href="#m528f59fc96" x="420.218182" y="75.272727" style="fill: #fc4c42; stroke: #0c0c0c; stroke-width: 2"/>
+    </g>
+   </g>
+  </g>
+  <g id="text_18">
+   <text style="font-weight: 700; font-size: 14px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #f2f2f0" x="34.56" y="30.21" transform="rotate(-0 34.56 30.21)">With Madhava's third correction, 100 terms bring the error below 10^-14</text>
+  </g>
+  <g id="text_19">
+   <text style="font-size: 10.5px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #a3a3a0" x="34.56" y="48.084" transform="rotate(-0 34.56 48.084)">Largest k with the error below 10^-k after n terms of 1 - 1/3 + 1/5 - ...</text>
+  </g>
+  <g id="text_20">
+   <text style="font-size: 8.5px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #a3a3a0" x="34.56" y="321.1095" transform="rotate(-0 34.56 321.1095)">Source: ancient_algorithms.madhava at 120 significant digits. github.com/prasadus92/ancient-algorithms</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p6bc87ba94e">
+   <rect x="51.84" y="66.24" width="385.92" height="198.72"/>
+  </clipPath>
+ </defs>
+</svg>

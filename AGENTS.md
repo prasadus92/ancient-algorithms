@@ -29,6 +29,7 @@ CI runs these steps on Python 3.11 to 3.15, and `main` accepts changes only thro
 
 - `src/ancient_algorithms/<algorithm>.py`: one module per algorithm. Comparisons with the modern method go in the same module.
 - `tests/test_<algorithm>.py`: one test file per module.
+- `charts/render.py`: draws the series charts from the package's results (SVG and PNG, light and dark) into `charts/out/`. Each chart has a title that states the finding, the highlighted series in the accent, every other series in gray, a direct label on each line or bar and a source line. Every number is deterministic, so on the same machine a re-render rewrites identical files. The `dev` group includes the `charts` group, because mypy checks `charts/`.
 - `benchmarks/`: scripts that print step counts or convergence tables. CI runs each one by name, so they must stay fast.
 - `CITATION.cff`, `LICENSE` (MIT, for code) and `LICENSE-PROSE.md` (CC BY 4.0, for prose).
 

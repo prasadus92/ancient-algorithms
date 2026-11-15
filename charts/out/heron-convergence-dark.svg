@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="576pt" height="331.2pt" viewBox="0 0 576 331.2" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 331.2 
+L 576 331.2 
+L 576 0 
+L 0 0 
+z
+" style="fill: #0c0c0c"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 51.84 264.96 
+L 437.76 264.96 
+L 437.76 66.24 
+L 51.84 66.24 
+z
+" style="fill: #0c0c0c"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1"/>
+     <g id="text_1">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="69.381818" y="280.48" transform="rotate(-0 69.381818 280.48)">0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2"/>
+     <g id="text_2">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="139.549091" y="280.48" transform="rotate(-0 139.549091 280.48)">1</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3"/>
+     <g id="text_3">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="209.716364" y="280.48" transform="rotate(-0 209.716364 280.48)">2</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4"/>
+     <g id="text_4">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="279.883636" y="280.48" transform="rotate(-0 279.883636 280.48)">3</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_5"/>
+     <g id="text_5">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="350.050909" y="280.48" transform="rotate(-0 350.050909 280.48)">4</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_6"/>
+     <g id="text_6">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="420.218182" y="280.48" transform="rotate(-0 420.218182 280.48)">5</text>
+     </g>
+    </g>
+    <g id="text_7">
+     <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="244.8" y="300.13" transform="rotate(-0 244.8 300.13)">Steps of the rule</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_7">
+      <path d="M 51.84 255.927273 
+L 437.76 255.927273 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8"/>
+     <g id="text_8">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="260.687273" transform="rotate(-0 45.84 260.687273)">0</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_9">
+      <path d="M 51.84 232.766434 
+L 437.76 232.766434 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10"/>
+     <g id="text_9">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="237.526434" transform="rotate(-0 45.84 237.526434)">10</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_11">
+      <path d="M 51.84 209.605594 
+L 437.76 209.605594 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_12"/>
+     <g id="text_10">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="214.365594" transform="rotate(-0 45.84 214.365594)">20</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_13">
+      <path d="M 51.84 186.444755 
+L 437.76 186.444755 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_14"/>
+     <g id="text_11">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="191.204755" transform="rotate(-0 45.84 191.204755)">30</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_15">
+      <path d="M 51.84 163.283916 
+L 437.76 163.283916 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_16"/>
+     <g id="text_12">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="168.043916" transform="rotate(-0 45.84 168.043916)">40</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_17">
+      <path d="M 51.84 140.123077 
+L 437.76 140.123077 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_18"/>
+     <g id="text_13">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="144.883077" transform="rotate(-0 45.84 144.883077)">50</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_19">
+      <path d="M 51.84 116.962238 
+L 437.76 116.962238 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_20"/>
+     <g id="text_14">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="121.722238" transform="rotate(-0 45.84 121.722238)">60</text>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_21">
+      <path d="M 51.84 93.801399 
+L 437.76 93.801399 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_22"/>
+     <g id="text_15">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="98.561399" transform="rotate(-0 45.84 98.561399)">70</text>
+     </g>
+    </g>
+    <g id="ytick_9">
+     <g id="line2d_23">
+      <path d="M 51.84 70.640559 
+L 437.76 70.640559 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #1d1d1d; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_24"/>
+     <g id="text_16">
+      <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #a3a3a0" x="45.84" y="75.400559" transform="rotate(-0 45.84 75.400559)">80</text>
+     </g>
+    </g>
+    <g id="text_17">
+     <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="24.59125" y="165.6" transform="rotate(-90 24.59125 165.6)">k, with the error below 10^-k</text>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 51.84 264.96 
+L 437.76 264.96 
+" style="fill: none; stroke: #2e2e2e; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_25">
+    <path d="M 69.381818 255.927273 
+L 139.549091 248.979021 
+L 209.716364 237.398601 
+L 279.883636 214.237762 
+L 350.050909 167.916084 
+L 420.218182 75.272727 
+" clip-path="url(#p6bc87ba94e)" style="fill: none; stroke: #fc4c42; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_18">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #f2f2f0" x="428.218182" y="79.062727" transform="rotate(-0 428.218182 79.062727)">Heron's rule</text>
+   </g>
+   <g id="PathCollection_1">
+    <defs>
+     <path id="m528f59fc96" d="M 0 3.162278 
+C 0.838646 3.162278 1.643056 2.82908 2.236068 2.236068 
+C 2.82908 1.643056 3.162278 0.838646 3.162278 0 
+C 3.162278 -0.838646 2.82908 -1.643056 2.236068 -2.236068 
+C 1.643056 -2.82908 0.838646 -3.162278 0 -3.162278 
+C -0.838646 -3.162278 -1.643056 -2.82908 -2.236068 -2.236068 
+C -2.82908 -1.643056 -3.162278 -0.838646 -3.162278 0 
+C -3.162278 0.838646 -2.82908 1.643056 -2.236068 2.236068 
+C -1.643056 2.82908 -0.838646 3.162278 0 3.162278 
+z
+" style="stroke: #0c0c0c; stroke-width: 2"/>
+    </defs>
+    <g clip-path="url(#p6bc87ba94e)">
+     <use xlink:href="#m528f59fc96" x="69.381818" y="255.927273" style="fill: #fc4c42; stroke: #0c0c0c; stroke-width: 2"/>
+     <use xlink:href="#m528f59fc96" x="139.549091" y="248.979021" style="fill: #fc4c42; stroke: #0c0c0c; stroke-width: 2"/>
+     <use xlink:href="#m528f59fc96" x="209.716364" y="237.398601" style="fill: #fc4c42; stroke: #0c0c0c; stroke-width: 2"/>
+     <use xlink:href="#m528f59fc96" x="279.883636" y="214.237762" style="fill: #fc4c42; stroke: #0c0c0c; stroke-width: 2"/>
+     <use xlink:href="#m528f59fc96" x="350.050909" y="167.916084" style="fill: #fc4c42; stroke: #0c0c0c; stroke-width: 2"/>
+     <use xlink:href="#m528f59fc96" x="420.218182" y="75.272727" style="fill: #fc4c42; stroke: #0c0c0c; stroke-width: 2"/>
+    </g>
+   </g>
+  </g>
+  <g id="text_19">
+   <text style="font-weight: 700; font-size: 14px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #f2f2f0" x="34.56" y="30.21" transform="rotate(-0 34.56 30.21)">5 steps of Heron's rule bring the error in the root of 720 below 10^-78</text>
+  </g>
+  <g id="text_20">
+   <text style="font-size: 10.5px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #a3a3a0" x="34.56" y="48.084" transform="rotate(-0 34.56 48.084)">Largest k with the error below 10^-k after each step, starting from 27</text>
+  </g>
+  <g id="text_21">
+   <text style="font-size: 8.5px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #a3a3a0" x="34.56" y="321.1095" transform="rotate(-0 34.56 321.1095)">Source: ancient_algorithms.heron, exact fractions. github.com/prasadus92/ancient-algorithms</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p6bc87ba94e">
+   <rect x="51.84" y="66.24" width="385.92" height="198.72"/>
+  </clipPath>
+ </defs>
+</svg>

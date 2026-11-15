@@ -23,7 +23,8 @@ Homepage = "https://prasad.tech/ancient-algorithms/"
 Source = "https://github.com/prasadus92/ancient-algorithms"
 
 [dependency-groups]
-dev = ["pytest>=9.2", "hypothesis>=6.170", "ruff>=0.17", "mypy>=2.4"]
+charts = ["matplotlib>=3.11"]
+dev = ["pytest>=9.2", "hypothesis>=6.170", "ruff>=0.17", "mypy>=2.4", { include-group = "charts" }]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/ancient_algorithms"]
@@ -41,4 +42,4 @@ select = ["E", "F", "W", "I", "UP", "B"]
 
 [tool.mypy]
 strict = true
-files = ["src", "tests", "benchmarks"]
+files = ["src", "tests", "benchmarks", "charts"]
