@@ -195,7 +195,7 @@ def heron_convergence() -> LineChart:
 
 
 def chakravala_steps() -> BarChart:
-    """Total rounds over every non-square N up to PELL_LIMIT, for each method."""
+    """Total rounds over every non-square N below PELL_LIMIT, for each method."""
     ns = [n for n in range(2, PELL_LIMIT) if isqrt(n) ** 2 != n]
     shortcut = sum(chakravala(n).rounds for n in ns)
     cycle = sum(chakravala(n, shortcut=False).rounds for n in ns)
