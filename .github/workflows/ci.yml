@@ -28,3 +28,5 @@ jobs:
       - run: uv run python benchmarks/kuttaka_vs_euclid.py
       - run: uv run python benchmarks/madhava_convergence.py
       - run: uv run python benchmarks/qiuyi_vs_euclid.py
+      - run: uv run python benchmarks/euclid_steps.py
+      - run: uv run python benchmarks/sieve_compare.py

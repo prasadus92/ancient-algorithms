@@ -11,7 +11,7 @@ license = "MIT AND CC-BY-4.0"
 license-files = ["LICENSE", "LICENSE-PROSE.md"]
 requires-python = ">=3.11"
 authors = [{ name = "Prasad Subrahmanya" }]
-keywords = ["history of mathematics", "kuttaka", "aryabhata", "madhava", "babylonian", "algorithms", "chinese remainder theorem", "sunzi", "qin jiushao", "pingala", "meru prastara", "panini", "ashtadhyayi", "sandhi", "maya numerals", "long count", "al-khwarizmi", "completing the square", "algorism", "plimpton 322", "pythagorean triples"]
+keywords = ["history of mathematics", "kuttaka", "aryabhata", "madhava", "babylonian", "algorithms", "chinese remainder theorem", "sunzi", "qin jiushao", "pingala", "meru prastara", "panini", "ashtadhyayi", "sandhi", "maya numerals", "long count", "al-khwarizmi", "completing the square", "algorism", "plimpton 322", "pythagorean triples", "euclidean algorithm", "sieve of eratosthenes", "heron"]
 classifiers = [
   "Programming Language :: Python :: 3",
   "Topic :: Scientific/Engineering :: Mathematics",
