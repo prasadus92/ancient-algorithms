@@ -3,10 +3,10 @@ message: "If you use this software or its write-ups, please cite it as below. Co
 type: software
 title: "Ancient algorithms, implemented"
 abstract: >-
-  Python implementations of algorithms from dated historical sources:
-  Aryabhata's kuttaka, tested against the worked examples in Bhaskara I's
-  commentary; Madhava's series for pi with its end corrections; and the square
-  root of 2 on the Babylonian tablet YBC 7289.
+  Python implementations of algorithms from dated historical sources in
+  India, Babylon, Greece, China, the Maya world and the Islamic world. Each
+  module names its source and edition, and its tests run the worked examples
+  the source gives, where it gives any.
 authors:
   - family-names: Subrahmanya
     given-names: Prasad
@@ -26,8 +26,10 @@ keywords:
   - Madhava series
   - Babylonian mathematics
   - YBC 7289
+  - Chinese remainder theorem
+  - Sunzi Suanjing
+  - Qin Jiushao
   - Pingala
-  - prastara
   - meru prastara
   - Panini
   - Ashtadhyayi
@@ -75,3 +77,40 @@ references:
     end: 378
     doi: 10.1006/hmat.1998.2209
     year: 1998
+  - type: book
+    title: "Sunzi Suanjing (Siku Quanshu copy)"
+    authors:
+      - name: Sunzi
+  - type: book
+    title: "Shushu jiuzhang (Siku Quanshu copy, titled Shuxue jiuzhang)"
+    authors:
+      - family-names: Qin
+        given-names: Jiushao
+    year: 1247
+  - type: article
+    title: "Jottings on the science of the Chinese arithmetic"
+    authors:
+      - family-names: Wylie
+        given-names: Alexander
+    year: 1852
+  - type: book
+    title: "Chandahsutram, with the Mrtasanjivani of Halayudha"
+    authors:
+      - name: Pingala
+    editors:
+      - family-names: Sastri
+        given-names: Visvanatha
+    year: 1874
+  - type: article
+    title: "The so-called Fibonacci numbers in ancient and medieval India"
+    authors:
+      - family-names: Singh
+        given-names: Parmanand
+    journal: Historia Mathematica
+    volume: 12
+    year: 1985
+  - type: generic
+    title: "On the architecture of Panini's grammar"
+    authors:
+      - family-names: Kiparsky
+        given-names: Paul

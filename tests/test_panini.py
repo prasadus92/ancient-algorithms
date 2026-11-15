@@ -65,14 +65,22 @@ def test_an_reads_differently_at_its_2_markers() -> None:
     assert pratyahara("iṇ") == pratyahara("iṇ", marker_sutra=6)
 
 
-def test_guna_and_vrddhi_from_their_definitions() -> None:
+def test_guna_and_vrddhi_match_their_definitions() -> None:
     # 1.1.2 ad eng gunah and 1.1.1 vrddhir ad aic.
-    assert GUNA == ("a", "e", "o")
-    assert VRDDHI == ("ā", "ai", "au")
+    assert GUNA == ("a", *pratyahara("eṅ"))
+    assert VRDDHI == ("ā", *pratyahara("aic"))
 
 
 def test_savarnas_adds_long_vowels() -> None:
     assert savarnas(pratyahara("ik")) == {"i", "ī", "u", "ū", "ṛ", "ṝ", "ḷ"}
+    assert savarnas(("a",)) == {"a", "ā"}
+
+
+def test_r_and_l_vowels_are_homogeneous() -> None:
+    # Varttika quoted in the LSK under 1.1.9: rlvarnayor mithah savarnyam vacyam.
+    assert savarnas(("ḷ",)) == {"ṛ", "ṝ", "ḷ"}
+    assert join("hotṛ", "ḷkāraḥ") == "hotṝkāraḥ"
+    assert join("ḷ", "ḷ") == "ṝ"
 
 
 def test_antaratama_picks_by_place() -> None:
@@ -89,6 +97,8 @@ def test_bad_pratyaharas_raise() -> None:
         pratyahara("ṛṇ", marker_sutra=1)
     with pytest.raises(ValueError):
         pratyahara("ak", marker_sutra=3)
+    with pytest.raises(ValueError):
+        pratyahara("aṇ", marker_sutra=0)
 
 
 # Examples from Varadaraja's Laghusiddhantakaumudi, vowel-sandhi section (GRETIL e-text).
@@ -127,11 +137,47 @@ def test_laghusiddhantakaumudi_examples(
     assert [step.chosen for step in steps] == [rule]
 
 
-def test_the_later_rule_wins_a_conflict() -> None:
-    # 1.4.2: in each pair of applicable rules, the later sutra wins.
-    assert derive("daitya", "ariḥ")[0].applicable == ["6.1.87", "6.1.101"]
-    assert derive("śrī", "īśaḥ")[0].applicable == ["6.1.77", "6.1.101"]
-    assert derive("kṛṣṇa", "ekatvam")[0].applicable == ["6.1.87", "6.1.88"]
+def test_exceptions_block_their_general_rules() -> None:
+    for left, right, applicable, chosen in [
+        ("daitya", "ariḥ", ["6.1.87", "6.1.101"], "6.1.101"),
+        ("śrī", "īśaḥ", ["6.1.77", "6.1.101"], "6.1.101"),
+        ("kṛṣṇa", "ekatvam", ["6.1.87", "6.1.88"], "6.1.88"),
+    ]:
+        (step,) = derive(left, right)
+        assert (step.applicable, step.chosen, step.reason) == (applicable, chosen, "exception")
+
+
+def test_later_rule_decides_where_no_exception_is_declared() -> None:
+    (step,) = derive("hare", "ava")
+    assert (step.applicable, step.chosen, step.reason) == (
+        ["6.1.78", "6.1.109"],
+        "6.1.109",
+        "later rule (1.4.2)",
+    )
+
+
+# Laghusiddhantakaumudi on 6.1.89 and 6.1.94, and Kiparsky's upelayati: prefix, verb form, root.
+VERB_EXAMPLES = [
+    ("upa", "eti", "i", "upaiti", "6.1.89"),
+    ("upa", "edhate", "edh", "upaidhate", "6.1.89"),
+    ("upa", "itaḥ", "i", "upetaḥ", "6.1.87"),
+    ("pra", "ejate", "ej", "prejate", "6.1.94"),
+    ("upa", "oṣati", "uṣ", "upoṣati", "6.1.94"),
+    ("upa", "elayati", "il", "upelayati", "6.1.94"),
+]
+
+
+@pytest.mark.parametrize(("prefix", "verb", "root", "form", "rule"), VERB_EXAMPLES)
+def test_prefix_and_verb_examples(prefix: str, verb: str, root: str, form: str, rule: str) -> None:
+    (step,) = derive(prefix, verb, verb_root=root)
+    assert (step.form, step.chosen) == (form, rule)
+
+
+def test_6_1_89_blocks_the_later_6_1_94() -> None:
+    # Kiparsky (29)-(30): "the later rule wins" alone would pick 6.1.94 and give upeti.
+    (step,) = derive("upa", "eti", verb_root="i")
+    assert max(step.applicable, key=lambda n: tuple(map(int, n.split(".")))) == "6.1.94"
+    assert (step.chosen, step.form) == ("6.1.89", "upaiti")
 
 
 def test_word_final_e_absorbs_a_only_at_a_word_boundary() -> None:
@@ -157,11 +203,12 @@ def test_without_asiddha_the_rules_run_on_to_a_wrong_form() -> None:
 
 
 def test_tripadi_deletion_needs_a_before_the_glide() -> None:
-    assert join("sudhy", "iha", sakalya=True) == "sudhyiha"
+    # The y from 6.1.77 follows a consonant, so 8.3.19 leaves it.
+    assert join("sudhī", "upāsyaḥ", sakalya=True) == "sudhyupāsyaḥ"
 
 
-def test_tripadi_deletion_needs_a_voiced_sound_after() -> None:
-    assert join("tay", "kaḥ", sakalya=True) == "taykaḥ"
+def test_tripadi_deletion_needs_a_word_boundary() -> None:
+    assert join("hare", "e", word_boundary=False, sakalya=True) == "haraye"
 
 
 def test_join_words_needs_a_word() -> None:
@@ -169,9 +216,11 @@ def test_join_words_needs_a_word() -> None:
         join_words([])
 
 
-def test_l_vowel_has_no_long_form() -> None:
+def test_only_vowel_junctions_are_modeled() -> None:
     with pytest.raises(ValueError):
-        join("ḷ", "ḷ")
+        join("tat", "iti")
+    with pytest.raises(ValueError):
+        join_words(["adya", "tat"])
 
 
 def textbook_vowel_sandhi(first: str, second: str) -> str:

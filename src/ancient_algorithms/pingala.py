@@ -1,12 +1,12 @@
 """Pingala's rules for listing and counting metrical patterns, Chandahshastra 8.20-8.34.
 
-Pingala's Chandahshastra (date debated; usually placed c. 3rd to 2nd century BCE)
-ends with short rules on patterns of guru (heavy, written ``g``) and laghu (light,
-written ``l``) syllables. The sutra text and numbering follow the 1874 Bibliotheca
-Indica edition by Visvanatha Sastri, which prints them with Halayudha's 10th-century
-commentary, the Mrtasanjivani. Every rule here follows Halayudha's reading, because
-the sutras alone do not fix the procedures and his is the oldest full commentary.
-Other editions number the last sutras 8.34 and 8.35.
+Pingala's Chandahshastra (date debated: Shah gives the 2nd century BCE, Plofker
+perhaps the 3rd, as reported by Mumford) ends with short rules on patterns of guru
+(heavy, written ``g``) and laghu (light, written ``l``) syllables. The sutra text
+and numbering follow the 1874 Bibliotheca Indica edition by Visvanatha Sastri, which
+prints them with Halayudha's 10th-century commentary, the Mrtasanjivani. Every rule
+here follows Halayudha's reading, because the sutras alone do not fix the
+procedures. The edition Kulkarni (2017) uses numbers the last sutras 8.34 and 8.35.
 
 1. Prastara, the spread (8.20-8.23): write g over l. For each further syllable,
    write the list so far twice, and add g after each row of the first copy and l
@@ -85,9 +85,7 @@ def prastara(n: int) -> list[str]:
 
 def nashta(row: int, n: int) -> str:
     """The pattern in row ``row`` of the ``n``-syllable prastara, found without writing it out."""
-    _check_syllables(n)
-    if not 1 <= row <= 2**n:
-        raise ValueError(f"row must be between 1 and {2**n}, got {row}")
+    _check_row(row, n)
     pattern = []
     for _ in range(n):
         if row % 2 == 0:  # 8.24 l ardhe: even, halve and write l
@@ -106,7 +104,7 @@ def uddishta(pattern: str) -> int:
     if last_laghu == -1:
         return 1
     row = 1
-    # 8.26-8.27: start at the last l, move left, double, and take 1 off at each g.
+    # 8.26-8.27 as Halayudha reads them: from the last l, move left, double, 1 off at each g.
     # Syllables after the last l are all g, and 2*1 - 1 leaves 1, so they can be skipped.
     for syllable in reversed(pattern[: last_laghu + 1]):
         row *= 2
@@ -145,8 +143,7 @@ def total_through(n: int) -> int:
 
 def meru_prastara(n: int) -> list[list[int]]:
     """Halayudha's meru, rows 0 to ``n``: row k counts k-syllable patterns by number of laghus."""
-    if n < 0:
-        raise ValueError(f"n must be at least 0, got {n}")
+    _check_at_least(n, 0, "n")
     rows = [[1]]
     for _ in range(n):
         above = rows[-1]
@@ -162,8 +159,7 @@ def lagakriya(n: int) -> list[int]:
 
 def matra_prastara(morae: int) -> list[str]:
     """All patterns worth ``morae`` morae (g = 2, l = 1), in the order Singh (1985) describes."""
-    if morae < 1:
-        raise ValueError(f"morae must be at least 1, got {morae}")
+    _check_at_least(morae, 1, "morae")
     two_back, one_back = [""], [LAGHU]
     for _ in range(morae - 1):
         two_back, one_back = one_back, [p + GURU for p in two_back] + [p + LAGHU for p in one_back]
@@ -172,18 +168,29 @@ def matra_prastara(morae: int) -> list[str]:
 
 def matra_count(morae: int) -> int:
     """The number of patterns worth ``morae`` morae: each count is the sum of the 2 before it."""
-    if morae < 1:
-        raise ValueError(f"morae must be at least 1, got {morae}")
+    _check_at_least(morae, 1, "morae")
     two_back, one_back = 1, 1
     for _ in range(morae - 1):
         two_back, one_back = one_back, two_back + one_back
     return one_back
 
 
+def _check_at_least(value: int, minimum: int, name: str) -> None:
+    """Raise ``ValueError`` unless ``value`` is at least ``minimum``."""
+    if value < minimum:
+        raise ValueError(f"{name} must be at least {minimum}, got {value}")
+
+
 def _check_syllables(n: int) -> None:
     """Raise ``ValueError`` unless ``n`` is a positive syllable count."""
-    if n < 1:
-        raise ValueError(f"n must be at least 1, got {n}")
+    _check_at_least(n, 1, "n")
+
+
+def _check_row(row: int, n: int) -> None:
+    """Raise ``ValueError`` unless ``row`` is a row of the ``n``-syllable prastara."""
+    _check_syllables(n)
+    if not 1 <= row <= 2**n:
+        raise ValueError(f"row must be between 1 and {2**n}, got {row}")
 
 
 def _check_pattern(pattern: str) -> None:
@@ -200,9 +207,7 @@ def binary_row(pattern: str) -> int:
 
 def binary_pattern(row: int, n: int) -> str:
     """The ``n``-syllable pattern whose binary row number is ``row``."""
-    _check_syllables(n)
-    if not 1 <= row <= 2**n:
-        raise ValueError(f"row must be between 1 and {2**n}, got {row}")
+    _check_row(row, n)
     bits = format(row - 1, f"0{n}b")[::-1]
     return bits.replace("0", GURU).replace("1", LAGHU)
 
