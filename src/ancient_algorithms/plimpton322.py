@@ -42,6 +42,7 @@ from __future__ import annotations
 from fractions import Fraction
 from math import gcd, isqrt, prod
 
+from ancient_algorithms._checks import check_at_least
 from ancient_algorithms.babylonian_sqrt import parse_sexagesimal, to_sexagesimal
 from ancient_algorithms.place_value import check_digits, from_digits, to_digits
 
@@ -227,8 +228,7 @@ def robson_candidates(max_places: int = 4, max_total_places: int = 7) -> list[Fr
     for example 2 22 13 20 with 25 18 45. A limit of 7 admits the 15 rows of the
     tablet and 3 more, her lines 4a, 8a and 11a (Tables 8 and 9).
     """
-    if max_places < 1:
-        raise ValueError(f"max_places must be at least 1, got {max_places}")
+    check_at_least("max_places", max_places, 1)
     scale = 60 ** (max_places - 1)
     candidates = []
     for n in range(int(SMALLEST_IGI * scale), int(LARGEST_IGI * scale) + 1):
@@ -255,8 +255,7 @@ def generator_pairs(max_q: int = 60) -> list[tuple[int, int]]:
     pairs, and the first 15 are the rows of the tablet: Price's observation (1964),
     as Mansfield and Wildberger (2017, pp. 405-406) report and extend it.
     """
-    if max_q < 1:
-        raise ValueError(f"max_q must be at least 1, got {max_q}")
+    check_at_least("max_q", max_q, 1)
     pairs = [
         (p, q)
         for q in range(1, max_q + 1)
@@ -337,6 +336,7 @@ def compare_with_tablet(
 
 def _strip_regular(n: int) -> int:
     """``n`` with every factor 2, 3 and 5 divided out."""
+    check_at_least("n", n, 1)
     for prime in (2, 3, 5):
         while n % prime == 0:
             n //= prime
@@ -375,8 +375,7 @@ def euclid_triples(max_diagonal: int) -> list[tuple[int, int, int]]:
     ``(m^2 - n^2, 2mn, m^2 + n^2)``, each primitive triple once. Sorted by ``c``,
     then by ``a``.
     """
-    if max_diagonal < 1:
-        raise ValueError(f"max_diagonal must be at least 1, got {max_diagonal}")
+    check_at_least("max_diagonal", max_diagonal, 1)
     triples = []
     for m in range(2, isqrt(max_diagonal) + 1):
         for n in range(1, m):

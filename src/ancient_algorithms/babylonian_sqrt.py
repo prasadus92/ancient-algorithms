@@ -56,7 +56,7 @@ def to_sexagesimal(x: Fraction | int, places: int) -> Sexagesimal:
     """Truncate a non-negative number to ``places`` base-60 fractional digits."""
     x = Fraction(x)
     if x < 0:
-        raise ValueError(f"x must be non-negative, got {x}")
+        raise ValueError(f"the value must be non-negative, got {x}")
     whole = x.numerator // x.denominator
     fraction = x - whole
     digits = []
@@ -84,7 +84,7 @@ def from_sexagesimal(value: Sexagesimal) -> Fraction:
 def parse_sexagesimal(text: str) -> Fraction:
     """Parse the modern notation ``"1;24,51,10"`` into an exact fraction."""
     if text.strip().startswith("-"):
-        raise ValueError(f"only non-negative values, got {text!r}")
+        raise ValueError(f"the value must be non-negative, got {text!r}")
     whole, _, fraction = text.partition(";")
     digits = tuple(int(d) for d in fraction.split(",")) if fraction else ()
     return from_sexagesimal((int(whole), digits))

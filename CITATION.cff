@@ -181,6 +181,9 @@ references:
         given-names: Eleanor
     journal: Historia Mathematica
     volume: 28
+    start: 167
+    end: 206
+    doi: 10.1006/hmat.2001.2317
     year: 2001
   - type: article
     title: "Plimpton 322 is Babylonian exact sexagesimal trigonometry"
@@ -191,4 +194,7 @@ references:
         given-names: N. J.
     journal: Historia Mathematica
     volume: 44
+    start: 395
+    end: 419
+    doi: 10.1016/j.hm.2017.08.001
     year: 2017

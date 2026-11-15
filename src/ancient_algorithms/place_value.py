@@ -1,4 +1,4 @@
-"""Place-value digits in any base, shared by the algorism (base 10) and Maya (base 20) modules.
+"""Place-value digits in any base, shared by the algorism, Maya and Plimpton 322 modules.
 
 A number in base ``b`` is a list of digits, each from 0 to ``b - 1``, worth
 ``d[0] * b^(k-1) + ... + d[k-1] * b^0``. Lists here are most significant digit
