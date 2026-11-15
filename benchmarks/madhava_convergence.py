@@ -1,4 +1,4 @@
-"""Correct decimal places of pi against the number of terms, for each method.
+"""Accuracy of pi against terms, for each method: the largest k with the error below 10^-k.
 
 Arithmetic runs at 120 significant digits so the precision does not cap the
 faster methods; the reference value has 100 places.

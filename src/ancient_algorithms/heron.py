@@ -80,7 +80,7 @@ def unit_fractions(x: Fraction) -> tuple[int, tuple[int, ...]]:
 
 
 def correct_decimals(n: int, side: Fraction, limit: int = 1000) -> int:
-    """Correct decimal places of ``side`` as the side of ``n``, from 0 up to ``limit``."""
+    """The largest k with ``side`` within 10^-k of the side of ``n``, from 0 up to ``limit``."""
     check_at_least("n", n, 1)
     check_at_least("limit", limit, 0)
     with localcontext() as ctx:

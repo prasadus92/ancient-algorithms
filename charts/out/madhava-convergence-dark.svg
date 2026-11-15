@@ -149,7 +149,7 @@ L 437.76 75.272727
      </g>
     </g>
     <g id="text_13">
-     <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="24.59125" y="165.6" transform="rotate(-90 24.59125 165.6)">Correct decimal places</text>
+     <text style="font-size: 10px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #a3a3a0" x="24.59125" y="165.6" transform="rotate(-90 24.59125 165.6)">k, with the error below 10^-k</text>
     </g>
    </g>
    <g id="patch_3">
@@ -300,10 +300,10 @@ z
    </g>
   </g>
   <g id="text_18">
-   <text style="font-weight: 700; font-size: 14px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #f2f2f0" x="34.56" y="30.21" transform="rotate(-0 34.56 30.21)">Madhava's third correction gets pi to 14 decimal places from 100 terms</text>
+   <text style="font-weight: 700; font-size: 14px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #f2f2f0" x="34.56" y="30.21" transform="rotate(-0 34.56 30.21)">With Madhava's third correction, 100 terms bring the error below 10^-14</text>
   </g>
   <g id="text_19">
-   <text style="font-size: 10.5px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #a3a3a0" x="34.56" y="48.084" transform="rotate(-0 34.56 48.084)">Correct decimal places after n terms of 1 - 1/3 + 1/5 - ..., by end correction</text>
+   <text style="font-size: 10.5px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #a3a3a0" x="34.56" y="48.084" transform="rotate(-0 34.56 48.084)">Largest k with the error below 10^-k after n terms of 1 - 1/3 + 1/5 - ...</text>
   </g>
   <g id="text_20">
    <text style="font-size: 8.5px; font-family: 'General Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #a3a3a0" x="34.56" y="321.1095" transform="rotate(-0 34.56 321.1095)">Source: ancient_algorithms.madhava at 120 significant digits. github.com/prasadus92/ancient-algorithms</text>

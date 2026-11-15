@@ -113,5 +113,5 @@ def machin_pi(n: int, prec: int = DEFAULT_PREC) -> Decimal:
 
 
 def correct_digits(approx: Decimal) -> int:
-    """Correct decimal places of an approximation of pi: floor(-log10 |error|), up to 100."""
+    """The largest k with the error of an approximation of pi below 10^-k, up to 100."""
     return correct_decimals(approx, PI_100, 100)

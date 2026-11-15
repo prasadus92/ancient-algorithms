@@ -18,13 +18,13 @@ Python implementations of algorithms from dated historical sources. Where the so
 | `sunzi.py` | The remainder problem and its recipe with the multipliers 70, 21 and 15, generalized to any pairwise coprime divisors | *Sunzi Suanjing* (c. 3rd to 5th century CE), the remainder problem in the third juan |
 | `dayan.py` | Qin Jiushao's dayan method: reducing the divisors to definite numbers, and the qiuyi procedure for each multiplier | Qin Jiushao, *Shushu jiuzhang* (preface 1247), chapter 1 |
 | `place_value.py` | Shared helpers for writing whole numbers in any base, most significant digit first, used by the Maya, algorism and Plimpton 322 modules | General |
-| `precision.py` | Correct decimal places of an approximation, shared by the Madhava and Heron modules | General |
+| `precision.py` | Decimal accuracy of an approximation (the largest k with the error below 10^-k), shared by the Madhava and Heron modules | General |
 | `maya.py` | Maya numerals in base 20, the Long Count, the 260-day and 365-day counts, the Calendar Round, and conversion to Julian Day Numbers and calendar dates under the GMT correlation | Monument inscriptions and the Dresden Codex, read through Morley (1915); correlation constants from Martin and Skidmore (2012) |
 | `completing_square.py` | Al-Khwarizmi's 6 types of equation and his geometric completion of the square, against the quadratic formula | Al-Khwarizmi, *al-Kitab al-mukhtasar fi hisab al-jabr wa'l-muqabala* (c. 820 CE), Rosen's 1831 translation |
 | `algorism.py` | Arithmetic with Indian numerals as the Latin "Dixit Algorizmi" teaches it: adding, taking away, doubling, halving, multiplying and dividing | Al-Khwarizmi's arithmetic (c. 825 CE), known from a 12th-century Latin reworking, Boncompagni's 1857 edition |
 | `euclid.py` | Euclid's algorithm by repeated subtraction as *Elements* VII.1 and VII.2 state it, and in division form, with step counts and Lamé's bound | Euclid, *Elements* Book VII (c. 300 BCE), Heath's 1908 translation |
 | `sieve.py` | The sieve as Nicomachus describes it, the standard sieve, a segmented sieve and a wheel, against trial division | Nicomachus of Gerasa, *Introduction to Arithmetic* I.13 (c. 100 CE), D'Ooge's 1926 translation |
-| `heron.py` | Heron's square-root rule and his worked example for the square root of 720, with the doubling of correct digits each step | Heron of Alexandria, *Metrica* I.8 (c. 1st century CE), Schöne's edition |
+| `heron.py` | Heron's square-root rule and his worked example for the square root of 720, with the error exponent doubling each step | Heron of Alexandria, *Metrica* I.8 (c. 1st century CE), Schöne's edition |
 
 ## Run it
 

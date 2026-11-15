@@ -123,7 +123,7 @@ Chart = LineChart | BarChart
 
 
 def madhava_convergence() -> LineChart:
-    """Correct decimal places of pi against terms, for the bare series and Madhava's corrections."""
+    """Accuracy of pi against terms, for the bare series and Madhava's corrections."""
     terms = list(range(1, 101))
     names = ["Bare series", "Correction 1", "Correction 2", "Correction 3"]
     series = [
@@ -138,10 +138,10 @@ def madhava_convergence() -> LineChart:
     best = series[-1].ys[-1]
     return LineChart(
         slug="madhava-convergence",
-        title=f"Madhava's third correction gets pi to {best:.0f} decimal places from 100 terms",
-        subtitle="Correct decimal places after n terms of 1 - 1/3 + 1/5 - ..., by end correction",
+        title=f"With Madhava's third correction, 100 terms bring the error below 10^-{best:.0f}",
+        subtitle="Largest k with the error below 10^-k after n terms of 1 - 1/3 + 1/5 - ...",
         x_label="Terms of the series (log scale)",
-        y_label="Correct decimal places",
+        y_label="k, with the error below 10^-k",
         series=series,
         source=f"Source: ancient_algorithms.madhava at 120 significant digits. {REPO_URL}",
         log_x=True,
@@ -179,16 +179,16 @@ def euclid_steps() -> LineChart:
 
 
 def heron_convergence() -> LineChart:
-    """Correct decimal places of the square root of 720 after each step of Heron's rule."""
+    """Accuracy of the square root of 720 after each step of Heron's rule."""
     approximations = heron_sqrt(720, 5)
     steps = list(range(len(approximations)))
     digits = [correct_decimals(720, x) for x in approximations]
     return LineChart(
         slug="heron-convergence",
-        title=f"5 steps of Heron's rule give the square root of 720 to {digits[-1]} places",
-        subtitle="Correct decimal places after each step, starting from the nearest square, 27",
+        title=f"5 steps of Heron's rule bring the error in the root of 720 below 10^-{digits[-1]}",
+        subtitle="Largest k with the error below 10^-k after each step, starting from 27",
         x_label="Steps of the rule",
-        y_label="Correct decimal places",
+        y_label="k, with the error below 10^-k",
         series=[Series("Heron's rule", steps, digits, highlight=True)],
         source=f"Source: ancient_algorithms.heron, exact fractions. {REPO_URL}",
     )
