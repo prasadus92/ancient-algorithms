@@ -34,6 +34,17 @@ keywords:
   - Panini
   - Ashtadhyayi
   - sandhi
+  - Maya numerals
+  - Long Count
+  - al-Khwarizmi
+  - completing the square
+  - algorism
+  - Plimpton 322
+  - Pythagorean triples
+  - Euclidean algorithm
+  - greatest common divisor
+  - sieve of Eratosthenes
+  - Heron's method
 references:
   - type: book
     title: "Aryabhatiya of Aryabhata, with the commentary of Bhaskara I and Somesvara"
@@ -114,3 +125,128 @@ references:
     authors:
       - family-names: Kiparsky
         given-names: Paul
+  - type: book
+    title: "The Algebra of Mohammed ben Musa"
+    authors:
+      - name: Muhammad ibn Musa al-Khwarizmi
+    translators:
+      - family-names: Rosen
+        given-names: Frederic
+    year: 1831
+  - type: book
+    title: "Algoritmi de numero indorum"
+    authors:
+      - name: Muhammad ibn Musa al-Khwarizmi
+    editors:
+      - family-names: Boncompagni
+        given-names: Baldassarre
+    year: 1857
+  - type: book
+    title: "An Introduction to the Study of the Maya Hieroglyphs"
+    authors:
+      - family-names: Morley
+        given-names: Sylvanus Griswold
+    year: 1915
+  - type: article
+    title: "Exploring the 584286 Correlation between the Maya and European Calendars"
+    authors:
+      - family-names: Martin
+        given-names: Simon
+      - family-names: Skidmore
+        given-names: Joel
+    journal: The PARI Journal
+    volume: 13
+    issue: 2
+    start: 3
+    end: 16
+    year: 2012
+  - type: article
+    title: "Correlating the Ancient Maya and Modern European Calendars with High-Precision AMS 14C Dating"
+    authors:
+      - family-names: Kennett
+        given-names: Douglas J.
+    journal: Scientific Reports
+    volume: 3
+    year: 2013
+  - type: article
+    title: "Early texts on Hindu-Arabic calculation"
+    authors:
+      - family-names: Folkerts
+        given-names: Menso
+    journal: Science in Context
+    volume: 14
+    start: 13
+    end: 38
+    year: 2001
+  - type: article
+    title: "Neither Sherlock Holmes nor Babylon: a reassessment of Plimpton 322"
+    authors:
+      - family-names: Robson
+        given-names: Eleanor
+    journal: Historia Mathematica
+    volume: 28
+    start: 167
+    end: 206
+    doi: 10.1006/hmat.2001.2317
+    year: 2001
+  - type: article
+    title: "Plimpton 322 is Babylonian exact sexagesimal trigonometry"
+    authors:
+      - family-names: Mansfield
+        given-names: Daniel F.
+      - family-names: Wildberger
+        given-names: N. J.
+    journal: Historia Mathematica
+    volume: 44
+    start: 395
+    end: 419
+    doi: 10.1016/j.hm.2017.08.001
+    year: 2017
+  - type: book
+    title: "The Thirteen Books of Euclid's Elements"
+    authors:
+      - name: Euclid
+    translators:
+      - family-names: Heath
+        given-names: Thomas L.
+    year: 1908
+  - type: book
+    title: "Nicomachus of Gerasa: Introduction to Arithmetic"
+    authors:
+      - name: Nicomachus of Gerasa
+    translators:
+      - family-names: D'Ooge
+        given-names: Martin Luther
+    year: 1926
+  - type: book
+    title: "Heronis Alexandrini opera quae supersunt omnia, vol. 3: Vermessungslehre und Dioptra"
+    authors:
+      - name: Heron of Alexandria
+    editors:
+      - family-names: Schöne
+        given-names: Hermann
+    year: 1903
+  - type: article
+    title: "Note sur la limite du nombre des divisions dans la recherche du plus grand commun diviseur entre deux nombres entiers"
+    authors:
+      - family-names: Lamé
+        given-names: Gabriel
+    journal: "Comptes rendus de l'Académie des sciences"
+    volume: 19
+    start: 867
+    end: 870
+    year: 1844
+  - type: book
+    title: "Nicomachi Geraseni Pythagorei Introductionis arithmeticae libri II"
+    authors:
+      - name: Nicomachus of Gerasa
+    editors:
+      - family-names: Hoche
+        given-names: Richard
+    year: 1866
+  - type: book
+    title: "A History of Greek Mathematics"
+    authors:
+      - family-names: Heath
+        given-names: Thomas L.
+    year: 1921

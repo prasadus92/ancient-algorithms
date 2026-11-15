@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="576pt" height="331.2pt" viewBox="0 0 576 331.2" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 331.2 
+L 576 331.2 
+L 576 0 
+L 0 0 
+z
+" style="fill: #06080d"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 51.84 264.96 
+L 460.8 264.96 
+L 460.8 66.24 
+L 51.84 66.24 
+z
+" style="fill: #06080d"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1"/>
+     <g id="text_1">
+      <text style="font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #9ba5b6" x="121.126612" y="280.48" transform="rotate(-0 121.126612 280.48)">5</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2"/>
+     <g id="text_2">
+      <text style="font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #9ba5b6" x="205.622479" y="280.48" transform="rotate(-0 205.622479 280.48)">10</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3"/>
+     <g id="text_3">
+      <text style="font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #9ba5b6" x="290.118347" y="280.48" transform="rotate(-0 290.118347 280.48)">15</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4"/>
+     <g id="text_4">
+      <text style="font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #9ba5b6" x="374.614215" y="280.48" transform="rotate(-0 374.614215 280.48)">20</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_5"/>
+     <g id="text_5">
+      <text style="font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #9ba5b6" x="459.110083" y="280.48" transform="rotate(-0 459.110083 280.48)">25</text>
+     </g>
+    </g>
+    <g id="text_6">
+     <text style="font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #9ba5b6" x="256.32" y="300.13" transform="rotate(-0 256.32 300.13)">Digits in each number</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_6">
+      <path d="M 51.84 218.152038 
+L 460.8 218.152038 
+" clip-path="url(#p7f54e8224e)" style="fill: none; stroke: #1a1f2a; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_7"/>
+     <g id="text_7">
+      <text style="font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #9ba5b6" x="45.84" y="222.912038" transform="rotate(-0 45.84 222.912038)">10</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_8">
+      <path d="M 51.84 123.225079 
+L 460.8 123.225079 
+" clip-path="url(#p7f54e8224e)" style="fill: none; stroke: #1a1f2a; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_9"/>
+     <g id="text_8">
+      <text style="font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: end; fill: #9ba5b6" x="45.84" y="127.985079" transform="rotate(-0 45.84 127.985079)">100</text>
+     </g>
+    </g>
+    <g id="text_9">
+     <text style="font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: middle; fill: #9ba5b6" x="19.031875" y="165.6" transform="rotate(-90 19.031875 165.6)">Steps (log scale)</text>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 51.84 264.96 
+L 460.8 264.96 
+" style="fill: none; stroke: #1a1f2a; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_10">
+    <path d="M 70.429091 218.152038 
+L 104.227438 173.553262 
+L 138.025785 149.398732 
+L 171.824132 134.000169 
+L 205.622479 120.628864 
+L 239.420826 111.005864 
+L 273.219174 100.154216 
+L 307.017521 98.311395 
+L 340.815868 87.304917 
+L 374.614215 85.039629 
+L 408.412562 82.583545 
+L 442.210909 75.272727 
+" clip-path="url(#p7f54e8224e)" style="fill: none; stroke: #4a5263; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #9ba5b6" x="450.210909" y="78.967727" transform="rotate(-0 450.210909 78.967727)">Subtraction (Euclid VII.1)</text>
+   </g>
+   <g id="line2d_11">
+    <path d="M 70.429091 255.927273 
+L 104.227438 227.351411 
+L 138.025785 210.635603 
+L 171.824132 201.43623 
+L 205.622479 191.690806 
+L 239.420826 183.814314 
+L 273.219174 178.75988 
+L 307.017521 171.508566 
+L 340.815868 167.70036 
+L 374.614215 162.044072 
+L 408.412562 158.988878 
+L 442.210909 155.238452 
+" clip-path="url(#p7f54e8224e)" style="fill: none; stroke: #f63e8c; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_11">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #eef2f8" x="450.210909" y="159.028452" transform="rotate(-0 450.210909 159.028452)">Division (modern form)</text>
+   </g>
+   <g id="PathCollection_1">
+    <defs>
+     <path id="m1f38b16406" d="M 0 3.162278 
+C 0.838646 3.162278 1.643056 2.82908 2.236068 2.236068 
+C 2.82908 1.643056 3.162278 0.838646 3.162278 0 
+C 3.162278 -0.838646 2.82908 -1.643056 2.236068 -2.236068 
+C 1.643056 -2.82908 0.838646 -3.162278 0 -3.162278 
+C -0.838646 -3.162278 -1.643056 -2.82908 -2.236068 -2.236068 
+C -2.82908 -1.643056 -3.162278 -0.838646 -3.162278 0 
+C -3.162278 0.838646 -2.82908 1.643056 -2.236068 2.236068 
+C -1.643056 2.82908 -0.838646 3.162278 0 3.162278 
+z
+" style="stroke: #06080d; stroke-width: 2"/>
+    </defs>
+    <g clip-path="url(#p7f54e8224e)">
+     <use xlink:href="#m1f38b16406" x="442.210909" y="75.272727" style="fill: #4a5263; stroke: #06080d; stroke-width: 2"/>
+    </g>
+   </g>
+   <g id="PathCollection_2">
+    <defs>
+     <path id="md72e5baa60" d="M 0 3.162278 
+C 0.838646 3.162278 1.643056 2.82908 2.236068 2.236068 
+C 2.82908 1.643056 3.162278 0.838646 3.162278 0 
+C 3.162278 -0.838646 2.82908 -1.643056 2.236068 -2.236068 
+C 1.643056 -2.82908 0.838646 -3.162278 0 -3.162278 
+C -0.838646 -3.162278 -1.643056 -2.82908 -2.236068 -2.236068 
+C -2.82908 -1.643056 -3.162278 -0.838646 -3.162278 0 
+C -3.162278 0.838646 -2.82908 1.643056 -2.236068 2.236068 
+C -1.643056 2.82908 -0.838646 3.162278 0 3.162278 
+z
+" style="stroke: #06080d; stroke-width: 2"/>
+    </defs>
+    <g clip-path="url(#p7f54e8224e)">
+     <use xlink:href="#md72e5baa60" x="442.210909" y="155.238452" style="fill: #f63e8c; stroke: #06080d; stroke-width: 2"/>
+    </g>
+   </g>
+  </g>
+  <g id="text_12">
+   <text style="font-weight: 700; font-size: 14px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #eef2f8" x="34.56" y="30.21" transform="rotate(-0 34.56 30.21)">On 24-digit numbers, division needs 46 steps and subtraction 320</text>
+  </g>
+  <g id="text_13">
+   <text style="font-size: 10.5px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #9ba5b6" x="34.56" y="48.084" transform="rotate(-0 34.56 48.084)">Median steps to the greatest common divisor, over 200 random pairs per size</text>
+  </g>
+  <g id="text_14">
+   <text style="font-size: 8.5px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #9ba5b6" x="34.56" y="321.1095" transform="rotate(-0 34.56 321.1095)">Source: ancient_algorithms.euclid, random seed 1844. github.com/prasadus92/ancient-algorithms</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p7f54e8224e">
+   <rect x="51.84" y="66.24" width="408.96" height="198.72"/>
+  </clipPath>
+ </defs>
+</svg>
