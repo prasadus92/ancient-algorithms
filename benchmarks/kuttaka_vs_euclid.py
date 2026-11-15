@@ -10,6 +10,7 @@ Run: python benchmarks/kuttaka_vs_euclid.py
 
 import random
 import timeit
+from functools import partial
 
 from ancient_algorithms.kuttaka import (
     extended_gcd,
@@ -50,9 +51,9 @@ def main() -> None:
         a, m = pairs[0]
         assert mod_inverse_kuttaka(a, m) == mod_inverse_euclid(a, m) == pow(a, -1, m)
         n = 200
-        k_us = timeit.timeit(lambda a=a, m=m: mod_inverse_kuttaka(a, m), number=n) / n * 1e6
-        e_us = timeit.timeit(lambda a=a, m=m: mod_inverse_euclid(a, m), number=n) / n * 1e6
-        p_us = timeit.timeit(lambda a=a, m=m: pow(a, -1, m), number=n) / n * 1e6
+        k_us = timeit.timeit(partial(mod_inverse_kuttaka, a, m), number=n) / n * 1e6
+        e_us = timeit.timeit(partial(mod_inverse_euclid, a, m), number=n) / n * 1e6
+        p_us = timeit.timeit(partial(pow, a, -1, m), number=n) / n * 1e6
         print(f"{bits:>5} {k_divs:>13.1f} {e_divs:>12.1f} {k_us:>11.1f} {e_us:>10.1f} {p_us:>8.2f}")
 
 

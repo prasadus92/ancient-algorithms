@@ -16,15 +16,15 @@ from ancient_algorithms.kuttaka import (
 
 
 # Bhaskara I's worked examples on Ganitapada 32-33 (Shukla 1976 edition).
-def test_bhaskara_example_1():
+def test_bhaskara_example_1() -> None:
     assert two_remainders(1, 5, 2, 7) == 16
 
 
-def test_bhaskara_example_2():
+def test_bhaskara_example_2() -> None:
     assert two_remainders(5, 12, 7, 31) == 317
 
 
-def test_bhaskara_example_2_column_matches_commentary():
+def test_bhaskara_example_2_column_matches_commentary() -> None:
     # Bhaskara I stops after 2 quotients (1, 1), picks mati 4, gets 10, then 310 and 317.
     v = pulverize(31, 12, 2, stop_after=2, trace=True)
     assert v.quotients == [1, 1]
@@ -37,7 +37,7 @@ def test_bhaskara_example_2_column_matches_commentary():
     assert 31 * (v.x % 12) == 310
 
 
-def test_bhaskara_example_1_column_matches_commentary():
+def test_bhaskara_example_1_column_matches_commentary() -> None:
     # The numbers are small, so Bhaskara I picks the mati before any division: mati 2, quotient 1.
     v = pulverize(7, 5, 1, stop_after=0)
     assert v.column == [2, 1]
@@ -45,14 +45,14 @@ def test_bhaskara_example_1_column_matches_commentary():
     assert 7 * v.x + 2 == 16
 
 
-def test_bhaskara_example_3_three_divisors():
+def test_bhaskara_example_3_three_divisors() -> None:
     # Bhaskara I folds the first 2 pairs into 13 with divisor 72, then adds the third.
     assert two_remainders(5, 8, 4, 9) == 13
     assert two_remainders(13, 72, 1, 7) == 85
     assert remainder_problem([(5, 8), (4, 9), (1, 7)]) == 85
 
 
-def test_bhaskara_example_5_without_remainders():
+def test_bhaskara_example_5_without_remainders() -> None:
     # The column and fold as printed in the commentary.
     v = pulverize(8, 13, 6, trace=True)
     assert v.column == [1, 1, 1, 1, 2, 4]
@@ -61,29 +61,29 @@ def test_bhaskara_example_5_without_remainders():
     assert (8 * v.x + 6) // 13 == 6
 
 
-def test_bhaskara_example_6_without_remainders():
+def test_bhaskara_example_6_without_remainders() -> None:
     v = pulverize(11, 23, -3)
     assert v.x == 17
     assert (11 * v.x - 3) // 23 == 8
 
 
-def test_bhaskara_example_4_non_coprime_divisors():
+def test_bhaskara_example_4_non_coprime_divisors() -> None:
     assert remainder_problem([(1, d) for d in range(2, 7)] + [(0, 7)]) == 301
 
 
-def test_paramesvara_example_from_clark():
+def test_paramesvara_example_from_clark() -> None:
     # Clark (1930), p. 47: agras 15 and 11 with divisors 29 and 45 give 1001.
     assert two_remainders(15, 29, 11, 45) == 1001
 
 
-def test_rsa_textbook_private_exponent():
+def test_rsa_textbook_private_exponent() -> None:
     # p = 61, q = 53, phi = 3120, e = 17 gives d = 2753.
     assert mod_inverse_kuttaka(17, 3120) == 2753
     assert mod_inverse_euclid(17, 3120) == 2753
     assert pow(17, -1, 3120) == 2753
 
 
-def test_bad_inputs_raise():
+def test_bad_inputs_raise() -> None:
     with pytest.raises(ValueError):
         pulverize(3, 0, 1)
     with pytest.raises(ValueError):
@@ -100,13 +100,13 @@ def test_bad_inputs_raise():
         mod_inverse_euclid(3, 0)
 
 
-def test_early_stop_with_a_large_divisor_is_fast():
+def test_early_stop_with_a_large_divisor_is_fast() -> None:
     # Past TRIAL_LIMIT the mati is solved directly, so this returns at once.
     m = 2**61 - 1
     assert pulverize(3, m, 1, stop_after=0).x == (-pow(3, -1, m)) % m
 
 
-def test_no_solution_raises():
+def test_no_solution_raises() -> None:
     with pytest.raises(ValueError):
         pulverize(6, 9, 4)
     with pytest.raises(ValueError):
@@ -120,7 +120,9 @@ modulus = st.integers(min_value=1, max_value=10_000)
 
 
 @given(a=small, b=modulus, c=small, stop=st.one_of(st.none(), st.integers(0, 12)))
-def test_pulverize_solves_whenever_a_solution_exists(a, b, c, stop):
+def test_pulverize_solves_whenever_a_solution_exists(
+    a: int, b: int, c: int, stop: int | None
+) -> None:
     if c % gcd(a, b):
         with pytest.raises(ValueError):
             pulverize(a, b, c, stop_after=stop)
@@ -137,7 +139,7 @@ def test_pulverize_solves_whenever_a_solution_exists(a, b, c, stop):
         assert v.reduced[-1][0] % v.b == x
 
 
-def test_common_factor_is_removed_first():
+def test_common_factor_is_removed_first() -> None:
     # Bhaskara I's apavartana: 6x + 3 = 0 (mod 9) becomes 2x + 1 = 0 (mod 3).
     v = pulverize(6, 9, 3)
     assert (v.a, v.b, v.c) == (2, 3, 1)
@@ -145,7 +147,7 @@ def test_common_factor_is_removed_first():
 
 
 @given(a=small, b=modulus, c=small, stop=st.integers(0, 12))
-def test_stopping_early_gives_the_same_answer(a, b, c, stop):
+def test_stopping_early_gives_the_same_answer(a: int, b: int, c: int, stop: int) -> None:
     if c % gcd(a, b):
         return
     g = gcd(a, b)
@@ -153,7 +155,7 @@ def test_stopping_early_gives_the_same_answer(a, b, c, stop):
 
 
 @given(d1=st.integers(1, 500), d2=st.integers(1, 500), data=st.data())
-def test_two_remainders_matches_crt(d1, d2, data):
+def test_two_remainders_matches_crt(d1: int, d2: int, data: st.DataObject) -> None:
     r1 = data.draw(st.integers(0, d1 - 1))
     r2 = data.draw(st.integers(0, d2 - 1))
     if (r1 - r2) % gcd(d1, d2):
@@ -166,7 +168,7 @@ def test_two_remainders_matches_crt(d1, d2, data):
 
 
 @given(a=st.integers(1, 10**30), m=st.integers(2, 10**30))
-def test_inverse_agrees_with_euclid_and_pow(a, m):
+def test_inverse_agrees_with_euclid_and_pow(a: int, m: int) -> None:
     if gcd(a, m) != 1:
         return
     inv = mod_inverse_kuttaka(a, m)
@@ -174,13 +176,13 @@ def test_inverse_agrees_with_euclid_and_pow(a, m):
 
 
 @given(a=small, b=small)
-def test_extended_gcd_bezout(a, b):
+def test_extended_gcd_bezout(a: int, b: int) -> None:
     g, s, t = extended_gcd(a, b)
     assert a * s + b * t == g
     assert g == gcd(a, b)
 
 
-def test_bhaskara_example_22_day_count():
+def test_bhaskara_example_22_day_count() -> None:
     # Example 22 on Ganitapada 32-33; Bhaskara I divides by 7,500 first, as pulverize does.
     v = pulverize(4_320_000, 1_577_917_500, -82_500)
     assert (v.a, v.b) == (576, 210_389)
