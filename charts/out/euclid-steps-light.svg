@@ -76,7 +76,7 @@ z
      <g id="line2d_6">
       <path d="M 51.84 218.152038 
 L 460.8 218.152038 
-" clip-path="url(#p6518d9a539)" style="fill: none; stroke: #e3e6ec; stroke-linecap: square"/>
+" clip-path="url(#p4a6ae56d7b)" style="fill: none; stroke: #e3e6ec; stroke-linecap: square"/>
      </g>
      <g id="line2d_7"/>
      <g id="text_7">
@@ -87,7 +87,7 @@ L 460.8 218.152038
      <g id="line2d_8">
       <path d="M 51.84 123.225079 
 L 460.8 123.225079 
-" clip-path="url(#p6518d9a539)" style="fill: none; stroke: #e3e6ec; stroke-linecap: square"/>
+" clip-path="url(#p4a6ae56d7b)" style="fill: none; stroke: #e3e6ec; stroke-linecap: square"/>
      </g>
      <g id="line2d_9"/>
      <g id="text_8">
@@ -116,7 +116,7 @@ L 340.815868 87.304917
 L 374.614215 85.039629 
 L 408.412562 82.583545 
 L 442.210909 75.272727 
-" clip-path="url(#p6518d9a539)" style="fill: none; stroke: #9aa3b2; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p4a6ae56d7b)" style="fill: none; stroke: #9aa3b2; stroke-width: 2; stroke-linecap: round"/>
    </g>
    <g id="text_10">
     <text style="font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #3f4856" x="450.210909" y="78.967727" transform="rotate(-0 450.210909 78.967727)">Subtraction (Euclid VII.1)</text>
@@ -134,14 +134,14 @@ L 340.815868 167.70036
 L 374.614215 162.044072 
 L 408.412562 158.988878 
 L 442.210909 155.238452 
-" clip-path="url(#p6518d9a539)" style="fill: none; stroke: #d81b6e; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p4a6ae56d7b)" style="fill: none; stroke: #d81b6e; stroke-width: 2; stroke-linecap: round"/>
    </g>
    <g id="text_11">
     <text style="font-weight: 700; font-size: 10px; font-family: 'Quicksand Variable', Quicksand, 'Helvetica Neue', Arial, sans-serif; text-anchor: start; fill: #101522" x="450.210909" y="159.028452" transform="rotate(-0 450.210909 159.028452)">Division (modern form)</text>
    </g>
    <g id="PathCollection_1">
     <defs>
-     <path id="m5761b6366d" d="M 0 3.162278 
+     <path id="mc1209e1837" d="M 0 3.162278 
 C 0.838646 3.162278 1.643056 2.82908 2.236068 2.236068 
 C 2.82908 1.643056 3.162278 0.838646 3.162278 0 
 C 3.162278 -0.838646 2.82908 -1.643056 2.236068 -2.236068 
@@ -153,13 +153,13 @@ C -1.643056 2.82908 -0.838646 3.162278 0 3.162278
 z
 " style="stroke: #f7f8fb; stroke-width: 2"/>
     </defs>
-    <g clip-path="url(#p6518d9a539)">
-     <use xlink:href="#m5761b6366d" x="442.210909" y="75.272727" style="fill: #9aa3b2; stroke: #f7f8fb; stroke-width: 2"/>
+    <g clip-path="url(#p4a6ae56d7b)">
+     <use xlink:href="#mc1209e1837" x="442.210909" y="75.272727" style="fill: #9aa3b2; stroke: #f7f8fb; stroke-width: 2"/>
     </g>
    </g>
    <g id="PathCollection_2">
     <defs>
-     <path id="m62d7507774" d="M 0 3.162278 
+     <path id="m7c8e75a099" d="M 0 3.162278 
 C 0.838646 3.162278 1.643056 2.82908 2.236068 2.236068 
 C 2.82908 1.643056 3.162278 0.838646 3.162278 0 
 C 3.162278 -0.838646 2.82908 -1.643056 2.236068 -2.236068 
@@ -171,8 +171,8 @@ C -1.643056 2.82908 -0.838646 3.162278 0 3.162278
 z
 " style="stroke: #f7f8fb; stroke-width: 2"/>
     </defs>
-    <g clip-path="url(#p6518d9a539)">
-     <use xlink:href="#m62d7507774" x="442.210909" y="155.238452" style="fill: #d81b6e; stroke: #f7f8fb; stroke-width: 2"/>
+    <g clip-path="url(#p4a6ae56d7b)">
+     <use xlink:href="#m7c8e75a099" x="442.210909" y="155.238452" style="fill: #d81b6e; stroke: #f7f8fb; stroke-width: 2"/>
     </g>
    </g>
   </g>
@@ -187,7 +187,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p6518d9a539">
+  <clipPath id="p4a6ae56d7b">
    <rect x="51.84" y="66.24" width="408.96" height="198.72"/>
   </clipPath>
  </defs>

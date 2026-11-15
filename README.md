@@ -9,6 +9,8 @@ Python implementations of algorithms from dated historical sources. Where the so
 |---|---|---|
 | `kuttaka.py` | The kuttaka ("pulverizer") for `a*x + c = b*y` and the remainder problem, with the extended Euclidean algorithm and modular inverse for comparison | Aryabhata, *Aryabhatiya*, Ganitapada 32 and 33 (c. 499 CE), read with Bhaskara I's commentary (629 CE) |
 | `madhava.py` | The series for pi with Madhava's 3 end corrections, the sqrt(12) series, and Machin's formula for comparison | 16th-century Kerala texts that credit Madhava of Sangamagrama (c. 1340 to 1425) |
+| `chakravala.py` | The chakravala (cyclic) method for Pell's equation `x^2 - N*y^2 = 1`, with Brahmagupta's composition (bhavana) and the choice of multiplier; continued fractions for comparison | Bhaskara II, *Bijaganita* (1150), Colebrooke's 1817 translation |
+| `katapayadi.py` | The katapayadi letter-to-digit code: encoding and decoding, with digits read right to left | Sankaravarman, *Sadratnamala* (1819), chapter 3, verse 3, edited by K. V. Sarma (2001) |
 | `pingala.py` | Listing every heavy and light syllable pattern (prastara), the uddista and nasta procedures that map a pattern to its row number and back, the counts, and the meru triangle | Pingala, *Chandahshastra* 8.20 to 8.34 (date debated), read with Halayudha's commentary (c. 10th century) |
 | `panini.py` | Vowel sandhi from the *Ashtadhyayi* as an ordered rewrite system: pratyahara expansion from the Shiva Sutras, exceptions that block their general rules, and 1.4.2 for what remains | Panini, *Ashtadhyayi* 6.1 (date debated), GRETIL e-texts |
 | `babylonian_sqrt.py` | Base-60 arithmetic, the square root of 2 on YBC 7289, and the averaging iteration | YBC 7289, Old Babylonian (c. 1900 to 1600 BCE); Heron of Alexandria, *Metrica* (1st century CE) |
@@ -36,6 +38,7 @@ uv run python benchmarks/madhava_convergence.py
 uv run python benchmarks/qiuyi_vs_euclid.py
 uv run python benchmarks/euclid_steps.py
 uv run python benchmarks/sieve_compare.py
+uv run python benchmarks/chakravala_vs_continued_fraction.py
 ```
 
 With pip: `pip install -e . pytest hypothesis`, then `pytest`.
@@ -66,6 +69,7 @@ uv run python charts/render.py
 - **Calendars and al-Khwarizmi.** Documented Long Count and Calendar Round dates, al-Khwarizmi's worked equations, and algorism operations that match Python integers.
 - **Plimpton 322.** Rebuilding the 15 rows from reciprocal pairs reproduces the tablet's numbers and finds all 7 errors Robson (2001) lists.
 - **Euclid, the sieve and Heron.** Euclid's VII.1 and VII.2 by subtraction against `math.gcd`, Lamé's bound on division steps, the sieves against trial division, and Heron's 26 5/6 for the square root of 720.
+- **Chakravala and katapayadi.** Bhaskara II's examples N = 61 and N = 67 rerun exactly as Colebrooke prints them, and the katapayadi decoder reads Sarma's attested examples.
 - **Convergence rates.** Each of Madhava's corrections cuts the error by the expected power of n (n^-3, n^-5, n^-7).
 - **The tablet.** 30 times 1;24,51,10 is 42;25,35, 1;24,51,10 is the square root of 2 truncated to 3 base-60 places, and 0;42,25,35 is 1/sqrt(2) truncated the same way.
 

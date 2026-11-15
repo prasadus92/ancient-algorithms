@@ -17,6 +17,7 @@ import timeit
 from collections.abc import Callable, Sequence
 from dataclasses import dataclass
 from functools import partial
+from math import isqrt
 from pathlib import Path
 from statistics import median
 
@@ -28,6 +29,7 @@ from matplotlib.axes import Axes  # noqa: E402
 from matplotlib.figure import Figure  # noqa: E402
 from matplotlib.ticker import FuncFormatter, NullLocator  # noqa: E402
 
+from ancient_algorithms.chakravala import chakravala, pell_continued_fraction  # noqa: E402
 from ancient_algorithms.euclid import division_count, subtraction_count  # noqa: E402
 from ancient_algorithms.heron import correct_decimals, heron_sqrt  # noqa: E402
 from ancient_algorithms.madhava import correct_digits, madhava_pi  # noqa: E402
@@ -192,7 +194,8 @@ def _draw_bars(chart: BarChart, theme: Theme) -> Figure:
     ax.grid(axis="x", color=theme.grid, linewidth=1)
     positions = range(len(chart.labels))
     colors = [theme.accent if label == chart.highlight else theme.context for label in chart.labels]
-    ax.barh(list(positions), chart.values, height=0.5, color=colors, zorder=3)
+    ax.barh(list(positions), chart.values, height=BAR_HEIGHT, color=colors, zorder=3)
+    ax.xaxis.set_major_formatter(FuncFormatter(lambda v, _: f"{v:,.0f}"))
     ax.set_yticks(list(positions), chart.labels)
     ax.invert_yaxis()
     for y, (label, value) in enumerate(zip(chart.labels, chart.values, strict=True)):
@@ -321,6 +324,37 @@ def heron_convergence() -> LineChart:
     )
 
 
+def chakravala_steps() -> BarChart:
+    """Total steps over every non-square N up to PELL_LIMIT, for each method."""
+    ns = [n for n in range(2, PELL_LIMIT + 1) if isqrt(n) ** 2 != n]
+    shortcut = sum(chakravala(n).rounds for n in ns)
+    cycle = sum(chakravala(n, shortcut=False).rounds for n in ns)
+    fraction = sum(pell_continued_fraction(n)[2] for n in ns)
+    return BarChart(
+        slug="chakravala-steps",
+        title=(
+            f"With Bhaskara II's shortcut, the chakravala needs {shortcut / fraction:.0%} "
+            "of the steps"
+        ),
+        subtitle=(
+            f"Total steps against continued fractions, for all {len(ns):,} non-square N "
+            f"up to {PELL_LIMIT:,} in x^2 - Ny^2 = 1"
+        ),
+        x_label="Total steps",
+        labels=["Continued fractions", "Chakravala", "With the shortcut"],
+        values=[fraction, cycle, shortcut],
+        highlight="With the shortcut",
+        value_format="{:,.0f}",
+        source=f"Source: ancient_algorithms.chakravala. {REPO_URL}",
+    )
+
+
+BAR_HEIGHT = 0.32
+"""Bar thickness as a share of each band, about 24px at the rendered size."""
+
+PELL_LIMIT = 1000
+"""Largest N in the chakravala chart."""
+
 SAMPLES = 200
 """Random pairs per size in the Euclid chart."""
 
@@ -332,6 +366,7 @@ CHARTS: tuple[Callable[[], Chart], ...] = (
     euclid_steps,
     sieve_times,
     heron_convergence,
+    chakravala_steps,
 )
 
 

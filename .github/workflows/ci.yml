@@ -30,6 +30,7 @@ jobs:
       - run: uv run python benchmarks/qiuyi_vs_euclid.py
       - run: uv run python benchmarks/euclid_steps.py
       - run: uv run python benchmarks/sieve_compare.py
+      - run: uv run python benchmarks/chakravala_vs_continued_fraction.py
 
   charts:
     runs-on: ubuntu-latest
