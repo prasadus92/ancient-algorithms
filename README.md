@@ -1,5 +1,8 @@
 # Old algorithms, implemented
 
+[![CI](https://github.com/prasadus92/old-algorithms/actions/workflows/ci.yml/badge.svg)](https://github.com/prasadus92/old-algorithms/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 Python implementations of algorithms from dated historical sources, each checked against the worked examples in the source or its oldest commentary. The write-ups, with the source text, translation and derivation, are at [prasad.tech/old-algorithms](https://prasad.tech/old-algorithms/).
 
 | Module | Algorithm | Source |
@@ -46,4 +49,6 @@ The repo has a `CITATION.cff`, which GitHub shows as "Cite this repository". A Z
 
 ## License
 
-Code under the MIT License. Quotations from editions and translations are short and credited in the docstrings and on the site.
+The code is under the [MIT License](LICENSE). The prose in this repo (this README, the docstrings' explanations and translations) is under [CC BY 4.0](LICENSE-PROSE.md). You can reuse both, with credit.
+
+Copyright Prasad Subrahmanya ([prasad.tech](https://prasad.tech)).
