@@ -17,6 +17,7 @@ uv run pytest
 uv build
 uv run python benchmarks/kuttaka_vs_euclid.py
 uv run python benchmarks/madhava_convergence.py
+uv run python benchmarks/qiuyi_vs_euclid.py
 ```
 
 CI runs these steps on Python 3.11 to 3.15, and `main` accepts changes only through a pull request with all 5 jobs green. `uv run ruff format .` fixes formatting, and `uv run pytest tests/test_kuttaka.py -k example_2` runs a single test.
@@ -58,6 +59,7 @@ The write-ups on prasad.tech live in a separate site repo. A change here does no
 
 ## Docs and commit messages
 
+- Use American English: normalize, color, behavior, center, meter.
 - Write plain, short sentences. Use digits for counts, and sentence case for headings.
 - No em dashes, no middle dots, no emoji.
 - No filler words (just, really, actually, simply), no hype adjectives, no "X, not Y" framing.
