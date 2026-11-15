@@ -2,9 +2,11 @@
 
 Source: the clay tablet Plimpton 322, Rare Book and Manuscript Library, Columbia
 University (CDLI P254790), first published as text A of Neugebauer and Sachs,
-Mathematical Cuneiform Texts (1945). Robson (Historia Mathematica 28, 2001, p. 172)
-places it in Larsa and dates it to the 60 years or so before Hammurabi took Larsa in
-1762 BCE, from its script and its table format. The date is an inference.
+Mathematical Cuneiform Texts (1945). Robson (Historia Mathematica 28, 2001, pp. 171-172)
+places it in Larsa from the dealer's price list and the script of its headings. She
+dates it by format alone: landscape tables whose last column is headed MU.BI.IM, "its
+name", are attested from 1822 BCE, and Hammurabi took Larsa in 1762 BCE. The date is
+an inference.
 
 The surviving part has 4 columns and 15 rows. Column I is a squared ratio, columns
 II and III are the short side ``b`` and the diagonal ``d`` of a right triangle, and
@@ -21,9 +23,9 @@ column I. The steps:
    factors, so both have a finite base-60 expansion.
 2. Halve their difference and their sum. These are the short side and the
    diagonal of a right triangle whose long side is 1.
-3. Square the diagonal. That is column I, which Robson reads as "the takiltum
-   (holding square) of the diagonal from which 1 is torn out, so that the short
-   side comes up".
+3. Square the diagonal. That is column I. Robson (2001, p. 192) translates its
+   heading as "the holding-square of the diagonal from which 1 is torn out", and
+   its last words say that the short side then comes up.
 4. Multiply the short side and the diagonal by regular factors, read off their
    last base-60 digits, until both are whole. These are columns II and III. The
    product of the factors is the long side.
@@ -206,9 +208,8 @@ def reduce_triangle(short: Fraction, diagonal: Fraction) -> tuple[int, int, int]
 
 def plimpton_row(igi: Fraction) -> tuple[Fraction, int, int]:
     """Columns I, II and III of the row built from ``igi``."""
-    short, diagonal = short_side_and_diagonal(igi)
-    b, _, d = reduce_triangle(short, diagonal)
-    return diagonal * diagonal, b, d
+    b, _, d = reduce_triangle(*short_side_and_diagonal(igi))
+    return takiltum(igi), b, d
 
 
 def rebuild_table(igis: tuple[Fraction, ...] = ROBSON_IGI) -> list[tuple[Fraction, int, int]]:
@@ -221,8 +222,9 @@ def robson_candidates(max_places: int = 4, max_total_places: int = 7) -> list[Fr
 
     The igi and its reciprocal may each have at most ``max_places`` base-60
     digits, and at most ``max_total_places`` between them. Robson (2001, p. 196)
-    finds that these limits admit the 15 rows of the tablet and 3 more, her
-    lines 4a, 8a and 11a.
+    writes that the total is "always less than seven", but her own pairs reach 7,
+    for example 2 22 13 20 with 25 18 45. A limit of 7 admits the 15 rows of the
+    tablet and 3 more, her lines 4a, 8a and 11a (Tables 8 and 9).
     """
     if max_places < 1:
         raise ValueError(f"max_places must be at least 1, got {max_places}")
@@ -288,7 +290,8 @@ def diagnose(written: tuple[int, ...], computed: tuple[int, ...]) -> str:
     ``"digit miscopied"`` or ``"unexplained"``. Values compare as the scribe saw
     them, with no point, so twice 28 and half of 1 52 are both 56.
     """
-    _from_digits(written)
+    _check_digits(written, "written")
+    _check_digits(computed, "computed")
     value = _from_digits(computed)
     if written == computed:
         return "match"
@@ -362,6 +365,15 @@ def _base60_digits(n: int) -> tuple[int, ...]:
         n, digit = divmod(n, 60)
         digits.append(digit)
     return tuple(reversed(digits)) or (0,)
+
+
+def _check_digits(digits: tuple[int, ...], name: str) -> None:
+    """Raise ``ValueError`` unless ``digits`` is a non-empty run of base-60 digits."""
+    if not digits:
+        raise ValueError(f"{name} must have at least 1 digit, got {digits}")
+    for digit in digits:
+        if not 0 <= digit < 60:
+            raise ValueError(f"{name} has a base-60 digit out of range: {digit}")
 
 
 def _from_digits(digits: tuple[int, ...]) -> int:

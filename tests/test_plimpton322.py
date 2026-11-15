@@ -242,6 +242,9 @@ def test_floating_digits_drop_the_point_and_outer_zeros() -> None:
         lambda: compare_with_tablet([]),
         lambda: euclid_triples(0),
         lambda: diagnose((60,), (1,)),
+        lambda: diagnose((), ()),
+        lambda: diagnose((1,), ()),
+        lambda: diagnose((1,), (60,)),
     ],
 )
 def test_bad_input_raises(call: Callable[[], object]) -> None:

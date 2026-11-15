@@ -1,8 +1,8 @@
 """The square root of 2 on YBC 7289, in base 60.
 
-YBC 7289 is an Old Babylonian school tablet (c. 1900 to 1600 BCE, per CDLI P255048) in the Yale
-Babylonian Collection. It shows a square with the number 30 on one side and 2
-numbers along the diagonal:
+YBC 7289 is an Old Babylonian school tablet (c. 1800 to 1600 BCE) in the
+Yale Babylonian Collection. It shows a square with the number 30 on one side
+and 2 numbers along the diagonal:
 
     1;24,51,10   = 1 + 24/60 + 51/60^2 + 10/60^3, close to sqrt(2)
     42;25,35     = 30 times that number
@@ -30,24 +30,33 @@ from fractions import Fraction
 
 __all__ = [
     "Sexagesimal",
-    "to_sexagesimal",
-    "from_sexagesimal",
-    "parse_sexagesimal",
-    "heron_steps",
     "YBC7289_ROOT2",
     "YBC7289_SIDE",
     "YBC7289_DIAGONAL",
+    "to_sexagesimal",
+    "from_sexagesimal",
+    "parse_sexagesimal",
     "format_sexagesimal",
+    "heron_steps",
 ]
 
 Sexagesimal = tuple[int, tuple[int, ...]]
+
+YBC7289_ROOT2 = Fraction(30547, 21600)
+"""1;24,51,10, the tablet's value for the square root of 2."""
+
+YBC7289_SIDE = Fraction(30)
+"""30, the side of the square on the tablet, read as a whole number."""
+
+YBC7289_DIAGONAL = Fraction(30547, 720)
+"""42;25,35, the tablet's diagonal: 30 times 1;24,51,10."""
 
 
 def to_sexagesimal(x: Fraction | int, places: int) -> Sexagesimal:
     """Truncate a non-negative number to ``places`` base-60 fractional digits."""
     x = Fraction(x)
     if x < 0:
-        raise ValueError("only non-negative values")
+        raise ValueError(f"x must be non-negative, got {x}")
     whole = x.numerator // x.denominator
     fraction = x - whole
     digits = []
@@ -75,7 +84,7 @@ def from_sexagesimal(value: Sexagesimal) -> Fraction:
 def parse_sexagesimal(text: str) -> Fraction:
     """Parse the modern notation ``"1;24,51,10"`` into an exact fraction."""
     if text.strip().startswith("-"):
-        raise ValueError("only non-negative values")
+        raise ValueError(f"only non-negative values, got {text!r}")
     whole, _, fraction = text.partition(";")
     digits = tuple(int(d) for d in fraction.split(",")) if fraction else ()
     return from_sexagesimal((int(whole), digits))
@@ -95,8 +104,3 @@ def heron_steps(square: int | Fraction, start: Fraction, steps: int) -> list[Fra
         x = approximations[-1]
         approximations.append((x + square / x) / 2)
     return approximations
-
-
-YBC7289_ROOT2 = parse_sexagesimal("1;24,51,10")
-YBC7289_SIDE = Fraction(30)
-YBC7289_DIAGONAL = parse_sexagesimal("42;25,35")
