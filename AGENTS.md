@@ -58,6 +58,7 @@ The write-ups on prasad.tech live in a separate site repo. A change here does no
 
 ## Docs and commit messages
 
+- Use American English: normalize, color, behavior, center, meter.
 - Write plain, short sentences. Use digits for counts, and sentence case for headings.
 - No em dashes, no middle dots, no emoji.
 - No filler words (just, really, actually, simply), no hype adjectives, no "X, not Y" framing.
