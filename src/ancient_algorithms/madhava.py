@@ -26,6 +26,8 @@ from __future__ import annotations
 
 from decimal import Decimal, localcontext
 
+from ancient_algorithms._checks import check_at_least
+
 __all__ = [
     "PI_100",
     "partial_sum",
@@ -86,8 +88,7 @@ def correction(n: int, order: int, prec: int = DEFAULT_PREC) -> Decimal:
 
 def madhava_pi(n: int, order: int = 0, prec: int = DEFAULT_PREC) -> Decimal:
     """Pi from n terms of the series plus Madhava's end correction of the given order."""
-    if n < 1:
-        raise ValueError(f"n must be at least 1, got {n}")
+    check_at_least("n", n, 1)
     with localcontext() as ctx:
         ctx.prec = prec
         sign = 1 if n % 2 == 0 else -1

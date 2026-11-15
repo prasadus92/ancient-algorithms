@@ -41,6 +41,8 @@ from __future__ import annotations
 from itertools import pairwise, product
 from math import comb
 
+from ancient_algorithms._checks import check_at_least
+
 __all__ = [
     "GURU",
     "LAGHU",
@@ -143,7 +145,7 @@ def total_through(n: int) -> int:
 
 def meru_prastara(n: int) -> list[list[int]]:
     """Halayudha's meru, rows 0 to ``n``: row k counts k-syllable patterns by number of laghus."""
-    _check_at_least(n, 0, "n")
+    check_at_least("n", n, 0)
     rows = [[1]]
     for _ in range(n):
         above = rows[-1]
@@ -159,7 +161,7 @@ def lagakriya(n: int) -> list[int]:
 
 def matra_prastara(morae: int) -> list[str]:
     """All patterns worth ``morae`` morae (g = 2, l = 1), in the order Singh (1985) describes."""
-    _check_at_least(morae, 1, "morae")
+    check_at_least("morae", morae, 1)
     two_back, one_back = [""], [LAGHU]
     for _ in range(morae - 1):
         two_back, one_back = one_back, [p + GURU for p in two_back] + [p + LAGHU for p in one_back]
@@ -168,22 +170,16 @@ def matra_prastara(morae: int) -> list[str]:
 
 def matra_count(morae: int) -> int:
     """The number of patterns worth ``morae`` morae: each count is the sum of the 2 before it."""
-    _check_at_least(morae, 1, "morae")
+    check_at_least("morae", morae, 1)
     two_back, one_back = 1, 1
     for _ in range(morae - 1):
         two_back, one_back = one_back, two_back + one_back
     return one_back
 
 
-def _check_at_least(value: int, minimum: int, name: str) -> None:
-    """Raise ``ValueError`` unless ``value`` is at least ``minimum``."""
-    if value < minimum:
-        raise ValueError(f"{name} must be at least {minimum}, got {value}")
-
-
 def _check_syllables(n: int) -> None:
     """Raise ``ValueError`` unless ``n`` is a positive syllable count."""
-    _check_at_least(n, 1, "n")
+    check_at_least("n", n, 1)
 
 
 def _check_row(row: int, n: int) -> None:

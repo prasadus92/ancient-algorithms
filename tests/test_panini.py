@@ -6,11 +6,13 @@ from ancient_algorithms.panini import (
     GUNA,
     SHIVA_SUTRAS,
     VRDDHI,
+    Rule,
     antaratama,
     derive,
     join,
     join_words,
     pratyahara,
+    resolve,
     rewrite_to_fixpoint,
     savarnas,
 )
@@ -147,16 +149,26 @@ def test_exceptions_block_their_general_rules() -> None:
         assert (step.applicable, step.chosen, step.reason) == (applicable, chosen, "exception")
 
 
-def test_later_rule_decides_where_no_exception_is_declared() -> None:
+def test_6_1_109_is_an_exception_to_6_1_78() -> None:
+    # Kasikavrtti on 6.1.109: ayavadesayor ayam apavadah.
     (step,) = derive("hare", "ava")
     assert (step.applicable, step.chosen, step.reason) == (
         ["6.1.78", "6.1.109"],
         "6.1.109",
-        "later rule (1.4.2)",
+        "exception",
     )
 
 
-# Laghusiddhantakaumudi on 6.1.89 and 6.1.94, and Kiparsky's upelayati: prefix, verb form, root.
+def test_resolve_falls_back_to_the_later_rule() -> None:
+    # No conflict in the model reaches 1.4.2, so 2 rules with no exception between them test it.
+    earlier = Rule((6, 1, 1), "earlier", lambda s, w, r: True, lambda s: s)
+    later = Rule((6, 1, 2), "later", lambda s, w, r: True, lambda s: s)
+    assert resolve([later, earlier]) == (later, "later rule (1.4.2)")
+    with pytest.raises(ValueError, match="at least 1 applicable rule"):
+        resolve([])
+
+
+# Laghusiddhantakaumudi and Kasikavrtti on 6.1.89, 6.1.91 and 6.1.94: left word, verb form, root.
 VERB_EXAMPLES = [
     ("upa", "eti", "i", "upaiti", "6.1.89"),
     ("upa", "edhate", "edh", "upaidhate", "6.1.89"),
@@ -164,12 +176,16 @@ VERB_EXAMPLES = [
     ("pra", "ejate", "ej", "prejate", "6.1.94"),
     ("upa", "oṣati", "uṣ", "upoṣati", "6.1.94"),
     ("upa", "elayati", "il", "upelayati", "6.1.94"),
+    ("pra", "ṛcchati", "ṛcch", "prārcchati", "6.1.91"),
+    ("upa", "ṛcchati", "ṛcch", "upārcchati", "6.1.91"),
+    ("khaṭvā", "ṛcchati", "ṛcch", "khaṭvarcchati", "6.1.87"),
+    ("iha", "ejate", "ej", "ihaijate", "6.1.88"),
 ]
 
 
-@pytest.mark.parametrize(("prefix", "verb", "root", "form", "rule"), VERB_EXAMPLES)
-def test_prefix_and_verb_examples(prefix: str, verb: str, root: str, form: str, rule: str) -> None:
-    (step,) = derive(prefix, verb, verb_root=root)
+@pytest.mark.parametrize(("left", "verb", "root", "form", "rule"), VERB_EXAMPLES)
+def test_verb_examples(left: str, verb: str, root: str, form: str, rule: str) -> None:
+    (step,) = derive(left, verb, verb_root=root)
     assert (step.form, step.chosen) == (form, rule)
 
 
@@ -211,6 +227,11 @@ def test_tripadi_deletion_needs_a_word_boundary() -> None:
     assert join("hare", "e", word_boundary=False, sakalya=True) == "haraye"
 
 
+def test_verb_root_must_not_be_empty() -> None:
+    with pytest.raises(ValueError):
+        derive("upa", "eti", verb_root="")
+
+
 def test_join_words_needs_a_word() -> None:
     with pytest.raises(ValueError):
         join_words([])
@@ -219,6 +240,10 @@ def test_join_words_needs_a_word() -> None:
 def test_only_vowel_junctions_are_modeled() -> None:
     with pytest.raises(ValueError):
         join("tat", "iti")
+    with pytest.raises(ValueError):
+        rewrite_to_fixpoint("tay", "kaḥ")
+    with pytest.raises(ValueError):
+        rewrite_to_fixpoint("tat", "iti")
     with pytest.raises(ValueError):
         join_words(["adya", "tat"])
 
