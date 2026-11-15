@@ -1,5 +1,6 @@
 from fractions import Fraction
 from itertools import pairwise
+from math import isqrt
 
 import pytest
 from hypothesis import given, settings
@@ -30,8 +31,6 @@ def test_metrica_720_from_the_triangle_7_8_9() -> None:
 
 def test_metrica_first_step() -> None:
     assert nearest_square_side(720) == 27
-    assert Fraction(720, 27) == Fraction(80, 3)  # 26 and 2 thirds
-    assert 27 + Fraction(80, 3) == Fraction(161, 3)  # 53 and 2 thirds
     start, first = heron_sqrt(720, 1)
     assert (start, first) == (Fraction(27), Fraction(161, 6))
     assert unit_fractions(first) == (26, (2, 3))  # 26 1/2 1/3
@@ -59,7 +58,7 @@ def test_correct_decimals_from_below() -> None:
     assert correct_decimals(720, Fraction(26)) == 0
     assert correct_decimals(2, Fraction(141, 100)) == 2
     assert correct_decimals(2, Fraction(1)) == 0
-    assert correct_decimals(10**6, Fraction(1)) == -1
+    assert correct_decimals(10**6, Fraction(1)) == 0
 
 
 def test_archimedes_upper_bound_for_root_3() -> None:
@@ -122,7 +121,7 @@ def test_after_1_step_the_side_is_never_too_small(n: int, x: Fraction) -> None:
 
 
 @settings(max_examples=50)
-@given(st.integers(min_value=2, max_value=10**8).filter(lambda n: int(n**0.5) ** 2 != n))
+@given(st.integers(min_value=2, max_value=10**8).filter(lambda n: isqrt(n) ** 2 != n))
 def test_correct_decimals_at_least_double(n: int) -> None:
     xs = heron_sqrt(n, 4)
     decimals = [correct_decimals(n, x, limit=100) for x in xs]

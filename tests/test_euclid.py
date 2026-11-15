@@ -1,3 +1,5 @@
+import time
+import tracemalloc
 from fractions import Fraction
 from math import gcd
 
@@ -22,7 +24,7 @@ small_numbers = st.integers(min_value=1, max_value=10**4)
 
 
 def test_subtraction_in_turn_for_54_and_15() -> None:
-    assert anthyphairesis(54, 15) == [
+    assert list(anthyphairesis(54, 15)) == [
         (54, 15),
         (39, 15),
         (24, 15),
@@ -37,7 +39,7 @@ def test_subtraction_in_turn_for_54_and_15() -> None:
 
 def test_vii_1_ends_on_a_unit() -> None:
     # Granville (2024) works 41 and 12: 41 - 3*12 = 5, 12 - 2*5 = 2, 5 - 2*2 = 1.
-    assert anthyphairesis(41, 12)[-1] == (1, 1)
+    assert list(anthyphairesis(41, 12))[-1] == (1, 1)
     assert prime_to_one_another(41, 12)
     assert division_quotients(41, 12) == [3, 2, 2, 2]
 
@@ -53,8 +55,27 @@ def test_order_of_arguments_does_not_matter() -> None:
 
 
 def test_unit_and_equal_numbers() -> None:
-    assert anthyphairesis(7, 7) == [(7, 7)]
+    assert list(anthyphairesis(7, 7)) == [(7, 7)]
     assert subtraction_count(10_000, 1) == 9_999
+
+
+def test_a_long_run_is_counted_in_constant_memory() -> None:
+    tracemalloc.start()
+    start = time.perf_counter()
+    count = subtraction_count(10**12, 1)
+    elapsed = time.perf_counter() - start
+    _, peak = tracemalloc.get_traced_memory()
+    tracemalloc.stop()
+    assert count == 10**12 - 1
+    assert greatest_common_measure(10**12, 1) == 1
+    assert elapsed < 1
+    assert peak < 100_000
+
+
+def test_anthyphairesis_yields_lazily() -> None:
+    pairs = anthyphairesis(10**12, 1)
+    assert next(pairs) == (10**12, 1)
+    assert next(pairs) == (10**12 - 1, 1)
 
 
 @pytest.mark.parametrize("a, b", [(0, 5), (5, 0), (-3, 4)])
@@ -69,6 +90,11 @@ def test_lame_example_1597_and_987() -> None:
     # Lamé counts 14 divisions to the remainder 1; the 15th leaves 0. His bound is 15.
     assert division_count(1597, 987) == 15
     assert lame_bound(1597, 987) == 15
+
+
+def test_lame_bound_above_python_str_digit_limit() -> None:
+    big = 10**5000
+    assert lame_bound(big + 1, big) == 5 * 5001
 
 
 def test_fibonacci_pairs() -> None:

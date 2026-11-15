@@ -1,11 +1,11 @@
 from collections.abc import Callable
 from itertools import pairwise
-from math import gcd
 
 import pytest
 from hypothesis import given, settings
 from hypothesis import strategies as st
 
+from ancient_algorithms.euclid import prime_to_one_another
 from ancient_algorithms.sieve import (
     crossing_count,
     koskinon,
@@ -62,7 +62,7 @@ def test_nicomachus_example_9_and_25() -> None:
     # I.13.1: each is composite, and they are prime to one another.
     marks = koskinon(25)
     assert marks[9] and marks[25]
-    assert gcd(9, 25) == 1
+    assert prime_to_one_another(9, 25)
 
 
 def test_odd_primes_to_100() -> None:
@@ -124,7 +124,7 @@ def test_sieves_agree_at_100_000() -> None:
 
 @pytest.mark.parametrize(
     "call",
-    [koskinon, trial_division, sieve_of_eratosthenes, segmented_sieve, wheel_sieve],
+    [koskinon, trial_division, sieve_of_eratosthenes, crossing_count, segmented_sieve, wheel_sieve],
 )
 def test_rejects_negative_limit(call: Callable[[int], object]) -> None:
     with pytest.raises(ValueError, match="limit must be at least 0, got -1"):

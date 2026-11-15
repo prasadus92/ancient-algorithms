@@ -226,3 +226,27 @@ references:
       - family-names: Schöne
         given-names: Hermann
     year: 1903
+  - type: article
+    title: "Note sur la limite du nombre des divisions dans la recherche du plus grand commun diviseur entre deux nombres entiers"
+    authors:
+      - family-names: Lamé
+        given-names: Gabriel
+    journal: "Comptes rendus de l'Académie des sciences"
+    volume: 19
+    start: 867
+    end: 870
+    year: 1844
+  - type: book
+    title: "Nicomachi Geraseni Pythagorei Introductionis arithmeticae libri II"
+    authors:
+      - name: Nicomachus of Gerasa
+    editors:
+      - family-names: Hoche
+        given-names: Richard
+    year: 1866
+  - type: book
+    title: "A History of Greek Mathematics"
+    authors:
+      - family-names: Heath
+        given-names: Thomas L.
+    year: 1921
