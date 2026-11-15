@@ -27,6 +27,7 @@ from __future__ import annotations
 from decimal import Decimal, localcontext
 
 from ancient_algorithms._checks import check_at_least
+from ancient_algorithms.precision import correct_decimals
 
 __all__ = [
     "PI_100",
@@ -111,10 +112,5 @@ def machin_pi(n: int, prec: int = DEFAULT_PREC) -> Decimal:
 
 
 def correct_digits(approx: Decimal) -> int:
-    """Correct decimal places of an approximation of pi: floor(-log10 |error|)."""
-    with localcontext() as ctx:
-        ctx.prec = 110
-        error = abs(approx - PI_100)
-        if error == 0:
-            return 100
-        return max(0, int((-error.log10()).to_integral_value(rounding="ROUND_FLOOR")))
+    """Correct decimal places of an approximation of pi: floor(-log10 |error|), up to 100."""
+    return correct_decimals(approx, PI_100, 100)
