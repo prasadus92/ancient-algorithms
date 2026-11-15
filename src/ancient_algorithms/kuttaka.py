@@ -33,7 +33,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from math import gcd
 
-from ancient_algorithms._checks import check_remainders
+from ancient_algorithms._checks import check_at_least, check_remainders
 
 __all__ = [
     "KuttakaRecord",
@@ -93,8 +93,8 @@ def pulverize(
     """
     if b <= 0:
         raise ValueError(f"the divisor must be positive, got {b}")
-    if stop_after is not None and stop_after < 0:
-        raise ValueError(f"stop_after must be at least 0, got {stop_after}")
+    if stop_after is not None:
+        check_at_least("stop_after", stop_after, 0)
     g = gcd(a, b)
     if c % g:
         raise ValueError(f"no solution: gcd({a}, {b}) = {g} does not divide {c}")

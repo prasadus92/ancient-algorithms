@@ -9,6 +9,8 @@ Python implementations of algorithms from dated historical sources. Where the so
 |---|---|---|
 | `kuttaka.py` | The kuttaka ("pulverizer") for `a*x + c = b*y` and the remainder problem, with the extended Euclidean algorithm and modular inverse for comparison | Aryabhata, *Aryabhatiya*, Ganitapada 32 and 33 (c. 499 CE), read with Bhaskara I's commentary (629 CE) |
 | `madhava.py` | The series for pi with Madhava's 3 end corrections, the sqrt(12) series, and Machin's formula for comparison | 16th-century Kerala texts that credit Madhava of Sangamagrama (c. 1340 to 1425) |
+| `pingala.py` | Listing every heavy and light syllable pattern (prastara), the uddista and nasta procedures that map a pattern to its row number and back, the counts, and the meru triangle | Pingala, *Chandahshastra* 8.20 to 8.34 (date debated), read with Halayudha's commentary (c. 10th century) |
+| `panini.py` | Vowel sandhi from the *Ashtadhyayi* as an ordered rewrite system: pratyahara expansion from the Shiva Sutras, exceptions that block their general rules, and 1.4.2 for what remains | Panini, *Ashtadhyayi* 6.1 (date debated), GRETIL e-texts |
 | `babylonian_sqrt.py` | Base-60 arithmetic, the square root of 2 on YBC 7289, and the averaging iteration | YBC 7289, Old Babylonian (c. 1800 to 1600 BCE); Heron of Alexandria, *Metrica* (1st century CE) |
 | `sunzi.py` | The remainder problem and its recipe with the multipliers 70, 21 and 15, generalized to any pairwise coprime divisors | *Sunzi Suanjing* (c. 3rd to 5th century CE), the remainder problem in the third juan |
 | `dayan.py` | Qin Jiushao's dayan method: reducing the divisors to definite numbers, and the qiuyi procedure for each multiplier | Qin Jiushao, *Shushu jiuzhang* (preface 1247), chapter 1 |
@@ -40,6 +42,7 @@ With pip: `pip install -e . pytest hypothesis`, then `pytest`.
 - **The sources' own examples.** From Bhaskara I's commentary on Ganitapada 32 and 33: his 4 examples of the remainder problem (16, 317, 85 and 301), his 2 examples without remainders (9 and 17), and 1 of his astronomical examples (number 22, 199,066 days). Also the example Clark (1930) works from Parameshvara's commentary (1001). The columns for 3 of these are checked step by step against the commentary.
 - **Properties on random inputs**, with Hypothesis. The kuttaka's answer satisfies its equation and is the smallest one, stopping the divisions early gives the same answer, and the results match the incremental Chinese remainder construction and Python's `pow(a, -1, m)`.
 - **Sunzi and Qin Jiushao.** Sunzi's answer 23 for all 105 remainder triples, and every number in Qin's rice, dike and couriers problems. The divination problem matches up to the adjustment step the code leaves out.
+- **Pingala and Panini.** Halayudha's worked examples for the pattern procedures, and sandhi examples from the Laghusiddhantakaumudi run through the rewrite rules, including the exception 6.1.89 over 6.1.94 (*upa* + *eti* gives *upaiti*).
 - **Convergence rates.** Each of Madhava's corrections cuts the error by the expected power of n (n^-3, n^-5, n^-7).
 - **The tablet.** 30 times 1;24,51,10 is 42;25,35, 1;24,51,10 is the square root of 2 truncated to 3 base-60 places, and 0;42,25,35 is 1/sqrt(2) truncated the same way.
 
