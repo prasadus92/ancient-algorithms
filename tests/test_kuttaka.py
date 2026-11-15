@@ -180,8 +180,8 @@ def test_extended_gcd_bezout(a, b):
     assert g == gcd(a, b)
 
 
-def test_bhaskara_day_count_from_the_suns_remainder():
-    # Sun revolutions and civil days in Bhaskara I's yuga; he also divides by 7,500 first.
+def test_bhaskara_example_22_day_count():
+    # Example 22 on Ganitapada 32-33; Bhaskara I divides by 7,500 first, as pulverize does.
     v = pulverize(4_320_000, 1_577_917_500, -82_500)
     assert (v.a, v.b) == (576, 210_389)
     assert v.x == 199_066

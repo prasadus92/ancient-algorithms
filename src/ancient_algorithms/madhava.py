@@ -1,4 +1,4 @@
-"""Madhava's series for pi with the end corrections, and a convergence benchmark.
+"""Madhava's series for pi with the end corrections.
 
 Later Kerala texts attribute to Madhava of Sangamagrama (c. 1340 to 1425) the series
 
@@ -46,14 +46,14 @@ PI_100 = Decimal(
 """Pi to 100 decimal places, the reference for errors and digit counts."""
 
 
-def _alternating_odd_series(terms: int, ratio: int) -> Decimal:
-    """Sum of (-1)^k / ((2k + 1) * ratio^k) for k below ``terms``, in the current context."""
+def _alternating_odd_series(terms: int, base: int, first: int = 1) -> Decimal:
+    """Sum of (-1)^k / ((2k + 1) * first * base^k) for k below ``terms``, in the current context."""
     total = Decimal(0)
-    power = Decimal(1)
+    power = Decimal(first)
     for k in range(terms):
         term = 1 / ((2 * k + 1) * power)
         total += term if k % 2 == 0 else -term
-        power *= ratio
+        power *= base
     return total
 
 
@@ -68,12 +68,12 @@ def partial_sum(n: int, prec: int = DEFAULT_PREC) -> Decimal:
 
 def correction(n: int, order: int, prec: int = DEFAULT_PREC) -> Decimal:
     """Madhava's end correction of the given order (0, 1, 2 or 3) after n terms."""
+    if n < 1 and order:
+        raise ValueError(f"corrections need n >= 1, got {n}")
     if order not in (0, 1, 2, 3):
         raise ValueError(f"order must be 0, 1, 2 or 3, got {order}")
     if order == 0:
         return Decimal(0)
-    if n < 1:
-        raise ValueError(f"corrections need n >= 1, got {n}")
     with localcontext() as ctx:
         ctx.prec = prec
         d = Decimal(n)
@@ -105,13 +105,13 @@ def machin_pi(n: int, prec: int = DEFAULT_PREC) -> Decimal:
     """Machin (1706): pi/4 = 4 arctan(1/5) - arctan(1/239), n terms of each series."""
     with localcontext() as ctx:
         ctx.prec = prec
-        arctan_fifth = _alternating_odd_series(n, 5 * 5) / 5
-        arctan_239th = _alternating_odd_series(n, 239 * 239) / 239
-        return 4 * (4 * arctan_fifth - arctan_239th)
+        arctan_1_5 = _alternating_odd_series(n, 5 * 5, first=5)
+        arctan_1_239 = _alternating_odd_series(n, 239 * 239, first=239)
+        return 4 * (4 * arctan_1_5 - arctan_1_239)
 
 
 def correct_digits(approx: Decimal) -> int:
-    """Correct decimal places of an approximation of pi: floor(-log10 |error|), at most 100."""
+    """Correct decimal places of an approximation of pi: floor(-log10 |error|)."""
     with localcontext() as ctx:
         ctx.prec = 110
         error = abs(approx - PI_100)

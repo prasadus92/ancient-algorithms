@@ -84,7 +84,7 @@ def parse_sexagesimal(text: str) -> Fraction:
 def format_sexagesimal(value: Sexagesimal) -> str:
     """Modern notation, for example ``1;24,51,10``."""
     whole, digits = value
-    return f"{whole};" + ",".join(str(d) for d in digits) if digits else str(whole)
+    return (f"{whole};" + ",".join(str(d) for d in digits)) if digits else str(whole)
 
 
 def heron_steps(square: int | Fraction, start: Fraction, steps: int) -> list[Fraction]:

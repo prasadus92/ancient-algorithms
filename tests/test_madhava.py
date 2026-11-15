@@ -51,6 +51,11 @@ def test_sqrt12_series_and_machin():
     assert correct_digits(machin_pi(10)) >= 14
 
 
+def test_machin_values_match_term_by_term_rounding():
+    assert str(machin_pi(41)) == "3.14159265358979323846264338327950288419716939937510582097494"
+    assert str(machin_pi(3, 5)) == "3.1415"
+
+
 def test_invalid_inputs():
     with pytest.raises(ValueError):
         correction(5, 4)

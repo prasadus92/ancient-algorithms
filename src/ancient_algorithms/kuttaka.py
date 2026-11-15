@@ -34,7 +34,6 @@ from dataclasses import dataclass, field
 from math import gcd
 
 __all__ = [
-    "TRIAL_LIMIT",
     "KuttakaRecord",
     "pulverize",
     "two_remainders",
@@ -109,7 +108,7 @@ def pulverize(
     added = n % 2 == 0
     mati, mati_quotient = _choose_mati(residues[n + 1], residues[n], c, added)
     column = quotients + [mati, mati_quotient]
-    top, reduced = _fold(column, n, trace)
+    top, reduced = _fold(column, trace)
 
     record.quotients = quotients
     record.residues = residues
@@ -125,7 +124,7 @@ def pulverize(
 def _reciprocal_division(
     first_remainder: int, divisor: int, stop_after: int | None
 ) -> tuple[list[int], list[int]]:
-    """Divide the 2 numbers by each other in turn until a residue is 1."""
+    """Divide the 2 numbers by each other in turn until a residue is 1, or ``stop_after`` times."""
     residues = [divisor, first_remainder]
     quotients: list[int] = []
     while residues[-1] > 1 and (stop_after is None or len(quotients) < stop_after):
@@ -151,11 +150,11 @@ def _choose_mati(residue: int, previous: int, c: int, add: bool) -> tuple[int, i
     raise ValueError(f"no mati exists for {residue}*m {'+' if add else '-'} {c} (mod {previous})")
 
 
-def _fold(column: list[int], n: int, trace: bool) -> tuple[int, list[list[int]]]:
+def _fold(column: list[int], trace: bool) -> tuple[int, list[list[int]]]:
     """Fold the column from the bottom: "multiply the upper by the lower, add the last"."""
     work = column[:]
     reduced = [column[:]] if trace else []
-    for i in range(n - 1, -1, -1):
+    for i in range(len(column) - 3, -1, -1):
         work[i] = work[i] * work[i + 1] + work[i + 2]
         if trace:
             reduced.append(work[: i + 2])
@@ -172,11 +171,13 @@ def two_remainders(r1: int, d1: int, r2: int, d2: int) -> int:
     """
     if not (0 <= r1 < d1 and 0 <= r2 < d2):
         raise ValueError("each remainder must be smaller than its divisor")
-    if r1 < r2:
-        r1, d1, r2, d2 = r2, d2, r1, d1
-    # d1*x + r1 must leave r2 with d2, so d1*x + (r1 - r2) divides by d2.
-    x = pulverize(d1, d2, r1 - r2).x
-    return d1 * x + r1
+    if r1 >= r2:
+        greater_r, greater_d, lesser_r, lesser_d = r1, d1, r2, d2
+    else:
+        greater_r, greater_d, lesser_r, lesser_d = r2, d2, r1, d1
+    # N = greater_d*x + greater_r must also leave lesser_r when divided by lesser_d.
+    x = pulverize(greater_d, lesser_d, greater_r - lesser_r).x
+    return greater_d * x + greater_r
 
 
 def remainder_problem(pairs: list[tuple[int, int]]) -> int:
@@ -239,6 +240,7 @@ def crt(pairs: list[tuple[int, int]]) -> int:
 
 
 def _check_invertible(a: int, m: int) -> None:
+    """Raise ``ValueError`` unless ``m`` is positive and ``a`` is coprime to it."""
     if m < 1:
         raise ValueError(f"the modulus must be positive, got {m}")
     if gcd(a, m) != 1:
