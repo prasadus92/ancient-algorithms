@@ -11,7 +11,7 @@ from decimal import ROUND_FLOOR, Decimal, localcontext
 
 from ancient_algorithms._checks import check_at_least
 
-__all__ = ["correct_decimals"]
+__all__ = ["GUARD_DIGITS", "correct_decimals"]
 
 GUARD_DIGITS = 10
 """Extra significant digits carried so the error is not lost to rounding."""
