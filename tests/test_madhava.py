@@ -2,7 +2,7 @@ from decimal import Decimal
 
 import pytest
 
-from old_algorithms.madhava import (
+from ancient_algorithms.madhava import (
     PI_100,
     correct_digits,
     correction,
@@ -24,7 +24,6 @@ def test_partial_sum_small_cases():
 
 
 def test_bare_series_converges_slowly():
-    # 50 terms of the bare series give only 1 correct decimal place.
     assert correct_digits(madhava_pi(50)) == 1
 
 
@@ -50,6 +49,11 @@ def test_third_correction_with_50_terms():
 def test_sqrt12_series_and_machin():
     assert correct_digits(madhava_sqrt12_pi(21)) >= 10
     assert correct_digits(machin_pi(10)) >= 14
+
+
+def test_machin_values_match_term_by_term_rounding():
+    assert str(machin_pi(41)) == "3.14159265358979323846264338327950288419716939937510582097494"
+    assert str(machin_pi(3, 5)) == "3.1415"
 
 
 def test_invalid_inputs():

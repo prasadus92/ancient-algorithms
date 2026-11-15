@@ -4,7 +4,7 @@ import pytest
 from hypothesis import given
 from hypothesis import strategies as st
 
-from old_algorithms.kuttaka import (
+from ancient_algorithms.kuttaka import (
     crt,
     extended_gcd,
     mod_inverse_euclid,
@@ -17,12 +17,10 @@ from old_algorithms.kuttaka import (
 
 # Bhaskara I's worked examples on Ganitapada 32-33 (Shukla 1976 edition).
 def test_bhaskara_example_1():
-    # Leaves 1 when divided by 5 and 2 when divided by 7.
     assert two_remainders(1, 5, 2, 7) == 16
 
 
 def test_bhaskara_example_2():
-    # Leaves 5 when divided by 12 and 7 when divided by 31.
     assert two_remainders(5, 12, 7, 31) == 317
 
 
@@ -48,14 +46,14 @@ def test_bhaskara_example_1_column_matches_commentary():
 
 
 def test_bhaskara_example_3_three_divisors():
-    # Leaves 5 with 8, 4 with 9 and 1 with 7; the first 2 give 13 with divisor 72.
+    # Bhaskara I folds the first 2 pairs into 13 with divisor 72, then adds the third.
     assert two_remainders(5, 8, 4, 9) == 13
     assert two_remainders(13, 72, 1, 7) == 85
     assert remainder_problem([(5, 8), (4, 9), (1, 7)]) == 85
 
 
 def test_bhaskara_example_5_without_remainders():
-    # 8x + 6 divisible by 13: column 1 1 1 1 2 4 folds to 22 14, giving 9 and quotient 6.
+    # The column and fold as printed in the commentary.
     v = pulverize(8, 13, 6, trace=True)
     assert v.column == [1, 1, 1, 1, 2, 4]
     assert v.reduced[-1] == [22, 14]
@@ -64,14 +62,12 @@ def test_bhaskara_example_5_without_remainders():
 
 
 def test_bhaskara_example_6_without_remainders():
-    # 11x - 3 divisible by 23 gives 17, with quotient 8.
     v = pulverize(11, 23, -3)
     assert v.x == 17
     assert (11 * v.x - 3) // 23 == 8
 
 
 def test_bhaskara_example_4_non_coprime_divisors():
-    # Leaves 1 with 2, 3, 4, 5 and 6, and divides exactly by 7.
     assert remainder_problem([(1, d) for d in range(2, 7)] + [(0, 7)]) == 301
 
 
@@ -134,7 +130,6 @@ def test_pulverize_solves_whenever_a_solution_exists(a, b, c, stop):
     assert (a * x + c) % b == 0
     assert 0 <= x < b // gcd(a, b)
     if v.b > 1:
-        # The mati equation holds and the folded column gives x.
         n = v.divisions
         sign = 1 if v.added else -1
         upper, lower = v.residues[n + 1], v.residues[n]
@@ -185,10 +180,8 @@ def test_extended_gcd_bezout(a, b):
     assert g == gcd(a, b)
 
 
-def test_bhaskara_day_count_from_the_suns_remainder():
-    # Bhaskara I's example 22 on Ganitapada 32-33: the sun makes 4,320,000 revolutions
-    # in 1,577,917,500 days; a leftover of 82,500 gives 199,066 days and 545 revolutions.
-    # He first divides divisor, dividend and remainder by 7,500, as pulverize does.
+def test_bhaskara_example_22_day_count():
+    # Example 22 on Ganitapada 32-33; Bhaskara I divides by 7,500 first, as pulverize does.
     v = pulverize(4_320_000, 1_577_917_500, -82_500)
     assert (v.a, v.b) == (576, 210_389)
     assert v.x == 199_066

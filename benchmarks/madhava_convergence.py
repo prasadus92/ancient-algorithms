@@ -6,7 +6,7 @@ faster methods; the reference value has 100 places.
 Run: python benchmarks/madhava_convergence.py
 """
 
-from old_algorithms.madhava import correct_digits, machin_pi, madhava_pi, madhava_sqrt12_pi
+from ancient_algorithms.madhava import correct_digits, machin_pi, madhava_pi, madhava_sqrt12_pi
 
 TERMS = (1, 2, 5, 10, 20, 50, 100)
 PREC = 120

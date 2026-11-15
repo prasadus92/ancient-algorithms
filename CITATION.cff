@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this software or its write-ups, please cite it as below. Code is MIT; prose is CC BY 4.0."
 type: software
-title: "Old algorithms, implemented"
+title: "Ancient algorithms, implemented"
 abstract: >-
   Python implementations of algorithms from dated historical sources:
   Aryabhata's kuttaka, tested against the worked examples in Bhaskara I's
@@ -15,8 +15,8 @@ version: 0.1.0
 license:
   - MIT
   - CC-BY-4.0
-repository-code: "https://github.com/prasadus92/old-algorithms"
-url: "https://prasad.tech/old-algorithms/"
+repository-code: "https://github.com/prasadus92/ancient-algorithms"
+url: "https://prasad.tech/ancient-algorithms/"
 keywords:
   - history of mathematics
   - Indian mathematics

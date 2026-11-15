@@ -11,7 +11,12 @@ Run: python benchmarks/kuttaka_vs_euclid.py
 import random
 import timeit
 
-from old_algorithms.kuttaka import extended_gcd, mod_inverse_euclid, mod_inverse_kuttaka, pulverize
+from ancient_algorithms.kuttaka import (
+    extended_gcd,
+    mod_inverse_euclid,
+    mod_inverse_kuttaka,
+    pulverize,
+)
 
 SAMPLES = 100
 

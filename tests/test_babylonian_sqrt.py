@@ -2,14 +2,14 @@ from fractions import Fraction
 
 import pytest
 
-from old_algorithms.babylonian_sqrt import (
+from ancient_algorithms.babylonian_sqrt import (
     YBC7289_DIAGONAL,
     YBC7289_ROOT2,
     YBC7289_SIDE,
     format_sexagesimal,
     from_sexagesimal,
     heron_steps,
-    parse,
+    parse_sexagesimal,
     to_sexagesimal,
 )
 
@@ -33,18 +33,17 @@ def test_tablet_is_sqrt2_truncated_to_three_places():
 def test_other_reading_gives_inverse_root2():
     # Read the side as 0;30 and the third number is 0;42,25,35, 1/sqrt(2) to 3 places.
     assert to_sexagesimal(1 / YBC7289_ROOT2, 3) == (0, (42, 25, 35))
-    x = parse("0;42,25,35")
+    x = parse_sexagesimal("0;42,25,35")
     step = Fraction(1, 60**3)
     assert x * x < Fraction(1, 2) < (x + step) * (x + step)
 
 
 def test_negative_input_is_rejected():
     with pytest.raises(ValueError):
-        parse("-1;30")
+        parse_sexagesimal("-1;30")
 
 
 def test_tablet_accuracy():
-    # About 6 parts in 10 million below sqrt(2).
     err = 2**0.5 - float(YBC7289_ROOT2)
     assert 5.9e-7 < err < 6.0e-7
 
@@ -59,5 +58,5 @@ def test_round_trip_and_format():
     v = (42, (25, 35))
     assert to_sexagesimal(from_sexagesimal(v), 2) == v
     assert format_sexagesimal(v) == "42;25,35"
-    assert parse("42;25,35") == YBC7289_DIAGONAL
+    assert parse_sexagesimal("42;25,35") == YBC7289_DIAGONAL
     assert format_sexagesimal((7, ())) == "7"
