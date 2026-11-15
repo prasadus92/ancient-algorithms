@@ -6,19 +6,20 @@ This repo implements algorithms from dated historical sources in Python. Each mo
 
 ## Setup and checks
 
-Python 3.10 or newer, with [uv](https://docs.astral.sh/uv/).
+Python 3.11 or newer, with [uv](https://docs.astral.sh/uv/).
 
 ```bash
 uv sync --locked --group dev
 uv run ruff check .
 uv run ruff format --check .
+uv run mypy
 uv run pytest
 uv build
 uv run python benchmarks/kuttaka_vs_euclid.py
 uv run python benchmarks/madhava_convergence.py
 ```
 
-CI runs these steps on Python 3.10 to 3.14, and `main` accepts changes only through a pull request with all 5 jobs green. `uv run ruff format .` fixes formatting, and `uv run pytest tests/test_kuttaka.py -k example_2` runs a single test.
+CI runs these steps on Python 3.11 to 3.15, and `main` accepts changes only through a pull request with all 5 jobs green. `uv run ruff format .` fixes formatting, and `uv run pytest tests/test_kuttaka.py -k example_2` runs a single test.
 
 ## Layout
 
@@ -53,7 +54,7 @@ The write-ups on prasad.tech live in a separate site repo. A change here does no
 - Write each function the way a textbook would present the algorithm: plain loops, standard-library types, and names taken from the source where it has them (for example `mati`).
 - Comments: keep one only when it gives a source reference, explains a step that is not obvious from the code, or says why a choice was made. Delete any comment that restates the code. Each comment fits on 1 line.
 - Use `ValueError` with a message that names the bad input.
-- `ruff` settings live in `pyproject.toml`: rules E, F, W, I, UP and B, and lines of at most 100 characters.
+- `ruff` and `mypy` settings live in `pyproject.toml`: ruff rules E, F, W, I, UP and B, lines of at most 100 characters, and mypy in strict mode over `src`, `tests` and `benchmarks`.
 
 ## Docs and commit messages
 

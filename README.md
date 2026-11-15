@@ -13,7 +13,7 @@ Python implementations of algorithms from dated historical sources. Where the so
 
 ## Run it
 
-Python 3.10 or newer. With [uv](https://docs.astral.sh/uv/):
+Python 3.11 or newer. With [uv](https://docs.astral.sh/uv/):
 
 ```bash
 uv sync --locked --group dev

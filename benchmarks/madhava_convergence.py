@@ -6,11 +6,14 @@ faster methods; the reference value has 100 places.
 Run: python benchmarks/madhava_convergence.py
 """
 
+from collections.abc import Callable
+from decimal import Decimal
+
 from ancient_algorithms.madhava import correct_digits, machin_pi, madhava_pi, madhava_sqrt12_pi
 
 TERMS = (1, 2, 5, 10, 20, 50, 100)
 PREC = 120
-METHODS = {
+METHODS: dict[str, Callable[[int], Decimal]] = {
     "bare series": lambda n: madhava_pi(n, 0, PREC),
     "+ correction 1": lambda n: madhava_pi(n, 1, PREC),
     "+ correction 2": lambda n: madhava_pi(n, 2, PREC),
