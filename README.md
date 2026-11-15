@@ -9,7 +9,8 @@ Python implementations of algorithms from dated historical sources. Where the so
 |---|---|---|
 | `kuttaka.py` | The kuttaka ("pulverizer") for `a*x + c = b*y` and the remainder problem, with the extended Euclidean algorithm and modular inverse for comparison | Aryabhata, *Aryabhatiya*, Ganitapada 32 and 33 (c. 499 CE), read with Bhaskara I's commentary (629 CE) |
 | `madhava.py` | The series for pi with Madhava's 3 end corrections, the sqrt(12) series, and Machin's formula for comparison | 16th-century Kerala texts that credit Madhava of Sangamagrama (c. 1340 to 1425) |
-| `babylonian_sqrt.py` | Base-60 arithmetic, the square root of 2 on YBC 7289, and the averaging iteration | YBC 7289, Old Babylonian (c. 1800 to 1600 BCE); Heron of Alexandria, *Metrica* (1st century CE) |
+| `babylonian_sqrt.py` | Base-60 arithmetic, the square root of 2 on YBC 7289, and the averaging iteration | YBC 7289, Old Babylonian (c. 1900 to 1600 BCE); Heron of Alexandria, *Metrica* (1st century CE) |
+| `plimpton322.py` | Plimpton 322 rebuilt from reciprocal pairs of regular numbers, with the tablet's 7 scribal errors found by comparison; Euclid's formula for Pythagorean triples for comparison | Plimpton 322, Old Babylonian, Larsa (c. 1822 to 1762 BCE, Robson's dating) |
 
 ## Run it
 
@@ -36,6 +37,7 @@ With pip: `pip install -e . pytest hypothesis`, then `pytest`.
 
 - **The sources' own examples.** From Bhaskara I's commentary on Ganitapada 32 and 33: his 4 examples of the remainder problem (16, 317, 85 and 301), his 2 examples without remainders (9 and 17), and 1 of his astronomical examples (number 22, 199,066 days). Also the example Clark (1930) works from Parameshvara's commentary (1001). The columns for 3 of these are checked step by step against the commentary.
 - **Properties on random inputs**, with Hypothesis. The kuttaka's answer satisfies its equation and is the smallest one, stopping the divisions early gives the same answer, and the results match the textbook Chinese remainder construction and Python's `pow(a, -1, m)`.
+- **Plimpton 322.** Rebuilding the 15 rows from reciprocal pairs reproduces the tablet's numbers and finds all 7 errors Robson (2001) lists.
 - **Convergence rates.** Each of Madhava's corrections cuts the error by the expected power of n (n^-3, n^-5, n^-7).
 - **The tablet.** 30 times 1;24,51,10 is 42;25,35, 1;24,51,10 is the square root of 2 truncated to 3 base-60 places, and 0;42,25,35 is 1/sqrt(2) truncated the same way.
 

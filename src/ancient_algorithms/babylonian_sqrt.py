@@ -1,6 +1,6 @@
 """The square root of 2 on YBC 7289, in base 60.
 
-YBC 7289 is an Old Babylonian school tablet (c. 1800 to 1600 BCE) in the Yale
+YBC 7289 is an Old Babylonian school tablet (c. 1900 to 1600 BCE, per CDLI P255048) in the Yale
 Babylonian Collection. It shows a square with the number 30 on one side and 2
 numbers along the diagonal:
 
