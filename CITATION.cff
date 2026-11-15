@@ -29,6 +29,16 @@ keywords:
   - Chinese remainder theorem
   - Sunzi Suanjing
   - Qin Jiushao
+  - Pingala
+  - meru prastara
+  - Panini
+  - Ashtadhyayi
+  - sandhi
+  - Maya numerals
+  - Long Count
+  - al-Khwarizmi
+  - completing the square
+  - algorism
   - Plimpton 322
   - Pythagorean triples
 references:
@@ -90,6 +100,80 @@ references:
       - family-names: Wylie
         given-names: Alexander
     year: 1852
+  - type: book
+    title: "Chandahsutram, with the Mrtasanjivani of Halayudha"
+    authors:
+      - name: Pingala
+    editors:
+      - family-names: Sastri
+        given-names: Visvanatha
+    year: 1874
+  - type: article
+    title: "The so-called Fibonacci numbers in ancient and medieval India"
+    authors:
+      - family-names: Singh
+        given-names: Parmanand
+    journal: Historia Mathematica
+    volume: 12
+    year: 1985
+  - type: generic
+    title: "On the architecture of Panini's grammar"
+    authors:
+      - family-names: Kiparsky
+        given-names: Paul
+  - type: book
+    title: "The Algebra of Mohammed ben Musa"
+    authors:
+      - name: Muhammad ibn Musa al-Khwarizmi
+    translators:
+      - family-names: Rosen
+        given-names: Frederic
+    year: 1831
+  - type: book
+    title: "Algoritmi de numero indorum"
+    authors:
+      - name: Muhammad ibn Musa al-Khwarizmi
+    editors:
+      - family-names: Boncompagni
+        given-names: Baldassarre
+    year: 1857
+  - type: book
+    title: "An Introduction to the Study of the Maya Hieroglyphs"
+    authors:
+      - family-names: Morley
+        given-names: Sylvanus Griswold
+    year: 1915
+  - type: article
+    title: "Exploring the 584286 Correlation between the Maya and European Calendars"
+    authors:
+      - family-names: Martin
+        given-names: Simon
+      - family-names: Skidmore
+        given-names: Joel
+    journal: The PARI Journal
+    volume: 13
+    issue: 2
+    start: 3
+    end: 16
+    year: 2012
+  - type: article
+    title: "Correlating the Ancient Maya and Modern European Calendars with High-Precision AMS 14C Dating"
+    authors:
+      - family-names: Kennett
+        given-names: Douglas J.
+    journal: Scientific Reports
+    volume: 3
+    year: 2013
+  - type: article
+    title: "Early texts on Hindu-Arabic calculation"
+    authors:
+      - family-names: Folkerts
+        given-names: Menso
+    journal: Science in Context
+    volume: 14
+    start: 13
+    end: 38
+    year: 2001
   - type: article
     title: "Neither Sherlock Holmes nor Babylon: a reassessment of Plimpton 322"
     authors:

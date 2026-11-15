@@ -43,6 +43,7 @@ from fractions import Fraction
 from math import gcd, isqrt, prod
 
 from ancient_algorithms.babylonian_sqrt import parse_sexagesimal, to_sexagesimal
+from ancient_algorithms.place_value import check_digits, from_digits, to_digits
 
 __all__ = [
     "SMALLEST_IGI",
@@ -276,7 +277,7 @@ def floating_digits(value: int | Fraction) -> tuple[int, ...]:
     if value <= 0:
         raise ValueError(f"value must be positive, got {value}")
     whole, fraction = to_sexagesimal(value, _fractional_places(value))
-    digits = _base60_digits(whole) + fraction
+    digits = tuple(to_digits(whole, 60)) + fraction
     start = next(i for i, digit in enumerate(digits) if digit)
     end = max(i for i, digit in enumerate(digits) if digit)
     return digits[start : end + 1]
@@ -290,9 +291,9 @@ def diagnose(written: tuple[int, ...], computed: tuple[int, ...]) -> str:
     ``"digit miscopied"`` or ``"unexplained"``. Values compare as the scribe saw
     them, with no point, so twice 28 and half of 1 52 are both 56.
     """
-    _check_digits(written, "written")
-    _check_digits(computed, "computed")
-    value = _from_digits(computed)
+    check_digits(written, 60)
+    check_digits(computed, 60)
+    value = from_digits(computed, 60)
     if written == computed:
         return "match"
     for kind, candidate in (("square", value * value), ("twice", 2 * value), ("half", 30 * value)):
@@ -358,37 +359,9 @@ def _last_digit(value: Fraction) -> int:
     return to_sexagesimal(value, _fractional_places(value))[1][-1]
 
 
-def _base60_digits(n: int) -> tuple[int, ...]:
-    """The base-60 digits of a whole number, most significant first."""
-    digits = []
-    while n:
-        n, digit = divmod(n, 60)
-        digits.append(digit)
-    return tuple(reversed(digits)) or (0,)
-
-
-def _check_digits(digits: tuple[int, ...], name: str) -> None:
-    """Raise ``ValueError`` unless ``digits`` is a non-empty run of base-60 digits."""
-    if not digits:
-        raise ValueError(f"{name} must have at least 1 digit, got {digits}")
-    for digit in digits:
-        if not 0 <= digit < 60:
-            raise ValueError(f"{name} has a base-60 digit out of range: {digit}")
-
-
-def _from_digits(digits: tuple[int, ...]) -> int:
-    """Read base-60 digits as a whole number."""
-    total = 0
-    for digit in digits:
-        if not 0 <= digit < 60:
-            raise ValueError(f"base-60 digit out of range: {digit}")
-        total = total * 60 + digit
-    return total
-
-
 def _common_factor_kept(written: tuple[tuple[int, ...], ...], sides: tuple[int, int]) -> bool:
     """Whether both written sides are the same regular multiple of ``sides``."""
-    ratios = [Fraction(_from_digits(w), side) for w, side in zip(written, sides, strict=True)]
+    ratios = [Fraction(from_digits(w, 60), side) for w, side in zip(written, sides, strict=True)]
     if not all(is_regular(ratio) for ratio in ratios):
         return False
     shapes = {floating_digits(ratio) for ratio in ratios}

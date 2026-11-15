@@ -7,6 +7,7 @@ from hypothesis import given
 from hypothesis import strategies as st
 
 from ancient_algorithms.babylonian_sqrt import parse_sexagesimal
+from ancient_algorithms.place_value import from_digits
 from ancient_algorithms.plimpton322 import (
     LARGEST_IGI,
     NEUGEBAUER_SACHS_GENERATORS,
@@ -190,19 +191,12 @@ def test_mansfield_wildberger_row_16() -> None:
 def test_written_sides_fail_the_diagonal_rule_where_the_tablet_is_wrong() -> None:
     failing = []
     for number, (_, b_digits, d_digits) in enumerate(TABLET, start=1):
-        b = _value(b_digits)
-        d = _value(d_digits)
+        b = from_digits(b_digits, 60)
+        d = from_digits(d_digits, 60)
         long_squared = d * d - b * b
         if long_squared <= 0 or isqrt(long_squared) ** 2 != long_squared:
             failing.append(number)
     assert failing == [2, 9, 13, 15]
-
-
-def _value(ds: tuple[int, ...]) -> int:
-    total = 0
-    for d in ds:
-        total = total * 60 + d
-    return total
 
 
 def test_diagnose_each_kind() -> None:
